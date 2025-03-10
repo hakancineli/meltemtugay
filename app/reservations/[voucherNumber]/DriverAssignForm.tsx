@@ -17,7 +17,7 @@ interface DriverAssignFormProps {
         time: string;
         from: string;
         to: string;
-        passengerNames: string;
+        passengerNames: string | string[]; // Dizi veya string tipi olacak şekilde değiştirildi
         luggageCount: number;
     };
     onAssign?: (driverId: string, driverFee: number) => Promise<void>;
@@ -33,10 +33,13 @@ export default function DriverAssignForm({ reservation, onAssign }: DriverAssign
     // Yolcu sayısını güvenli bir şekilde hesapla
     const getPassengerCount = () => {
         try {
-            const names = JSON.parse(reservation.passengerNames);
-            return Array.isArray(names) ? names.length : 1;
+            // Eğer passengerNames bir string ise, JSON.parse ile diziye dönüştür.
+            const names = Array.isArray(reservation.passengerNames) 
+                ? reservation.passengerNames 
+                : JSON.parse(reservation.passengerNames); 
+            return names.length; 
         } catch (e) {
-            return 1;
+            return 1; // Eğer parse edilemezse, 1 olarak kabul et
         }
     };
 
@@ -151,7 +154,7 @@ export default function DriverAssignForm({ reservation, onAssign }: DriverAssign
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                                <path d="M2 3a1 1 0 011-1h2.153a1 1 001.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                             </svg>
                                         </div>
                                         <input
@@ -251,4 +254,4 @@ export default function DriverAssignForm({ reservation, onAssign }: DriverAssign
             </div>
         </div>
     );
-} 
+}
