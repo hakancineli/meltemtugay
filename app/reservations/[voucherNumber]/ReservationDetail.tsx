@@ -28,6 +28,7 @@ interface ReservationDetailProps {
         voucherNumber: string;
         driverFee: number | null;
         driver: Driver | null;
+        isReturn?: boolean;
     };
     isDriverVoucher?: boolean;
     isEditMode?: boolean;
@@ -93,5 +94,8 @@ export default function ReservationDetail({
         return <DriverAssignForm reservation={reservation} onAssign={handleDriverAssign} />;
     }
 
-    return <VoucherContent reservation={reservation} isDriverVoucher={isDriverVoucher} />;
+    return <VoucherContent reservation={{
+        ...reservation,
+        isReturn: reservation.isReturn || false
+    }} isDriverVoucher={isDriverVoucher} />;
 } 
