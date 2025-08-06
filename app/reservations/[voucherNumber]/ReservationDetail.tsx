@@ -96,6 +96,11 @@ export default function ReservationDetail({
 
     return <VoucherContent reservation={{
         ...reservation,
+        passengerNames: Array.isArray(reservation.passengerNames) 
+            ? reservation.passengerNames 
+            : typeof reservation.passengerNames === 'string' 
+                ? JSON.parse(reservation.passengerNames) 
+                : [],
         isReturn: reservation.isReturn || false
     }} isDriverVoucher={isDriverVoucher} />;
 } 
