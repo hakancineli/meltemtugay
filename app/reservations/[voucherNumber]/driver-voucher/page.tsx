@@ -85,7 +85,12 @@ export default async function DriverVoucherPage({
                     <div className="bg-gray-50 p-4 rounded-lg">
                         <h2 className="text-xl font-semibold text-gray-800 mb-3">Yolcu Bilgileri</h2>
                         <div className="space-y-2">
-                            {reservation.passengerNames.map((name: string, index: number) => (
+                            {(() => {
+                                const names = typeof reservation.passengerNames === 'string' 
+                                    ? JSON.parse(reservation.passengerNames)
+                                    : reservation.passengerNames;
+                                return Array.isArray(names) ? names : [];
+                            })().map((name: string, index: number) => (
                                 <p key={index} className="font-medium">{name}</p>
                             ))}
                         </div>
