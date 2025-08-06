@@ -101,6 +101,7 @@ export default function ReservationDetail({
             : typeof reservation.passengerNames === 'string' 
                 ? JSON.parse(reservation.passengerNames) 
                 : [],
+        driverFee: reservation.driverFee || undefined,
         isReturn: reservation.isReturn || false
     }} isDriverVoucher={isDriverVoucher} />;
 } 
