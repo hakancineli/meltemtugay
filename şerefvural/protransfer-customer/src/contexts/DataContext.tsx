@@ -65,10 +65,16 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       rating: 4.9,
       images: [
         '/serefvip/istanbul/istanbul.jpeg',
-        '/serefvip/istanbul/hagia-sophia.jpg',
-        '/serefvip/istanbul/topkapi-gate.jpg',
-        '/serefvip/istanbul/bosphorus-ferries.jpg',
-        '/serefvip/istanbul/maidens-tower.jpg'
+        '/serefvip/istanbul/1-1.jpeg',
+        '/serefvip/istanbul/2-2.jpeg',
+        '/serefvip/istanbul/3-3.jpeg',
+        '/serefvip/istanbul/4-4.jpeg',
+        '/serefvip/istanbul/5-5.jpeg',
+        '/serefvip/istanbul/6-6.jpeg',
+        '/serefvip/istanbul/7-7.jpg',
+        '/serefvip/istanbul/9-9.jpeg',
+        '/serefvip/istanbul/11-11.jpeg',
+        '/serefvip/istanbul/12-12.jpeg'
       ],
       isActive: true,
       capacity: 7,
@@ -86,9 +92,15 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       rating: 4.8,
       images: [
         '/serefvip/sapanca/1-1.jpeg',
-        '/serefvip/sapanca/1-2.jpeg',
-        '/serefvip/sapanca/1-3.jpeg',
-        '/serefvip/sapanca/1-4.jpeg'
+        '/serefvip/sapanca/2-2.jpeg',
+        '/serefvip/sapanca/3-3.jpeg',
+        '/serefvip/sapanca/4-4.jpeg',
+        '/serefvip/sapanca/5-5.jpeg',
+        '/serefvip/sapanca/6-6.jpeg',
+        '/serefvip/sapanca/7-7.jpeg',
+        '/serefvip/sapanca/8-8.jpeg',
+        '/serefvip/sapanca/9-9.jpeg',
+        '/serefvip/sapanca/10-10.jpeg'
       ],
       isActive: true,
       capacity: 7,
@@ -106,9 +118,17 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       rating: 4.7,
       images: [
         '/serefvip/bursa/1-1.jpeg',
-        '/serefvip/bursa/1-2.jpeg',
-        '/serefvip/bursa/1-3.jpeg',
-        '/serefvip/bursa/1-4.jpeg'
+        '/serefvip/bursa/2-2.jpeg',
+        '/serefvip/bursa/3-3.jpeg',
+        '/serefvip/bursa/4-4.jpeg',
+        '/serefvip/bursa/5-5.jpeg',
+        '/serefvip/bursa/6-6.jpeg',
+        '/serefvip/bursa/7-7.jpeg',
+        '/serefvip/bursa/8-8.jpeg',
+        '/serefvip/bursa/9-9.jpeg',
+        '/serefvip/bursa/11-11.jpeg',
+        '/serefvip/bursa/12-12.jpeg',
+        '/serefvip/bursa/13-13.jpeg'
       ],
       isActive: true,
       capacity: 7,
@@ -126,9 +146,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       rating: 4.8,
       images: [
         '/serefvip/abant/1-1.jpeg',
-        '/serefvip/abant/1-2.jpeg',
-        '/serefvip/abant/1-3.jpeg',
-        '/serefvip/abant/1-4.jpeg'
+        '/serefvip/abant/2-2.jpeg',
+        '/serefvip/abant/3-3.jpeg',
+        '/serefvip/abant/4-4.jpeg',
+        '/serefvip/abant/5-5.jpeg',
+        '/serefvip/abant/6-6.jpeg',
+        '/serefvip/abant/7-7.jpg',
+        '/serefvip/abant/8-8.jpg'
       ],
       isActive: true,
       capacity: 7,
@@ -203,7 +227,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       try {
         // Cache version kontrolü - yeni versiyonda cache'i temizle
         const cacheVersion = localStorage.getItem('dataVersion');
-        const currentVersion = '3.0'; // Tur fotoğrafları çoklu hale getirildi
+        const currentVersion = '4.0'; // Gerçek serefvip fotoğrafları eklendi
         
         if (cacheVersion !== currentVersion) {
           localStorage.clear();
