@@ -20,7 +20,7 @@ const reviews = [
   {
     name: "Mehmet S.",
     rating: 5,
-    comment: "İstanbul Havalimanı'ndan şehir merkezine çok rahat bir yolculuk yaptık. Teşekkürler Şerref Vural Travel.",
+    comment: "İstanbul Havalimanı'ndan şehir merkezine çok rahat bir yolculuk yaptık. Teşekkürler Şeref Vural Travel.",
     date: "2 hafta önce",
     service: "Transfer"
   },
