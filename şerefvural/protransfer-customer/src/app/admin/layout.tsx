@@ -154,10 +154,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               
               {/* Logo - Responsive to sidebar state */}
               <div className="flex items-center">
-                <a href="/" className={`text-xl font-bold text-green-600 hover:text-green-700 transition-all duration-300 ${
-                  sidebarCollapsed ? 'text-sm' : 'text-xl'
-                }`}>
-                  {sidebarCollapsed ? 'ŞVT' : 'Şeref Vural Travel'}
+                <a href="/" className="text-xl font-bold text-green-600 hover:text-green-700 transition-all duration-300">
+                  Şeref Vural Travel
                 </a>
               </div>
               
