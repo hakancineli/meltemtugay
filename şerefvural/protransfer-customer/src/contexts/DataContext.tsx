@@ -109,7 +109,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       currency: 'TRY',
       rating: 4.8,
       images: ['/serefvip/abant/1-1.jpeg'],
-      isActive: false,
+      isActive: true,
       capacity: 7,
       departure: 'İstanbul\'dan kalkış',
       createdAt: '2024-01-04T00:00:00Z',
@@ -169,7 +169,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       currency: 'TRY',
       rating: 4.8,
       images: ['/images/hotels/modern-istanbul.svg'],
-      isActive: false,
+      isActive: true,
       features: ['Free WiFi', 'Parking', 'Breakfast', 'Family Friendly'],
       createdAt: '2024-01-01T00:00:00Z',
       updatedAt: '2024-01-15T10:30:00Z'
