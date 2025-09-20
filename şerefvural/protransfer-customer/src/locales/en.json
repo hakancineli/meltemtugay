@@ -1,0 +1,186 @@
+{
+  "landing": {
+    "title": "Şerref Vural Travel - Istanbul Airport Transfer Service",
+    "description": "Comfortable and safe transfer service from Istanbul Airport to city center. We are at your service 24/7 with our professional drivers and Mercedes Vito vehicles. We also offer Istanbul, Sapanca, Bursa, Abant tours and quality hotel accommodation options.",
+    "cta": {
+      "reservation": "Send Reservation Request",
+      "whatsapp": "Write on WhatsApp"
+    },
+    "features": {
+      "service24": "24/7 Service",
+      "service24Desc": "Always with you",
+      "fixedPrice": "Fixed Price",
+      "fixedPriceDesc": "No surprises",
+      "professionalDriver": "Professional Driver",
+      "professionalDriverDesc": "Experienced staff",
+      "capacity": "7 Person Capacity",
+      "capacityDesc": "Mercedes Vito"
+    }
+  },
+  "whyProTransfer": {
+    "title": "Why ProTransfer?",
+    "description": "We offer Istanbul's most reliable transfer service with our professional service approach and customer satisfaction focused approach.",
+    "features": {
+      "flightTracking": "Flight Tracking",
+      "flightTrackingDesc": "We track your flight and wait in case of delay",
+      "meetingService": "Meeting Service",
+      "meetingServiceDesc": "We meet you at the airport and carry your luggage",
+      "babySeat": "Baby Seat",
+      "babySeatDesc": "Baby seat and quick response to special requests",
+      "corporateTransfer": "Corporate Transfer",
+      "corporateTransferDesc": "Corporate contracted transfer options"
+    },
+    "pricing": {
+      "title": "Transparent Pricing",
+      "description": "See your fee instantly when you enter the locations. Fixed price, no surprises."
+    }
+  },
+  "vehicleSlider": {
+    "title": "Mercedes Vito Transfer Vehicle",
+    "description": "7 person capacity • Air conditioning • WiFi • Professional driver"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "description": "Read our customers' experiences",
+    "googleReviews": "Google Reviews"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Answers to your questions",
+    "questions": {
+      "reservation": "How is reservation made?",
+      "reservationAnswer": "To make a reservation, click the 'Send Reservation Request' button or contact us via WhatsApp. We determine the most suitable time for you and create your reservation.",
+      "pricing": "Are prices fixed?",
+      "pricingAnswer": "Yes, our prices are completely fixed. You see your fee instantly when you enter the locations. There are no surprise fees.",
+      "flightDelay": "What happens in case of flight delay?",
+      "flightDelayAnswer": "We track your flight and wait without additional fee in case of delay. Customer satisfaction is our priority.",
+      "luggage": "Is there a luggage limit?",
+      "luggageAnswer": "Our Mercedes Vito vehicles have large luggage capacity. There is no limit for normal travel luggage. Please inform us in advance for special items.",
+      "babySeat": "Is baby seat available?",
+      "babySeatAnswer": "Yes, baby seat service is available. It is sufficient to specify this request when making a reservation.",
+      "payment": "How is payment made?",
+      "paymentAnswer": "You can pay with cash, credit card or transfer. Payment options are determined during reservation.",
+      "cancellation": "What is the cancellation policy?",
+      "cancellationAnswer": "No fee is charged for reservations cancelled 24 hours in advance. Certain conditions apply for last minute cancellations.",
+      "driverInfo": "How are driver information obtained?",
+      "driverInfoAnswer": "After your reservation is confirmed, driver information is sent to you via WhatsApp. Our driver meets you at the designated point.",
+      "meetingPoint": "Where is the meeting point at the airport?",
+      "meetingPointAnswer": "We meet at the exit gate at Istanbul Airport, at the designated meeting point at Sabiha Gökçen.",
+      "groupReservation": "Can group reservation be made?",
+      "groupReservationAnswer": "Yes, we make special pricing for group reservations. You can learn the details by contacting us via WhatsApp."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Get in touch with us",
+    "whatsapp": {
+      "title": "WhatsApp",
+      "description": "Write on WhatsApp for quick response"
+    },
+    "phone": {
+      "title": "Phone",
+      "description": "24/7 phone support"
+    },
+    "locations": {
+      "title": "Service Areas",
+      "ist": "Istanbul Airport (IST)",
+      "saw": "Sabiha Gökçen (SAW)",
+      "besiktas": "Beşiktaş, Istanbul"
+    },
+    "dailyDriver": {
+      "title": "Daily Driver Service",
+      "description": "Daily driver service for intra-city and inter-city. Flexible route planning in 8-hour packages.",
+      "cta": "Get Price on WhatsApp"
+    },
+    "intercityTransfer": {
+      "title": "Intercity Transfer",
+      "description": "Comfortable transfer from Istanbul to other cities. VIP Mercedes Vito and luxury sedan options.",
+      "cta": "Get Detailed Information"
+    }
+  },
+  "finalCta": {
+    "title": "Are you ready?",
+    "description": "Text indicating that you are ready to make a reservation. Make a reservation for a safe journey with our professional team and comfortable vehicles.",
+    "stats": {
+      "customers": "Happy Customers",
+      "service": "Service",
+      "rating": "Customer Rating",
+      "transfer": "Safe Transfer"
+    }
+  },
+  "language": {
+    "select": "Select Language",
+    "turkish": "Türkçe",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "tours": {
+    "title": "Daily Tours",
+    "description": "Daily tours to the most popular destinations around Istanbul",
+    "capacity": "7 person capacity",
+    "departure": "Departure from Istanbul",
+    "bookNow": "Book Now",
+    "viewAll": "View All Tours",
+    "istanbul": {
+      "name": "Istanbul Tour",
+      "description": "Discover Sultanahmet, Hagia Sophia, Topkapi Palace and Grand Bazaar",
+      "duration": "8 hours",
+      "price": "₺2,500"
+    },
+    "sapanca": {
+      "name": "Sapanca Tour",
+      "description": "Famous Sapanca Lake with its natural beauty and clean air",
+      "duration": "10 hours",
+      "price": "₺3,200"
+    },
+    "bursa": {
+      "name": "Bursa Tour",
+      "description": "Ottoman's first capital, Uludag and historical bazaars",
+      "duration": "12 hours",
+      "price": "₺3,800"
+    },
+    "abant": {
+      "name": "Abant Tour",
+      "description": "Abant Lake with its magnificent nature and clean air",
+      "duration": "10 hours",
+      "price": "₺3,500"
+    }
+  },
+  "hotels": {
+    "title": "Hotel Accommodation",
+    "description": "Comfortable and safe accommodation options in Istanbul",
+    "bookNow": "Book Now",
+    "viewAll": "View All Hotels",
+    "noImage": "No image",
+    "features": {
+      "wifi": "Free WiFi",
+      "parking": "Parking",
+      "breakfast": "Breakfast",
+      "familyFriendly": "Family Friendly"
+    },
+    "sultanahmetPalace": {
+      "name": "Sultanahmet Palace Hotel",
+      "description": "Luxury accommodation experience in the historic peninsula",
+      "location": "Sultanahmet, Istanbul",
+      "price": "₺2,800/night"
+    },
+    "bosphorusHotel": {
+      "name": "Bosphorus View Hotel",
+      "description": "Modern hotel with Bosphorus view",
+      "location": "Beşiktaş, Istanbul",
+      "price": "₺3,200/night"
+    },
+    "oldCityInn": {
+      "name": "Old City Inn",
+      "description": "Boutique hotel in traditional Turkish architecture",
+      "location": "Fatih, Istanbul",
+      "price": "₺1,800/night"
+    },
+    "modernIstanbul": {
+      "name": "Modern Istanbul Hotel",
+      "description": "Modern comfort in the heart of the city",
+      "location": "Şişli, Istanbul",
+      "price": "₺2,200/night"
+    }
+  }
+}

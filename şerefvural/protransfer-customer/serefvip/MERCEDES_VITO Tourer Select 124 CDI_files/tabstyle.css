@@ -1,0 +1,88 @@
+﻿
+.opentab{width:100%;}
+.opentab>h2{border: 1px solid rgba(0, 0, 0, 0.08);font-weight: 500;padding: 10px 10px;margin: 3px 0;cursor: pointer;}
+.opentab>div>h3{border-bottom: 1px solid rgba(0, 0, 0, 0.08);font-weight: 600;padding: 5px 0px;margin: 3px 0;margin-top:10px;}
+.opentab>div{padding: 10px 10px;border: 1px solid #e6e2dd;position: relative;overflow: auto;    max-height: 80%;}
+.opentab>div>a{text-decoration: none;color: #8f8d8d;border-bottom: 1px dotted rgba(25, 25, 25, 0.28);width: 100%;display: block;line-height: 33px;font-size:14px;}
+
+.opentab>div>div{width: 100%;overflow: hidden;}
+.opentab>div>div>div:first-child{width:35px;float:left}
+.opentab>div>div>div:nth-child(2){width:calc(100% - 213px);float:left}
+.opentab>div>div>div:last-child{width:178px;float:right;text-align:right;}
+.opentab>div>div>div:last-child>a{    padding: 0 20px;    border: 1px solid #f1e5e5;}
+
+.opentab>div>div>div>a{text-decoration: none;color: #8f8d8d;line-height: 33px;font-size:14px;display: inline;}
+
+.opentab>div>div p{font-size:13px;/*border-bottom: 1px solid #e4e2e2;*/line-height: 20px;width: 80%;float: left;}
+
+.opentab>div>div>ul>li{overflow: hidden;border-bottom: 1px solid #e4e2e2;}
+.opentab>div>div>ul>li>a{float: left;padding: 2px 15px;font-size: 15px;font-weight: 600;background: #ffffff;color: #a61e22;border: none;margin-top: 10px;margin-bottom: 10px;border: 1px solid #a61e22;cursor: pointer;outline: none;margin-left: 15px;}
+
+.opentab>.active{background: #f4f4f4; }
+
+.opentab>.noneborder{border:0 !important; }
+.opentab>.nonepadding{padding:0 !important;}
+
+/*List dizayn*/
+
+.opentab>div>ul{list-style-type: square;}
+.opentab>div>ul>li{margin:10px;}
+
+
+
+
+
+
+.opentab2{width:calc(100% - 10px);position: absolute;bottom: 0;left: 5px;}
+.opentab2>h2{border: 1px solid rgba(0, 0, 0, 0.08);font-weight: 500;padding: 10px 10px;margin: 3px 0;cursor: pointer;float: left;    width: calc(50% - 22px);text-align:center;    background: #fff;}
+.opentab2>div>h3{border-bottom: 1px solid rgba(0, 0, 0, 0.08);font-weight: 600;padding: 5px 0px;margin: 3px 0;margin-top:10px;}
+.opentab2>div{padding: 10px 10px;border: 1px solid #e6e2dd;position: relative;overflow: auto;max-height: 300px;    background: #5f5e5e;}
+.opentab2>div>a{text-decoration: none;color: #8f8d8d;border-bottom: 1px dotted rgba(25, 25, 25, 0.28);width: 100%;display: block;line-height: 33px;font-size:14px;}
+
+.opentab2>div>div{width: 100%;overflow: hidden;}
+.opentab2>div>div>div:first-child{width:35px;float:left}
+.opentab2>div>div>div:nth-child(2){width:calc(100% - 213px);float:left}
+.opentab2>div>div>div:last-child{width:178px;float:right;text-align:right;}
+.opentab2>div>div>div:last-child>a{    padding: 0 20px;    border: 1px solid #f1e5e5;}
+
+.opentab2>div>div>div>a{text-decoration: none;color: #8f8d8d;line-height: 33px;font-size:14px;display: inline;}
+
+.opentab2>div>div p{font-size:13px;/*border-bottom: 1px solid #e4e2e2;*/line-height: 20px;width: 80%;float: left;}
+
+.opentab2>div>div>ul>li{overflow: hidden;border-bottom: 1px solid #e4e2e2;}
+.opentab2>div>div>ul>li>a{float: left;padding: 2px 15px;font-size: 15px;font-weight: 600;background: #ffffff;color: #a61e22;border: none;margin-top: 10px;margin-bottom: 10px;border: 1px solid #a61e22;cursor: pointer;outline: none;margin-left: 15px;}
+
+.opentab2>.active{background: #f4f4f4; }
+
+.opentab2>.noneborder{border:0 !important; }
+.opentab2>.nonepadding{padding:0 !important;}
+
+/*List dizayn*/
+
+.opentab2>div>ul{list-style-type: square;}
+.opentab2>div>ul>li{margin:10px;}
+
+
+
+
+.fafont{font-size: 30px;margin-right: 10px;}
+
+
+.haber-resim>ul>li>p>a{font-weight:600}
+
+
+@media screen and (max-width:400px){
+    .download{padding: 20px 0 !important;}
+    .download>div:nth-child(2){width: calc(100% - 159px) !important;text-align: left !important;}
+    .download>div:last-child{width: 134px !important;text-align: left !important;}
+    .opentab>div>div>div:last-child>a{ padding: 0 10px !important;    line-height: 20px !important;font-size: 14px !important;}
+    .fafont{font-size: 17px;}
+   
+    
+     .opentab2>div>div>div>a{    line-height: 20px !important;}
+    .opentab2>div>div>div:first-child{width:15px;float:left;margin-right:10px;}
+    .opentab2>div>div>div:last-child>a{ padding: 0 10px !important;    line-height: 20px !important;font-size: 14px !important;}
+    .opentab2>div>div>div>a{    line-height: 20px !important;}
+    .opentab2>div>div>div:first-child{width:15px;float:left;margin-right:10px;}
+
+}
