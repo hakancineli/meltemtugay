@@ -63,7 +63,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       price: '2,500',
       currency: 'TRY',
       rating: 4.9,
-      images: ['/serefvip/istanbul/istanbul.jpeg'],
+      images: [
+        '/serefvip/istanbul/istanbul.jpeg',
+        '/serefvip/istanbul/hagia-sophia.jpg',
+        '/serefvip/istanbul/topkapi-gate.jpg',
+        '/serefvip/istanbul/bosphorus-ferries.jpg',
+        '/serefvip/istanbul/maidens-tower.jpg'
+      ],
       isActive: true,
       capacity: 7,
       departure: 'İstanbul\'dan kalkış',
@@ -78,7 +84,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       price: '3,200',
       currency: 'TRY',
       rating: 4.8,
-      images: ['/serefvip/sapanca/1-1.jpeg'],
+      images: [
+        '/serefvip/sapanca/1-1.jpeg',
+        '/serefvip/sapanca/1-2.jpeg',
+        '/serefvip/sapanca/1-3.jpeg',
+        '/serefvip/sapanca/1-4.jpeg'
+      ],
       isActive: true,
       capacity: 7,
       departure: 'İstanbul\'dan kalkış',
@@ -93,7 +104,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       price: '3,800',
       currency: 'TRY',
       rating: 4.7,
-      images: ['/serefvip/bursa/1-1.jpeg'],
+      images: [
+        '/serefvip/bursa/1-1.jpeg',
+        '/serefvip/bursa/1-2.jpeg',
+        '/serefvip/bursa/1-3.jpeg',
+        '/serefvip/bursa/1-4.jpeg'
+      ],
       isActive: true,
       capacity: 7,
       departure: 'İstanbul\'dan kalkış',
@@ -108,7 +124,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       price: '3,500',
       currency: 'TRY',
       rating: 4.8,
-      images: ['/serefvip/abant/1-1.jpeg'],
+      images: [
+        '/serefvip/abant/1-1.jpeg',
+        '/serefvip/abant/1-2.jpeg',
+        '/serefvip/abant/1-3.jpeg',
+        '/serefvip/abant/1-4.jpeg'
+      ],
       isActive: true,
       capacity: 7,
       departure: 'İstanbul\'dan kalkış',
@@ -182,7 +203,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       try {
         // Cache version kontrolü - yeni versiyonda cache'i temizle
         const cacheVersion = localStorage.getItem('dataVersion');
-        const currentVersion = '2.0'; // Abant ve Modern Istanbul Hotel eklendi
+        const currentVersion = '3.0'; // Tur fotoğrafları çoklu hale getirildi
         
         if (cacheVersion !== currentVersion) {
           localStorage.clear();
