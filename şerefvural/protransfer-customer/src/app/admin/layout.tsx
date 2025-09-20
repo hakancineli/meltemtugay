@@ -77,10 +77,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         } ${sidebarCollapsed ? 'lg:w-16' : 'lg:w-64'}`}>
           
           {/* Sidebar Header */}
-          <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-            {!sidebarCollapsed && (
-              <h1 className="text-xl font-bold text-gray-900">ProTransfer Admin</h1>
-            )}
+          <div className="flex items-center justify-end h-16 px-6 border-b border-gray-200">
             <div className="flex items-center space-x-2">
               {/* Desktop collapse button */}
               <button
