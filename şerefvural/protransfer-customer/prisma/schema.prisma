@@ -56,6 +56,41 @@ model Review {
   @@map("reviews")
 }
 
+model Tour {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  duration    String
+  price       String
+  currency    String   @default("TRY")
+  rating      Float
+  images      String[] // Array of image URLs
+  isActive    Boolean  @default(true)
+  capacity    Int
+  departure   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("tours")
+}
+
+model Hotel {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  location    String
+  price       String
+  currency    String   @default("TRY")
+  rating      Float
+  images      String[] // Array of image URLs
+  isActive    Boolean  @default(true)
+  features    String[] // Array of features
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("hotels")
+}
+
 model Setting {
   id    String @id @default(cuid())
   key   String @unique
