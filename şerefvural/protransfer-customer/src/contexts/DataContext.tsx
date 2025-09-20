@@ -180,6 +180,15 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const loadData = () => {
       try {
+        // Cache version kontrolü - yeni versiyonda cache'i temizle
+        const cacheVersion = localStorage.getItem('dataVersion');
+        const currentVersion = '2.0'; // Abant ve Modern Istanbul Hotel eklendi
+        
+        if (cacheVersion !== currentVersion) {
+          localStorage.clear();
+          localStorage.setItem('dataVersion', currentVersion);
+        }
+        
         const savedTours = localStorage.getItem('tours');
         const savedHotels = localStorage.getItem('hotels');
         
