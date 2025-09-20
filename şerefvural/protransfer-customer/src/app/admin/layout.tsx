@@ -152,6 +152,15 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                 <Menu size={20} />
               </button>
               
+              {/* Logo - Responsive to sidebar state */}
+              <div className="flex items-center">
+                <a href="/" className={`text-xl font-bold text-green-600 hover:text-green-700 transition-all duration-300 ${
+                  sidebarCollapsed ? 'text-sm' : 'text-xl'
+                }`}>
+                  {sidebarCollapsed ? 'ŞVT' : 'Şeref Vural Travel'}
+                </a>
+              </div>
+              
               <div className="flex items-center space-x-4">
                 <div className="text-sm text-gray-500">
                   Hoş geldiniz, <span className="font-medium text-gray-900">Admin</span>
