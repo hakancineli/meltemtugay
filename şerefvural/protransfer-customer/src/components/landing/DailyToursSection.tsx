@@ -32,7 +32,7 @@ export default function DailyToursSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {activeTours.map((tour) => (
-            <div key={tour.id} className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+            <div key={tour.id} className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 group flex flex-col">
               <div className="relative h-48 bg-gray-200">
                 <TourImageSlider
                   tourId={tour.id}
@@ -49,7 +49,7 @@ export default function DailyToursSection() {
                 </div>
               </div>
               
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                   {tour.description}
                 </p>
@@ -69,12 +69,12 @@ export default function DailyToursSection() {
                   </div>
                 </div>
                 
-              <div className="flex items-center justify-between">
-                {showPrices && (
-                  <div className="text-2xl font-bold text-green-600">
-                    {tour.currency === 'USD' ? '$' : tour.currency === 'EUR' ? '€' : '₺'}{tour.price}
-                  </div>
-                )}
+                <div className="flex items-center justify-between mt-auto">
+                  {showPrices && (
+                    <div className="text-2xl font-bold text-green-600">
+                      {tour.currency === 'USD' ? '$' : tour.currency === 'EUR' ? '€' : '₺'}{tour.price}
+                    </div>
+                  )}
                   <button 
                     onClick={() => handleWhatsAppBooking(tour)}
                     className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 text-sm"
