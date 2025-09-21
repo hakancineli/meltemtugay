@@ -63,6 +63,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <ErrorBoundary>
       <div className="min-h-screen bg-gray-100">
+        {/* Hide main header for admin pages */}
+        <style jsx global>{`
+          header {
+            display: none !important;
+          }
+        `}</style>
         {/* Mobile sidebar overlay */}
         {sidebarOpen && (
           <div 
