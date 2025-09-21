@@ -8,7 +8,7 @@ import { openWhatsApp, createHotelMessage } from '@/utils/whatsapp';
 
 export default function HotelAccommodationSection() {
   const { t } = useLanguage();
-  const { hotels } = useData();
+  const { hotels, showPrices } = useData();
 
   const handleWhatsAppBooking = (hotel: any) => {
     const message = createHotelMessage(hotel);
@@ -85,9 +85,15 @@ export default function HotelAccommodationSection() {
                 </div>
 
                 <div className="space-y-3 mt-auto">
-                  <div className="text-2xl font-bold text-green-600">
-                    {hotel.currency === 'USD' ? '$' : hotel.currency === 'EUR' ? '€' : '₺'}{hotel.price}
-                  </div>
+                  {showPrices ? (
+                    <div className="text-2xl font-bold text-green-600">
+                      {hotel.currency === 'USD' ? '$' : hotel.currency === 'EUR' ? '€' : '₺'}{hotel.price}
+                    </div>
+                  ) : (
+                    <div className="text-2xl font-bold text-gray-400">
+                      Fiyat Gizli
+                    </div>
+                  )}
                   <button 
                     onClick={() => handleWhatsAppBooking(hotel)}
                     className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 text-sm"

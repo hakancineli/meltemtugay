@@ -58,3 +58,4 @@ ${hotelTemplate.description.replace('{description}', hotel.description)}
 
 ${hotelTemplate.closing}`;
 };
+

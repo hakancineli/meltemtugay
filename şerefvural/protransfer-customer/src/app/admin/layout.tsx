@@ -63,12 +63,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <ErrorBoundary>
       <div className="min-h-screen bg-gray-100">
-        {/* Hide main header for admin pages */}
-        <style jsx global>{`
-          header {
-            display: none !important;
-          }
-        `}</style>
         {/* Mobile sidebar overlay */}
         {sidebarOpen && (
           <div 
@@ -78,30 +72,27 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         )}
 
         {/* Sidebar - Collapsible */}
-        <div className={`fixed inset-y-0 left-0 z-60 bg-white shadow-xl transform transition-all duration-300 ease-in-out ${
+        <div className={`fixed top-16 bottom-0 left-0 z-50 bg-white shadow-xl transform transition-all duration-300 ease-in-out ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         } ${sidebarCollapsed ? 'lg:w-16' : 'lg:w-64'}`}>
           
-          {/* Sidebar Header */}
-          <div className="flex items-center justify-end h-16 px-6 border-b border-gray-200">
-            <div className="flex items-center space-x-2">
-              {/* Desktop collapse button */}
-              <button
-                onClick={toggleSidebar}
-                className="hidden lg:block p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-                title={sidebarCollapsed ? 'Genişlet' : 'Daralt'}
-              >
-                {sidebarCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-              </button>
-              
-              {/* Mobile close button */}
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
-              >
-                <X size={20} />
-              </button>
-            </div>
+          {/* Sidebar Header - Collapse button */}
+          <div className="flex items-center justify-end p-4 border-b border-gray-200">
+            <button
+              onClick={toggleSidebar}
+              className="hidden lg:block p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+              title={sidebarCollapsed ? 'Genişlet' : 'Daralt'}
+            >
+              {sidebarCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+            </button>
+            
+            {/* Mobile close button */}
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+            >
+              <X size={20} />
+            </button>
           </div>
 
           {/* Navigation */}
@@ -145,10 +136,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         <div className={`min-h-screen transition-all duration-300 ease-in-out ${
           sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
         }`}>
-          {/* Top bar */}
-          <div className={`fixed top-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200 transition-all duration-300 ease-in-out ${
-            sidebarCollapsed ? 'lg:left-16' : 'lg:left-64'
-          } left-0`}>
+                  {/* Top bar */}
+                  <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200" style={{ height: '64px' }}>
             <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
               <button
                 onClick={() => setSidebarOpen(true)}
@@ -211,7 +200,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           </div>
 
           {/* Page content */}
-          <main className="pt-20 p-4 sm:p-6 lg:p-8">
+          <main className="p-4 sm:p-6 lg:p-8" style={{ paddingTop: '120px' }}>
             {children}
           </main>
         </div>

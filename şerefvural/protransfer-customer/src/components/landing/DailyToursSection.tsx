@@ -8,7 +8,7 @@ import { openWhatsApp, createTourMessage } from '@/utils/whatsapp';
 
 export default function DailyToursSection() {
   const { t } = useLanguage();
-  const { tours } = useData();
+  const { tours, showPrices } = useData();
 
   const handleWhatsAppBooking = (tour: any) => {
     const message = createTourMessage(tour);
@@ -70,9 +70,15 @@ export default function DailyToursSection() {
                 </div>
                 
               <div className="flex items-center justify-between">
-                <div className="text-2xl font-bold text-green-600">
-                  {tour.currency === 'USD' ? '$' : tour.currency === 'EUR' ? '€' : '₺'}{tour.price}
-                </div>
+                {showPrices ? (
+                  <div className="text-2xl font-bold text-green-600">
+                    {tour.currency === 'USD' ? '$' : tour.currency === 'EUR' ? '€' : '₺'}{tour.price}
+                  </div>
+                ) : (
+                  <div className="text-2xl font-bold text-gray-400">
+                    Fiyat Gizli
+                  </div>
+                )}
                   <button 
                     onClick={() => handleWhatsAppBooking(tour)}
                     className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 text-sm"

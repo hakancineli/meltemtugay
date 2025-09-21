@@ -123,3 +123,4 @@ Mevcut gradient overlay için CSS:
 
 Bu gradient, görsellerin üzerine metin okunabilirliğini artırmak için kullanılır.
 
+

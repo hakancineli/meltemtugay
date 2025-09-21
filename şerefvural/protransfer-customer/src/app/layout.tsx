@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { DataProvider } from "@/contexts/DataContext";
-import Header from "@/components/ui/Header";
+import ConditionalHeader from "@/components/ConditionalHeader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +25,7 @@ export default function RootLayout({
           <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
             <DataProvider>
               <LanguageProvider>
-                <Header />
+                <ConditionalHeader />
                 {children}
               </LanguageProvider>
             </DataProvider>

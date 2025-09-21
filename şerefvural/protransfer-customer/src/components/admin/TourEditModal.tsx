@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { X, Save, Upload, Image as ImageIcon } from 'lucide-react';
+import ImageUploader from './ImageUploader';
 
 interface TourEditModalProps {
   isOpen: boolean;
@@ -192,6 +193,14 @@ export default function TourEditModal({ isOpen, onClose, tour, onSave }: TourEdi
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Tur hakkında detaylı bilgi..."
                 required
+              />
+            </div>
+
+            <div className="md:col-span-2">
+              <ImageUploader
+                images={formData.images}
+                onImagesChange={(images) => setFormData(prev => ({ ...prev, images }))}
+                maxImages={10}
               />
             </div>
           </div>

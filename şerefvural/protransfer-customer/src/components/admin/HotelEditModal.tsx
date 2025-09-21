@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { X, Save, Upload, Image as ImageIcon } from 'lucide-react';
+import ImageUploader from './ImageUploader';
 
 interface HotelEditModalProps {
   isOpen: boolean;
@@ -196,6 +197,14 @@ export default function HotelEditModal({ isOpen, onClose, hotel, onSave }: Hotel
                   </label>
                 ))}
               </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <ImageUploader
+                images={formData.images}
+                onImagesChange={(images) => setFormData(prev => ({ ...prev, images }))}
+                maxImages={10}
+              />
             </div>
           </div>
 

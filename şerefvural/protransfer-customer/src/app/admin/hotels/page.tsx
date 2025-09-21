@@ -23,7 +23,7 @@ import HotelEditModal from '@/components/admin/HotelEditModal';
 import { useData, type Hotel } from '@/contexts/DataContext';
 
 export default function HotelsPage() {
-  const { hotels, updateHotel, loading } = useData();
+  const { hotels, updateHotel, loading, showPrices, setShowPrices } = useData();
   const [filteredHotels, setFilteredHotels] = useState<Hotel[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -130,6 +130,17 @@ export default function HotelsPage() {
             Toplam: {filteredHotels.length} otel
           </div>
           <button
+            onClick={() => setShowPrices(!showPrices)}
+            className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
+              showPrices 
+                ? 'bg-green-600 text-white hover:bg-green-700' 
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            <DollarSign size={20} className="mr-2" />
+            {showPrices ? 'Fiyatları Gizle' : 'Fiyatları Göster'}
+          </button>
+          <button
             onClick={() => {
               setEditingHotel(null);
               setShowEditModal(true);
@@ -235,9 +246,15 @@ export default function HotelsPage() {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-xl font-bold text-green-600">
-                  {hotel.currency === 'USD' ? '$' : hotel.currency === 'EUR' ? '€' : '₺'}{hotel.price}
-                </div>
+                {showPrices ? (
+                  <div className="text-xl font-bold text-green-600">
+                    {hotel.currency === 'USD' ? '$' : hotel.currency === 'EUR' ? '€' : '₺'}{hotel.price}
+                  </div>
+                ) : (
+                  <div className="text-xl font-bold text-gray-400">
+                    Fiyat Gizli
+                  </div>
+                )}
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleViewHotel(hotel)}

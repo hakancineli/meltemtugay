@@ -108,3 +108,4 @@ export default function HotelImageSlider({ hotelId, images, alt, className = "" 
   );
 }
 
+

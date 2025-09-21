@@ -66,3 +66,4 @@ export const safeDocument = {
     }
   }
 };
+

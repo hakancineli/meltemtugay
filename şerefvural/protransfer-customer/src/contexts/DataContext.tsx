@@ -44,6 +44,8 @@ interface DataContextType {
   deleteHotel: (id: string) => void;
   refreshData: () => void;
   loading: boolean;
+  showPrices: boolean;
+  setShowPrices: (show: boolean) => void;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -52,6 +54,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [tours, setTours] = useState<Tour[]>([]);
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showPrices, setShowPrices] = useState(true);
 
   // Mock data - gerçek uygulamada API'den gelecek
   const mockTours: Tour[] = [
@@ -344,7 +347,9 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     deleteTour,
     deleteHotel,
     refreshData,
-    loading
+    loading,
+    showPrices,
+    setShowPrices
   };
 
   return (

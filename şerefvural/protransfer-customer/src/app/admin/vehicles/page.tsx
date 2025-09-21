@@ -16,12 +16,15 @@ import {
   CheckCircle,
   XCircle
 } from 'lucide-react';
+import VehicleEditModal from '@/components/admin/VehicleEditModal';
 
 interface Vehicle {
   id: string;
   name: string;
   type: string;
   capacity: number;
+  price: string;
+  currency: string;
   features: string[];
   isAvailable: boolean;
   images: string[];
@@ -37,6 +40,8 @@ export default function VehiclesPage() {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingVehicle, setEditingVehicle] = useState<Vehicle | null>(null);
 
   useEffect(() => {
     // Simulate API call
@@ -50,6 +55,8 @@ export default function VehiclesPage() {
           name: 'Mercedes Vito',
           type: 'Minivan',
           capacity: 7,
+          price: '1,500',
+          currency: 'TRY',
           features: ['Klima', 'WiFi', 'Bebek Koltuğu', 'GPS'],
           isAvailable: true,
           images: ['/images/mercedes-vito-1.jpg'],
@@ -61,6 +68,8 @@ export default function VehiclesPage() {
           name: 'Mercedes Sprinter',
           type: 'Minibus',
           capacity: 12,
+          price: '2,200',
+          currency: 'TRY',
           features: ['Klima', 'WiFi', 'Bebek Koltuğu', 'GPS', 'USB Şarj'],
           isAvailable: true,
           images: ['/images/mercedes-sprinter-1.jpg'],
@@ -72,6 +81,8 @@ export default function VehiclesPage() {
           name: 'BMW 5 Series',
           type: 'Sedan',
           capacity: 4,
+          price: '1,800',
+          currency: 'TRY',
           features: ['Klima', 'WiFi', 'GPS', 'Deri Koltuk'],
           isAvailable: false,
           images: ['/images/bmw-5series-1.jpg'],
@@ -137,6 +148,46 @@ export default function VehiclesPage() {
     );
   };
 
+  const handleEditVehicle = (vehicle: Vehicle) => {
+    setEditingVehicle(vehicle);
+    setShowEditModal(true);
+  };
+
+  const handleAddVehicle = () => {
+    setEditingVehicle(null);
+    setShowEditModal(true);
+  };
+
+  const handleSaveVehicle = (vehicleData: any) => {
+    if (editingVehicle) {
+      // Update existing vehicle
+      setVehicles(prev => 
+        prev.map(vehicle => 
+          vehicle.id === editingVehicle.id 
+            ? { ...vehicle, ...vehicleData, updatedAt: new Date().toISOString() }
+            : vehicle
+        )
+      );
+    } else {
+      // Add new vehicle
+      const newVehicle: Vehicle = {
+        id: Date.now().toString(),
+        ...vehicleData,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+      setVehicles(prev => [...prev, newVehicle]);
+    }
+    setShowEditModal(false);
+    setEditingVehicle(null);
+  };
+
+  const handleDeleteVehicle = (id: string) => {
+    if (confirm('Bu aracı silmek istediğinizden emin misiniz?')) {
+      setVehicles(prev => prev.filter(vehicle => vehicle.id !== id));
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -157,7 +208,10 @@ export default function VehiclesPage() {
           <div className="text-sm text-gray-500">
             Toplam: {filteredVehicles.length} araç
           </div>
-          <button className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+          <button 
+            onClick={handleAddVehicle}
+            className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
             <Plus size={20} className="mr-2" />
             Yeni Araç
           </button>
@@ -228,9 +282,13 @@ export default function VehiclesPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{vehicle.name}</h3>
               <p className="text-sm text-gray-600 mb-4">{vehicle.type}</p>
               
-              <div className="flex items-center text-sm text-gray-500 mb-4">
+              <div className="flex items-center text-sm text-gray-500 mb-2">
                 <Users size={16} className="mr-2 text-green-600" />
                 <span>{vehicle.capacity} kişilik kapasite</span>
+              </div>
+
+              <div className="flex items-center text-sm font-semibold text-green-600 mb-4">
+                <span>{vehicle.price} {vehicle.currency}</span>
               </div>
 
               <div className="space-y-2 mb-4">
@@ -253,15 +311,38 @@ export default function VehiclesPage() {
               <div className="flex items-center justify-between">
                 <div className="flex space-x-2">
                   <button
-                    onClick={() => handleViewVehicle(vehicle)}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleViewVehicle(vehicle);
+                    }}
+                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors border border-blue-200 hover:border-blue-300"
+                    title="Görüntüle"
                   >
                     <Eye size={16} />
                   </button>
-                  <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleEditVehicle(vehicle);
+                    }}
+                    className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors border border-green-200 hover:border-green-300"
+                    title="Düzenle"
+                  >
                     <Edit size={16} />
                   </button>
-                  <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (confirm('Bu aracı silmek istediğinizden emin misiniz?')) {
+                        handleDeleteVehicle(vehicle.id);
+                      }
+                    }}
+                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors border border-red-200 hover:border-red-300"
+                    title="Sil"
+                  >
                     <Trash2 size={16} />
                   </button>
                 </div>
@@ -361,6 +442,14 @@ export default function VehiclesPage() {
           </div>
         </div>
       )}
+
+      {/* Vehicle Edit Modal */}
+      <VehicleEditModal
+        isOpen={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        vehicle={editingVehicle}
+        onSave={handleSaveVehicle}
+      />
     </div>
   );
 }

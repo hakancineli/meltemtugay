@@ -21,7 +21,7 @@ import TourEditModal from '@/components/admin/TourEditModal';
 import { useData, type Tour } from '@/contexts/DataContext';
 
 export default function ToursPage() {
-  const { tours, updateTour, loading } = useData();
+  const { tours, updateTour, loading, showPrices, setShowPrices } = useData();
   const [filteredTours, setFilteredTours] = useState<Tour[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -111,6 +111,17 @@ export default function ToursPage() {
           <div className="text-sm text-gray-500">
             Toplam: {filteredTours.length} tur
           </div>
+          <button
+            onClick={() => setShowPrices(!showPrices)}
+            className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
+              showPrices 
+                ? 'bg-green-600 text-white hover:bg-green-700' 
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            <DollarSign size={20} className="mr-2" />
+            {showPrices ? 'Fiyatları Gizle' : 'Fiyatları Göster'}
+          </button>
           <button
             onClick={() => {
               setEditingTour(null);
@@ -210,9 +221,15 @@ export default function ToursPage() {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-xl font-bold text-green-600">
-                  {tour.currency === 'USD' ? '$' : tour.currency === 'EUR' ? '€' : '₺'}{tour.price}
-                </div>
+                {showPrices ? (
+                  <div className="text-xl font-bold text-green-600">
+                    {tour.currency === 'USD' ? '$' : tour.currency === 'EUR' ? '€' : '₺'}{tour.price}
+                  </div>
+                ) : (
+                  <div className="text-xl font-bold text-gray-400">
+                    Fiyat Gizli
+                  </div>
+                )}
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleViewTour(tour)}
