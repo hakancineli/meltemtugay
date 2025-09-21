@@ -85,13 +85,9 @@ export default function HotelAccommodationSection() {
                 </div>
 
                 <div className="space-y-3 mt-auto">
-                  {showPrices ? (
+                  {showPrices && (
                     <div className="text-2xl font-bold text-green-600">
                       {hotel.currency === 'USD' ? '$' : hotel.currency === 'EUR' ? '€' : '₺'}{hotel.price}
-                    </div>
-                  ) : (
-                    <div className="text-2xl font-bold text-gray-400">
-                      Fiyat Gizli
                     </div>
                   )}
                   <button 

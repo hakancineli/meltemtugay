@@ -50,216 +50,214 @@ interface DataContextType {
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
+export function useData() {
+  const context = useContext(DataContext);
+  if (context === undefined) {
+    throw new Error('useData must be used within a DataProvider');
+  }
+  return context;
+}
+
+// Mock data
+const mockTours: Tour[] = [
+  {
+    id: '1',
+    name: 'İstanbul Tarihi Yarımada Turu',
+    description: 'İstanbul\'un en önemli tarihi mekanlarını keşfedin. Ayasofya, Sultanahmet Camii, Topkapı Sarayı ve daha fazlası.',
+    duration: '8 saat',
+    price: '150',
+    currency: 'TRY',
+    rating: 4.8,
+    images: [
+      '/serefvip/istanbul/1-1.jpeg',
+      '/serefvip/istanbul/2-2.jpeg',
+      '/serefvip/istanbul/3-3.jpeg',
+      '/serefvip/istanbul/4-4.jpeg',
+      '/serefvip/istanbul/5-5.jpeg',
+      '/serefvip/istanbul/6-6.jpeg',
+      '/serefvip/istanbul/7-7.jpg',
+      '/serefvip/istanbul/9-9.jpeg'
+    ],
+    isActive: true,
+    capacity: 20,
+    departure: 'Sultanahmet',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: '2',
+    name: 'Sapanca Doğa Turu',
+    description: 'Sapanca Gölü çevresinde doğa yürüyüşü ve piknik. Temiz hava ve muhteşem manzara.',
+    duration: '6 saat',
+    price: '120',
+    currency: 'TRY',
+    rating: 4.6,
+    images: [
+      '/serefvip/sapanca/1-1.jpeg',
+      '/serefvip/sapanca/2-2.jpeg',
+      '/serefvip/sapanca/3-3.jpeg',
+      '/serefvip/sapanca/4-4.jpeg',
+      '/serefvip/sapanca/5-5.jpeg'
+    ],
+    isActive: true,
+    capacity: 15,
+    departure: 'Sapanca Merkez',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: '3',
+    name: 'Bursa Tarihi ve Kültürel Tur',
+    description: 'Osmanlı İmparatorluğu\'nun ilk başkenti Bursa\'yı keşfedin. Ulu Camii, Yeşil Türbe ve daha fazlası.',
+    duration: '10 saat',
+    price: '180',
+    currency: 'TRY',
+    rating: 4.7,
+    images: [
+      '/serefvip/bursa/1-1.jpeg',
+      '/serefvip/bursa/2-2.jpeg',
+      '/serefvip/bursa/3-3.jpeg',
+      '/serefvip/bursa/4-4.jpeg',
+      '/serefvip/bursa/5-5.jpeg'
+    ],
+    isActive: true,
+    capacity: 18,
+    departure: 'Bursa Merkez',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: '4',
+    name: 'Abant Gölü Doğa Turu',
+    description: 'Abant Gölü\'nde doğa yürüyüşü ve fotoğraf çekimi. Muhteşem doğa manzaraları.',
+    duration: '7 saat',
+    price: '140',
+    currency: 'TRY',
+    rating: 4.5,
+    images: [
+      '/serefvip/abant/1-1.jpeg',
+      '/serefvip/abant/2-2.jpeg',
+      '/serefvip/abant/3-3.jpeg',
+      '/serefvip/abant/4-4.jpeg',
+      '/serefvip/abant/5-5.jpeg'
+    ],
+    isActive: true,
+    capacity: 12,
+    departure: 'Abant Merkez',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  }
+];
+
+const mockHotels: Hotel[] = [
+  {
+    id: '1',
+    name: 'Grand Hotel İstanbul',
+    description: 'Sultanahmet\'te lüks konaklama. Tarihi yarımadaya yürüme mesafesi.',
+    location: 'Sultanahmet, İstanbul',
+    price: '250',
+    currency: 'TRY',
+    rating: 4.9,
+    images: [
+      '/serefvip/istanbul/1-1.jpeg',
+      '/serefvip/istanbul/2-2.jpeg',
+      '/serefvip/istanbul/3-3.jpeg',
+      '/serefvip/istanbul/4-4.jpeg'
+    ],
+    isActive: true,
+    features: ['WiFi', 'Klima', 'Oda Servisi', 'Spa', 'Fitness'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: '2',
+    name: 'Sapanca Resort Hotel',
+    description: 'Sapanca Gölü manzaralı doğa oteli. Huzurlu ve sakin bir tatil.',
+    location: 'Sapanca, Sakarya',
+    price: '180',
+    currency: 'TRY',
+    rating: 4.6,
+    images: [
+      '/serefvip/sapanca/1-1.jpeg',
+      '/serefvip/sapanca/2-2.jpeg',
+      '/serefvip/sapanca/3-3.jpeg',
+      '/serefvip/sapanca/4-4.jpeg'
+    ],
+    isActive: true,
+    features: ['WiFi', 'Klima', 'Havuz', 'Restoran', 'Park Alanı'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: '3',
+    name: 'Bursa Thermal Hotel',
+    description: 'Bursa\'da termal sularla ünlü lüks otel. Sağlık ve dinlenme.',
+    location: 'Çekirge, Bursa',
+    price: '220',
+    currency: 'TRY',
+    rating: 4.7,
+    images: [
+      '/serefvip/bursa/1-1.jpeg',
+      '/serefvip/bursa/2-2.jpeg',
+      '/serefvip/bursa/3-3.jpeg',
+      '/serefvip/bursa/4-4.jpeg'
+    ],
+    isActive: true,
+    features: ['WiFi', 'Klima', 'Termal Havuz', 'Spa', 'Sauna'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  },
+  {
+    id: '4',
+    name: 'Abant Nature Hotel',
+    description: 'Abant Gölü kıyısında doğa oteli. Temiz hava ve huzur.',
+    location: 'Abant, Bolu',
+    price: '160',
+    currency: 'TRY',
+    rating: 4.4,
+    images: [
+      '/serefvip/abant/1-1.jpeg',
+      '/serefvip/abant/2-2.jpeg',
+      '/serefvip/abant/3-3.jpeg',
+      '/serefvip/abant/4-4.jpeg'
+    ],
+    isActive: true,
+    features: ['WiFi', 'Klima', 'Restoran', 'Park Alanı', 'Bisiklet Kiralama'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  }
+];
+
 export function DataProvider({ children }: { children: React.ReactNode }) {
   const [tours, setTours] = useState<Tour[]>([]);
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showPrices, setShowPrices] = useState(true);
-
-  // Mock data - gerçek uygulamada API'den gelecek
-  const mockTours: Tour[] = [
-    {
-      id: '1',
-      name: 'İstanbul Turu',
-      description: 'Sultanahmet, Ayasofya, Topkapı Sarayı ve Kapalıçarşı\'yı keşfedin',
-      duration: '8 saat',
-      price: '2,500',
-      currency: 'TRY',
-      rating: 4.9,
-      images: [
-        '/serefvip/istanbul/istanbul.jpeg',
-        '/serefvip/istanbul/1-1.jpeg',
-        '/serefvip/istanbul/2-2.jpeg',
-        '/serefvip/istanbul/3-3.jpeg',
-        '/serefvip/istanbul/4-4.jpeg',
-        '/serefvip/istanbul/5-5.jpeg',
-        '/serefvip/istanbul/6-6.jpeg',
-        '/serefvip/istanbul/7-7.jpg',
-        '/serefvip/istanbul/9-9.jpeg',
-        '/serefvip/istanbul/11-11.jpeg',
-        '/serefvip/istanbul/12-12.jpeg'
-      ],
-      isActive: true,
-      capacity: 7,
-      departure: 'İstanbul\'dan kalkış',
-      createdAt: '2024-01-01T00:00:00Z',
-      updatedAt: '2024-01-15T10:30:00Z'
-    },
-    {
-      id: '2',
-      name: 'Sapanca Turu',
-      description: 'Doğal güzellikleri ve temiz havasıyla ünlü Sapanca Gölü',
-      duration: '10 saat',
-      price: '3,200',
-      currency: 'TRY',
-      rating: 4.8,
-      images: [
-        '/serefvip/sapanca/1-1.jpeg',
-        '/serefvip/sapanca/2-2.jpeg',
-        '/serefvip/sapanca/3-3.jpeg',
-        '/serefvip/sapanca/4-4.jpeg',
-        '/serefvip/sapanca/5-5.jpeg',
-        '/serefvip/sapanca/6-6.jpeg',
-        '/serefvip/sapanca/7-7.jpeg',
-        '/serefvip/sapanca/8-8.jpeg',
-        '/serefvip/sapanca/9-9.jpeg',
-        '/serefvip/sapanca/10-10.jpeg'
-      ],
-      isActive: true,
-      capacity: 7,
-      departure: 'İstanbul\'dan kalkış',
-      createdAt: '2024-01-02T00:00:00Z',
-      updatedAt: '2024-01-16T14:20:00Z'
-    },
-    {
-      id: '3',
-      name: 'Bursa Turu',
-      description: 'Osmanlı\'nın ilk başkenti, Uludağ ve tarihi çarşılar',
-      duration: '12 saat',
-      price: '3,800',
-      currency: 'TRY',
-      rating: 4.7,
-      images: [
-        '/serefvip/bursa/1-1.jpeg',
-        '/serefvip/bursa/2-2.jpeg',
-        '/serefvip/bursa/3-3.jpeg',
-        '/serefvip/bursa/4-4.jpeg',
-        '/serefvip/bursa/5-5.jpeg',
-        '/serefvip/bursa/6-6.jpeg',
-        '/serefvip/bursa/7-7.jpeg',
-        '/serefvip/bursa/8-8.jpeg',
-        '/serefvip/bursa/9-9.jpeg',
-        '/serefvip/bursa/11-11.jpeg',
-        '/serefvip/bursa/12-12.jpeg',
-        '/serefvip/bursa/13-13.jpeg'
-      ],
-      isActive: true,
-      capacity: 7,
-      departure: 'İstanbul\'dan kalkış',
-      createdAt: '2024-01-03T00:00:00Z',
-      updatedAt: '2024-01-17T09:15:00Z'
-    },
-    {
-      id: '4',
-      name: 'Abant Turu',
-      description: 'Muhteşem doğası ve temiz havasıyla Abant Gölü',
-      duration: '10 saat',
-      price: '3,500',
-      currency: 'TRY',
-      rating: 4.8,
-      images: [
-        '/serefvip/abant/1-1.jpeg',
-        '/serefvip/abant/2-2.jpeg',
-        '/serefvip/abant/3-3.jpeg',
-        '/serefvip/abant/4-4.jpeg',
-        '/serefvip/abant/5-5.jpeg',
-        '/serefvip/abant/6-6.jpeg',
-        '/serefvip/abant/7-7.jpg',
-        '/serefvip/abant/8-8.jpg'
-      ],
-      isActive: true,
-      capacity: 7,
-      departure: 'İstanbul\'dan kalkış',
-      createdAt: '2024-01-04T00:00:00Z',
-      updatedAt: '2024-01-18T16:45:00Z'
+  const [showPrices, setShowPrices] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('showPrices');
+      return saved ? JSON.parse(saved) : true;
     }
-  ];
-
-  const mockHotels: Hotel[] = [
-    {
-      id: '1',
-      name: 'Sultanahmet Palace Hotel',
-      description: 'Luxury accommodation experience in the historic peninsula',
-      location: 'Sultanahmet, Istanbul',
-      price: '2,800/night',
-      currency: 'TRY',
-      rating: 4.9,
-      images: ['/images/hotels/sultanahmet-palace.svg'],
-      isActive: true,
-      features: ['Free WiFi', 'Parking', 'Breakfast', 'Family Friendly'],
-      createdAt: '2024-01-01T00:00:00Z',
-      updatedAt: '2024-01-15T10:30:00Z'
-    },
-    {
-      id: '2',
-      name: 'Bosphorus View Hotel',
-      description: 'Modern hotel with Bosphorus view',
-      location: 'Beşiktaş, Istanbul',
-      price: '3,200/night',
-      currency: 'TRY',
-      rating: 4.7,
-      images: ['/images/hotels/bosphorus-hotel.svg'],
-      isActive: true,
-      features: ['Free WiFi', 'Parking', 'Breakfast', 'Family Friendly'],
-      createdAt: '2024-01-01T00:00:00Z',
-      updatedAt: '2024-01-15T10:30:00Z'
-    },
-    {
-      id: '3',
-      name: 'Old City Inn',
-      description: 'Boutique hotel in traditional Turkish architecture',
-      location: 'Fatih, Istanbul',
-      price: '1,800/night',
-      currency: 'TRY',
-      rating: 4.6,
-      images: ['/images/hotels/old-city-inn.svg'],
-      isActive: true,
-      features: ['Free WiFi', 'Parking', 'Breakfast', 'Family Friendly'],
-      createdAt: '2024-01-01T00:00:00Z',
-      updatedAt: '2024-01-15T10:30:00Z'
-    },
-    {
-      id: '4',
-      name: 'Modern Istanbul Hotel',
-      description: 'Modern comfort in the heart of the city',
-      location: 'Şişli, Istanbul',
-      price: '2,200/night',
-      currency: 'TRY',
-      rating: 4.8,
-      images: ['/images/hotels/modern-istanbul.svg'],
-      isActive: true,
-      features: ['Free WiFi', 'Parking', 'Breakfast', 'Family Friendly'],
-      createdAt: '2024-01-01T00:00:00Z',
-      updatedAt: '2024-01-15T10:30:00Z'
-    }
-  ];
+    return true;
+  });
 
   // LocalStorage'dan veri yükle
   useEffect(() => {
     const loadData = () => {
-      try {
-        // Cache version kontrolü - yeni versiyonda cache'i temizle
-        const cacheVersion = localStorage.getItem('dataVersion');
-        const currentVersion = '4.0'; // Gerçek serefvip fotoğrafları eklendi
-        
-        if (cacheVersion !== currentVersion) {
-          localStorage.clear();
-          localStorage.setItem('dataVersion', currentVersion);
-        }
-        
-        const savedTours = localStorage.getItem('tours');
-        const savedHotels = localStorage.getItem('hotels');
-        
-        if (savedTours) {
-          setTours(JSON.parse(savedTours));
-        } else {
-          setTours(mockTours);
-          localStorage.setItem('tours', JSON.stringify(mockTours));
-        }
-        
-        if (savedHotels) {
-          setHotels(JSON.parse(savedHotels));
-        } else {
-          setHotels(mockHotels);
-          localStorage.setItem('hotels', JSON.stringify(mockHotels));
-        }
-      } catch (error) {
-        console.error('Error loading data:', error);
-        setTours(mockTours);
-        setHotels(mockHotels);
-      } finally {
-        setLoading(false);
+      // Cache version kontrolü - yeni versiyonda cache'i temizle
+      const cacheVersion = localStorage.getItem('dataVersion');
+      const currentVersion = '9.0'; // Ayarlar ve fiyat gizleme düzeltildi
+      
+      if (cacheVersion !== currentVersion) {
+        localStorage.clear();
+        localStorage.setItem('dataVersion', currentVersion);
       }
+      
+      // Her zaman mock data'yı yükle (test için)
+      setTours(mockTours);
+      setHotels(mockHotels);
+      localStorage.setItem('tours', JSON.stringify(mockTours));
+      localStorage.setItem('hotels', JSON.stringify(mockHotels));
+      setLoading(false);
     };
 
     loadData();
@@ -267,6 +265,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   // Veri güncelleme fonksiyonları
   const updateTour = (updatedTour: Tour) => {
+    // Hemen local state'i güncelle
     setTours(prev => {
       const newTours = prev.map(tour => 
         tour.id === updatedTour.id ? { ...updatedTour, updatedAt: new Date().toISOString() } : tour
@@ -274,9 +273,28 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('tours', JSON.stringify(newTours));
       return newTours;
     });
+
+    // API'ye async request gönder
+    fetch(`/api/tours/${updatedTour.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedTour)
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('API Error');
+    }).then(updatedData => {
+      setTours(prev => prev.map(tour => 
+        tour.id === updatedTour.id ? updatedData : tour
+      ));
+    }).catch(error => {
+      console.error('Error updating tour:', error);
+    });
   };
 
   const updateHotel = (updatedHotel: Hotel) => {
+    // Hemen local state'i güncelle
     setHotels(prev => {
       const newHotels = prev.map(hotel => 
         hotel.id === updatedHotel.id ? { ...updatedHotel, updatedAt: new Date().toISOString() } : hotel
@@ -284,19 +302,39 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('hotels', JSON.stringify(newHotels));
       return newHotels;
     });
+
+    // API'ye async request gönder
+    fetch(`/api/hotels/${updatedHotel.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedHotel)
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('API Error');
+    }).then(updatedData => {
+      setHotels(prev => prev.map(hotel => 
+        hotel.id === updatedHotel.id ? updatedData : hotel
+      ));
+    }).catch(error => {
+      console.error('Error updating hotel:', error);
+    });
   };
 
   const addTour = (newTour: Tour) => {
+    const tourWithId = { ...newTour, id: Date.now().toString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
     setTours(prev => {
-      const newTours = [...prev, { ...newTour, id: Date.now().toString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }];
+      const newTours = [...prev, tourWithId];
       localStorage.setItem('tours', JSON.stringify(newTours));
       return newTours;
     });
   };
 
   const addHotel = (newHotel: Hotel) => {
+    const hotelWithId = { ...newHotel, id: Date.now().toString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
     setHotels(prev => {
-      const newHotels = [...prev, { ...newHotel, id: Date.now().toString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }];
+      const newHotels = [...prev, hotelWithId];
       localStorage.setItem('hotels', JSON.stringify(newHotels));
       return newHotels;
     });
@@ -320,20 +358,20 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const refreshData = () => {
     setLoading(true);
-    try {
-      const savedTours = localStorage.getItem('tours');
-      const savedHotels = localStorage.getItem('hotels');
-      
-      if (savedTours) {
-        setTours(JSON.parse(savedTours));
-      }
-      if (savedHotels) {
-        setHotels(JSON.parse(savedHotels));
-      }
-    } catch (error) {
-      console.error('Error refreshing data:', error);
-    } finally {
-      setLoading(false);
+    // Cache'i temizle ve yeniden yükle
+    localStorage.removeItem('tours');
+    localStorage.removeItem('hotels');
+    setTours(mockTours);
+    setHotels(mockHotels);
+    localStorage.setItem('tours', JSON.stringify(mockTours));
+    localStorage.setItem('hotels', JSON.stringify(mockHotels));
+    setLoading(false);
+  };
+
+  const handleSetShowPrices = (show: boolean) => {
+    setShowPrices(show);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('showPrices', JSON.stringify(show));
     }
   };
 
@@ -349,7 +387,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     refreshData,
     loading,
     showPrices,
-    setShowPrices
+    setShowPrices: handleSetShowPrices
   };
 
   return (
@@ -358,13 +396,3 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     </DataContext.Provider>
   );
 }
-
-export function useData() {
-  const context = useContext(DataContext);
-  if (context === undefined) {
-    throw new Error('useData must be used within a DataProvider');
-  }
-  return context;
-}
-
-export type { Tour, Hotel };

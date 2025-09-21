@@ -70,13 +70,9 @@ export default function DailyToursSection() {
                 </div>
                 
               <div className="flex items-center justify-between">
-                {showPrices ? (
+                {showPrices && (
                   <div className="text-2xl font-bold text-green-600">
                     {tour.currency === 'USD' ? '$' : tour.currency === 'EUR' ? '€' : '₺'}{tour.price}
-                  </div>
-                ) : (
-                  <div className="text-2xl font-bold text-gray-400">
-                    Fiyat Gizli
                   </div>
                 )}
                   <button 

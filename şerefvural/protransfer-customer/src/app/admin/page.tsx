@@ -10,11 +10,11 @@ export default function AdminPage() {
     // Check if user is authenticated
     const token = localStorage.getItem('adminToken');
     if (token) {
-      // Redirect to dashboard if already authenticated
-      router.push('/admin/dashboard');
+      // Redirect to vehicles if already authenticated
+      router.push('/admin/vehicles');
     } else {
       // Redirect to login if not authenticated
-      router.push('/admin/auth');
+      router.push('/admin/login');
     }
   }, [router]);
 

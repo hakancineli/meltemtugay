@@ -102,6 +102,14 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('company');
 
+  // localStorage'dan ayarları yükle
+  useEffect(() => {
+    const savedSettings = localStorage.getItem('adminSettings');
+    if (savedSettings) {
+      setSettings(JSON.parse(savedSettings));
+    }
+  }, []);
+
   const tabs = [
     { id: 'company', label: 'Şirket Bilgileri', icon: Globe },
     { id: 'business', label: 'İş Ayarları', icon: Clock },
@@ -113,6 +121,8 @@ export default function SettingsPage() {
 
   const handleSave = async () => {
     setLoading(true);
+    // localStorage'a kaydet
+    localStorage.setItem('adminSettings', JSON.stringify(settings));
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     setLoading(false);
