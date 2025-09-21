@@ -78,7 +78,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         )}
 
         {/* Sidebar - Collapsible */}
-        <div className={`fixed inset-y-0 left-0 z-50 bg-white shadow-xl transform transition-all duration-300 ease-in-out ${
+        <div className={`fixed inset-y-0 left-0 z-60 bg-white shadow-xl transform transition-all duration-300 ease-in-out ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         } ${sidebarCollapsed ? 'lg:w-16' : 'lg:w-64'}`}>
           
@@ -146,7 +146,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'
         }`}>
           {/* Top bar */}
-          <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200">
+          <div className={`fixed top-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200 transition-all duration-300 ease-in-out ${
+            sidebarCollapsed ? 'lg:left-16' : 'lg:left-64'
+          } left-0`}>
             <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
               <button
                 onClick={() => setSidebarOpen(true)}
