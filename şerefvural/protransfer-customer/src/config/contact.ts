@@ -1,7 +1,7 @@
 // Contact configuration
 export const CONTACT_CONFIG = {
   whatsapp: {
-    phoneNumber: "905551234567", // Gerçek WhatsApp numarası buraya yazılacak
+    phoneNumber: "905319458931", // Gerçek WhatsApp numarası buraya yazılacak
     message: {
       transfer: {
         greeting: "Merhaba! İstanbul Havalimanı transfer hizmeti için rezervasyon yapmak istiyorum.",

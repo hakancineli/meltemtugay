@@ -1,8 +1,12 @@
 'use client';
 
 import { Phone, MessageCircle, MapPin } from 'lucide-react';
+import { CONTACT_CONFIG } from '@/config/contact';
 
 export default function ContactSection() {
+  const whatsappPhone = CONTACT_CONFIG.whatsapp.phoneNumber;
+  const dailyDriverMsg = encodeURIComponent('Günlük şoför hizmeti hakkında bilgi almak istiyorum');
+  const intercityMsg = encodeURIComponent('Şehirler arası transfer hakkında bilgi almak istiyorum');
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +32,7 @@ export default function ContactSection() {
               Hızlı cevap için WhatsApp'tan yazın
             </p>
             <a 
-              href="https://wa.me/905545812034" 
+              href={`https://wa.me/${whatsappPhone}`}
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
@@ -83,7 +87,7 @@ export default function ContactSection() {
               Şehir içi ve şehirler arası günlük şoför hizmeti. 8 saatlik paketler halinde esnek rota planlaması.
             </p>
             <a 
-              href="https://wa.me/905545812034?text=Günlük şoför hizmeti hakkında bilgi almak istiyorum"
+              href={`https://wa.me/${whatsappPhone}?text=${dailyDriverMsg}`}
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
@@ -101,7 +105,7 @@ export default function ContactSection() {
               İstanbul'dan Ankara, İzmir, Bursa, Antalya'ya konforlu transfer. VIP Mercedes Vito ve lüks sedan seçenekleri.
             </p>
             <a 
-              href="https://wa.me/905545812034?text=Şehirler arası transfer hakkında bilgi almak istiyorum"
+              href={`https://wa.me/${whatsappPhone}?text=${intercityMsg}`}
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
