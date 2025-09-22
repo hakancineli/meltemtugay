@@ -38,7 +38,7 @@ npm install
 ```env
 DATABASE_URL="postgresql://username:password@ep-xxx.us-east-1.aws.neon.tech/neondb?sslmode=require"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
-NEXT_PUBLIC_WHATSAPP_NUMBER="905545812034"
+NEXT_PUBLIC_WHATSAPP_NUMBER="905319458931"
 ```
 
 ### 4. Veritabanını Kurun
@@ -162,6 +162,6 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 
 ## İletişim
 
-- **WhatsApp**: +90 554 581 20 34
+- **WhatsApp**: +90 531 945 89 31
 - **Email**: info@protransfer.com
 - **Website**: https://protransfer.com

@@ -37,7 +37,7 @@ export default function ContactSection() {
               rel="noopener noreferrer"
               className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
             >
-              +90 554 581 20 34
+              +90 531 945 89 31
             </a>
           </div>
 
@@ -53,10 +53,10 @@ export default function ContactSection() {
               7/24 telefon desteği
             </p>
             <a 
-              href="tel:+905545812034"
+              href="tel:+905319458931"
               className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
             >
-              +90 554 581 20 34
+              +90 531 945 89 31
             </a>
           </div>
 

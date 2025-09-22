@@ -63,7 +63,7 @@ export default function SettingsPage() {
     company: {
       name: 'ProTransfer',
       email: 'info@protransfer.com',
-      phone: '+90 555 123 4567',
+      phone: '+90 531 945 89 31',
       address: 'İstanbul, Türkiye',
       website: 'https://protransfer.com',
       description: 'İstanbul\'da profesyonel transfer hizmeti'
