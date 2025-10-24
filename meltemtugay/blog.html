@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Psk. Meltem Tugay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark) !important;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        .blog-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            flex: 1;
+            font-size: 0.95rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta i {
+            color: var(--primary-color);
+        }
+
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            gap: 0.75rem;
+            color: var(--secondary-color);
+        }
+
+        .featured-section {
+            background: var(--bg-light);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            border-radius: 24px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .featured-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .featured-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            border-radius: 24px;
+            margin-bottom: 3rem;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary-custom {
+            background: white;
+            color: var(--primary-color);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: var(--secondary-color);
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <img alt="Meltem Tugay logo" src="./assets/images/meltemtugay-logo-text.svg"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menüyü Aç/Kapat">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3" href="#hizmetler">Hizmetler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3" href="#hakkimda">Hakkımda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3" href="#nasil-calisir">Nasıl Çalışır</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3" href="psikolojik-testler.html">Psikolojik Testler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3" href="#iletisim">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title">Blog</h1>
+                <p class="hero-subtitle">Psikolojik sağlık ve iyilik hali hakkında uzman yazılar, ipuçları ve rehberler</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/psikolojik-kalp-carpintisi.jpg" alt="Psikolojik Kalp Çarpıntısı" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Anksiyete</span>
+                    <h3 class="blog-title">Psikolojik Kalp Çarpıntısı</h3>
+                    <p class="blog-excerpt">Stres veya anksiyete gibi durumlarda ortaya çıkan, kalbin hızlı ve güçlü attığı hissi ve bu durumla başa çıkma yolları.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 5 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 2.3k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/psikolojik-kalp-carpintisi.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/blog/death-fear.webp" alt="Ölüm Korkusu" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Varoluşsal Psikoloji</span>
+                    <h3 class="blog-title">Ölüm Korkusu</h3>
+                    <p class="blog-excerpt">İnsanın varoluşsal endişelerinin bir yansıması olan ölüm korkusuyla başa çıkma stratejileri ve terapötik yaklaşımlar.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 7 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 1.8k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/olum-korkusu.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/Esrar Bağımlılığı.jpg" alt="Esrar Bağımlılığı" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Bağımlılık</span>
+                    <h3 class="blog-title">Esrar Bağımlılığı</h3>
+                    <p class="blog-excerpt">Esrar bağımlılığının fiziksel ve psikolojik etkileri, belirtileri ve tedavi seçenekleri hakkında kapsamlı bilgi.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 6 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 1.5k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/esrar-bagimliligi.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/blog/psychology-books.webp" alt="15 Okunması Gereken Psikoloji Kitabı" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Kitap Önerileri</span>
+                    <h3 class="blog-title">15 Okunması Gereken Psikoloji Kitabı</h3>
+                    <p class="blog-excerpt">Psikoloji alanında kendini geliştirmek isteyenler için mutlaka okunması gereken 15 temel kitap ve incelemeleri.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 10 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 3.2k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/15-psikoloji-kitabi.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/Temel Duygular.webp" alt="Temel Duygular" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Duygular</span>
+                    <h3 class="blog-title">Temel Duygular</h3>
+                    <p class="blog-excerpt">İnsan deneyiminin temelini oluşturan temel duygular, bu duyguların hayatımızdaki rolü ve duygusal zeka gelişimi.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 8 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 2.7k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/temel-duygular.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/blog/social-media-effects.webp" alt="Sosyal Medyanın Etkileri" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Teknoloji</span>
+                    <h3 class="blog-title">Sosyal Medyanın Psikolojik Etkileri</h3>
+                    <p class="blog-excerpt">Sosyal medyanın psikolojik etkileri, dijital bağımlılık ve bu etkilerle başa çıkma yolları hakkında bilgilendirici içerik.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 6 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 4.1k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/sosyal-medyanin-etkileri.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/DuygusalHissizleşme.jpeg" alt="Duygusal Hissizleşme" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Travma</span>
+                    <h3 class="blog-title">Duygusal Hissizleşme</h3>
+                    <p class="blog-excerpt">Travmatik deneyimler sonucunda ortaya çıkan duygusal hissizleşme, nedenleri ve tedavi yaklaşımları.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 7 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 1.9k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/duygusal-hissizlesme.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/blog/adhd.webp" alt="Dikkat Eksikliği ve Hiperaktivite" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Nörogelişimsel</span>
+                    <h3 class="blog-title">DEHB: Dikkat Eksikliği ve Hiperaktivite</h3>
+                    <p class="blog-excerpt">DEHB'nin belirtileri, tanısı, tedavi seçenekleri ve günlük yaşamda başa çıkma stratejileri hakkında kapsamlı rehber.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 9 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 2.8k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/dikkat-eksikligi-hiperaktivite.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/KarabasanUykuFelci.jpeg" alt="Karabasan (Uyku Felci)" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Uyku</span>
+                    <h3 class="blog-title">Karabasan (Uyku Felci)</h3>
+                    <p class="blog-excerpt">Uyku sırasında ortaya çıkan karabasan durumu, nedenleri, belirtileri ve bu deneyimle başa çıkma yolları.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 5 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 3.5k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/karabasan-uyku-felci.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/blog/relationships-blog.webp" alt="Toksik İlişki" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">İlişkiler</span>
+                    <h3 class="blog-title">Toksik İlişkiler</h3>
+                    <p class="blog-excerpt">Bir tarafın diğerini sürekli olarak duygusal olarak sömürdüğü sağlıksız ilişkilerin tanınması ve bu ilişkilerden çıkış yolları.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 8 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 5.2k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/toksik-iliski.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/Yas Süreci ve Evreleri .jpg" alt="Yas Süreci ve Evreleri" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Yas</span>
+                    <h3 class="blog-title">Yas Süreci ve Evreleri</h3>
+                    <p class="blog-excerpt">Kayıp sonrası yaşanan duygusal deneyimler, yas evreleri ve sağlıklı bir yas süreci için ipuçları.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 6 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 2.1k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/yas-sureci-evreleri.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/Duygusal Manipülasyon .jpeg" alt="Duygusal Manipülasyon" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Manipülasyon</span>
+                    <h3 class="blog-title">Duygusal Manipülasyon</h3>
+                    <p class="blog-excerpt">Bir kişinin başka bir kişinin duygularını kendi çıkarları için kullandığı durumlarda tanıma ve korunma yolları.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 7 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 3.8k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/duygusal-manipulasyon.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/overthinking-asiri-dusunme_11zon.jpg" alt="Aşırı Düşünme (Overthinking)" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Bilişsel</span>
+                    <h3 class="blog-title">Aşırı Düşünme (Overthinking)</h3>
+                    <p class="blog-excerpt">Bir konuyu veya durumu aşırı derecede analiz etme ve sürekli zihinde döndürme durumunun nedenleri ve çözümleri.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 6 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 4.5k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/asiri-dusunme-overthinking.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/Ghosting- Aniden Kaybolma Davranışı .jpg" alt="Ghosting" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">İlişkiler</span>
+                    <h3 class="blog-title">Ghosting: Aniden Kaybolma Davranışı</h3>
+                    <p class="blog-excerpt">Bir kişinin iletişimi aniden keserek diğerini ortadan bırakması olan ghosting davranışı ve bu durumla başa çıkma.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 5 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 6.1k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/ghosting-davranisi.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/StockholmSendromu.jpeg" alt="Stockholm Sendromu" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Travma</span>
+                    <h3 class="blog-title">Stockholm Sendromu</h3>
+                    <p class="blog-excerpt">Rehinenin kaçırıcısına duygusal bağ kurduğu psikolojik durum, nedenleri ve tedavi yaklaşımları.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 7 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 2.4k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/stockholm-sendromu.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="./assets/images/Nevrotik Kişilik Bozukluğu.jpeg" alt="Nevrotik Kişilik Bozukluğu" class="blog-image">
+                </div>
+                <div class="blog-content">
+                    <span class="blog-category">Kişilik</span>
+                    <h3 class="blog-title">Nevrotik Kişilik Bozukluğu</h3>
+                    <p class="blog-excerpt">Anksiyete, duygusal dengesizlik ve obsesif davranışlarla karakterize edilen durumun belirtileri ve tedavisi.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> 8 dk okuma</span>
+                        <span><i class="far fa-eye"></i> 1.7k görüntülenme</span>
+                    </div>
+                    <a href="./pages/populer-basliklar/nevrotik-kisilik-bozuklugu.html" class="read-more-btn">
+                        Devamını Oku <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="featured-section container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bolder mb-3">Popüler Kategoriler</h2>
+            <p class="text-muted">İlgi alanınıza göre blog yazılarını keşfedin</p>
+        </div>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h4>Anksiyete ve Stres</h4>
+                <p class="text-muted">Anksiyete bozuklukları, stres yönetimi ve rahatlama teknikleri</p>
+            </div>
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h4>İlişkiler</h4>
+                <p class="text-muted">Sağlıklı ilişkiler, iletişim becerileri ve ilişki dinamikleri</p>
+            </div>
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h4>Kişisel Gelişim</h4>
+                <p class="text-muted">Özsaygı, öz-farkındalık ve kişisel gelişim stratejileri</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="cta-section text-center">
+            <h2 class="cta-title">Profesyonel Desteğe mi İhtiyacınız Var?</h2>
+            <p class="mb-4">Uzman psikolog olarak size yardımcı olmak için buradayım. Hemen iletişime geçin.</p>
+            <a href="tel:905355213458" class="btn-primary-custom">
+                <i class="fas fa-phone"></i> Hemen Ara
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <img src="./assets/images/meltemtugay-logo-text.svg" alt="Meltem Tugay logo" class="mb-3" style="width: 80%;"/>
+                    <p class="text-white-50">Uzman Klinik Psikolog Meltem Tugay - Psikolojik destek ve terapi hizmetleri</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white mb-3">Hızlı Linkler</h5>
+                    <div class="footer-links">
+                        <div class="mb-2"><a href="index.html">Ana Sayfa</a></div>
+                        <div class="mb-2"><a href="blog.html">Blog</a></div>
+                        <div class="mb-2"><a href="psikolojik-testler.html">Psikolojik Testler</a></div>
+                        <div class="mb-2"><a href="#iletisim">İletişim</a></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white mb-3">İletişim</h5>
+                    <p class="text-white-50 mb-2"><i class="fas fa-phone me-2"></i> +90 535 521 34 58</p>
+                    <div class="social-links mt-3">
+                        <a href="https://tr.linkedin.com/in/meltem-tugay-673505229" target="_blank" rel="noopener" class="me-2">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pskmeltemtugay" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="text-center text-white-50">
+                <p class="mb-0">© 2023 Psk. Meltem Tugay. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <script src="./assets/js/scripts.js"></script>
+</body>
+</html>

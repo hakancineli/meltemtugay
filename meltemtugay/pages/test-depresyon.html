@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Depresyon Testi | Psikolog Meltem Tugay</title>
+    <link rel="canonical" href="https://www.meltemtugay.com/test-depresyon" />
+
+    <meta property="og:locale" content="tr-TR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Depresyon Testi | Psikolog Meltem Tugay" />
+    <meta property="og:description" content="Depresif belirtilerinizi ölçmek için kullanılan online ve ücretsiz depresyon testi." />
+    <meta property="og:url" content="https://www.meltemtugay.com/test-depresyon" />
+    <meta property="og:site_name" content="Psikolog Meltem Tugay" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .test-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .test-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .test-card-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0f7ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+        .test-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        .test-card-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .test-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .test-card-time {
+            color: #888;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .test-card-btn {
+            background: #3268F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .test-card-btn:hover {
+            background: #2256E3;
+        }
+        .test-questions {
+            display: none;
+            margin-top: 24px;
+        }
+        .test-question {
+            margin-bottom: 24px;
+        }
+        .test-question h4 {
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .test-options label {
+            display: block;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        .test-options input[type="radio"] {
+            margin-right: 8px;
+        }
+        .test-result {
+            display: none;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        .test-result h4 {
+            margin-bottom: 16px;
+            color: #333;
+        }
+        .test-result p {
+            margin-bottom: 12px;
+            color: #666;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: #3268F3;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .page-header {
+            background: linear-gradient(135deg, #3268F3 0%, #5D8BF4 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<header id="header" class="header-bg-colored">
+    <nav class="navbar navbar-expand-lg navbar-light px-md-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/images/meltemtugay-logo-text.svg" width="131" height="58" alt="Meltem Tugay logo">
+            </a>
+            <button class="menu d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#hizmetler">Hizmetler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#hakkimda">Hakkımda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#nasil-calisir">Nasıl Çalışır</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#iletisim">İletişim</a>
+                    </li>
+                </ul>
+                <div class="navbar-buttons">
+                    <div style="display: flex; align-items: center; justify-content: start;">
+                        <a href="../index.html" class="btn btn-rounded btn-outline-primary mr-3" style="margin-right:5px; padding-left: 20px;padding-right: 20px;">Ana Sayfa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="page-header">
+    <div class="container text-center">
+        <h1>Depresyon Testi</h1>
+        <p>Depresif belirtilerinizi ölçmek için kullanılan bir öz bildirim envanteridir.</p>
+    </div>
+</div>
+
+<main id="page-wrapper" class="page-wrapper pt-0 page-bg-white">
+    <div class="container">
+        
+        <!-- Depresyon Testi -->
+        <div class="test-card" data-test="depresyon">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Beck Depresyon Envanteri (BDI)</h3>
+            </div>
+            <p class="test-card-description">Depresif belirtilerinizi ölçmek için kullanılan 21 maddelik bir öz bildirim envanteridir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('depresyon')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="depresyon-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="depresyon-progress"></div>
+                </div>
+                
+                <div class="test-question" id="depresyon-q1">
+                    <h4>1. Karamsarlık ve mutsuzluk</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="depresyon-q1" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="depresyon-q1" value="1"> Hafif</label>
+                        <label><input type="radio" name="depresyon-q1" value="2"> Orta</label>
+                        <label><input type="radio" name="depresyon-q1" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="depresyon-q2">
+                    <h4>2. Geleceğe dair umutsuzluk</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="depresyon-q2" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="depresyon-q2" value="1"> Hafif</label>
+                        <label><input type="radio" name="depresyon-q2" value="2"> Orta</label>
+                        <label><input type="radio" name="depresyon-q2" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="depresyon-q3">
+                    <h4>3. Başarısızlık hissi</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="depresyon-q3" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="depresyon-q3" value="1"> Hafif</label>
+                        <label><input type="radio" name="depresyon-q3" value="2"> Orta</label>
+                        <label><input type="radio" name="depresyon-q3" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('depresyon')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('depresyon')">Sonraki</button>
+                    <button class="btn btn-success" id="depresyon-submit" onclick="submitTest('depresyon')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="depresyon-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="depresyon-score"></p>
+                <p id="depresyon-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <h5>Önemli Not:</h5>
+                    <p>Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın. Psikolojik destek almak, zihinsel sağlığınız için önemli bir adımdır.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="../pages/psikolojik-testler.html" class="btn btn-outline-secondary btn-rounded me-2">Tüm Testler</a>
+                <a href="../pages/randevu.html" class="btn btn-primary btn-rounded btn-lg">Randevu Alın</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer id="footer">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>&copy; 2024 Psikolog Meltem Tugay - Tüm hakları saklıdır.</p>
+                <div class="mt-2">
+                    <a href="#" class="text-decoration-none me-3">Gizlilik Politikası</a>
+                    <a href="#" class="text-decoration-none">Kullanım Şartları</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Test yönetimi için JavaScript kodları
+    let currentTest = '';
+    let currentQuestion = 1;
+    let totalQuestions = {
+        'depresyon': 3
+    };
+    
+    function startTest(testName) {
+        currentTest = testName;
+        currentQuestion = 1;
+        
+        // Tüm testleri gizle
+        $('.test-questions').hide();
+        $('.test-result').hide();
+        
+        // Seçilen testin sorularını göster
+        $(`#${testName}-questions`).show();
+        
+        // İlk soruyu göster
+        showQuestion(testName, 1);
+        
+        // Başlangıçta butonları ayarla
+        updateButtons(testName);
+    }
+    
+    function showQuestion(testName, questionNumber) {
+        // Tüm soruları gizle
+        $(`#${testName}-questions .test-question`).hide();
+        
+        // Mevcut soruyu göster
+        $(`#${testName}-q${questionNumber}`).show();
+        
+        // İlerleme çubuğunu güncelle
+        const progress = (questionNumber / totalQuestions[testName]) * 100;
+        $(`#${testName}-progress`).css('width', `${progress}%`);
+    }
+    
+    function nextQuestion(testName) {
+        // Mevcut sorunun cevaplanıp cevaplanmadığını kontrol et
+        const answered = $(`input[name="${testName}-q${currentQuestion}"]:checked`).length > 0;
+        
+        if (!answered) {
+            alert('Lütfen bu soruyu cevaplayın.');
+            return;
+        }
+        
+        // Sonraki soruya geç
+        if (currentQuestion < totalQuestions[testName]) {
+            currentQuestion++;
+            showQuestion(testName, currentQuestion);
+        }
+        
+        // Butonları güncelle
+        updateButtons(testName);
+    }
+    
+    function previousQuestion(testName) {
+        // Önceki soruya geç
+        if (currentQuestion > 1) {
+            currentQuestion--;
+            showQuestion(testName, currentQuestion);
+        }
+        
+        // Butonları güncelle
+        updateButtons(testName);
+    }
+    
+    function updateButtons(testName) {
+        // Önceki butonunu kontrol et
+        if (currentQuestion === 1) {
+            $(`#${testName}-questions .btn-outline-secondary`).hide();
+        } else {
+            $(`#${testName}-questions .btn-outline-secondary`).show();
+        }
+        
+        // Sonraki ve gönder butonlarını kontrol et
+        if (currentQuestion === totalQuestions[testName]) {
+            $(`#${testName}-questions .btn-primary`).hide();
+            $(`#${testName}-submit`).show();
+        } else {
+            $(`#${testName}-questions .btn-primary`).show();
+            $(`#${testName}-submit`).hide();
+        }
+    }
+    
+    function submitTest(testName) {
+        // Tüm soruların cevaplanıp cevaplanmadığını kontrol et
+        let allAnswered = true;
+        let score = 0;
+        
+        for (let i = 1; i <= totalQuestions[testName]; i++) {
+            const answered = $(`input[name="${testName}-q${i}"]:checked`).length > 0;
+            
+            if (!answered) {
+                allAnswered = false;
+                break;
+            }
+            
+            // Puanı hesapla
+            const value = parseInt($(`input[name="${testName}-q${i}"]:checked`).val());
+            score += value;
+        }
+        
+        if (!allAnswered) {
+            alert('Lütfen tüm soruları cevaplayın.');
+            return;
+        }
+        
+        // Sonucu göster
+        showResult(testName, score);
+    }
+    
+    function showResult(testName, score) {
+        // Soruları gizle
+        $(`#${testName}-questions`).hide();
+        
+        // Sonucu göster
+        $(`#${testName}-result`).show();
+        
+        // Puanı ve yorumu ayarla
+        let interpretation = '';
+        
+        if (testName === 'depresyon') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / 9`);
+            
+            if (score <= 4) {
+                interpretation = 'Depresyon belirtileri düşük düzeyde. Bu, normal ruh hali aralığında olabilir.';
+            } else if (score <= 7) {
+                interpretation = 'Hafif depresyon belirtileri. Bu belirtiler günlük yaşamınızı etkileyebilir ve bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Orta-şiddette depresyon belirtileri. Bu belirtiler günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        }
+        
+        $(`#${testName}-interpretation`).text(interpretation);
+    }
+</script>
+
+</body>
+</html>

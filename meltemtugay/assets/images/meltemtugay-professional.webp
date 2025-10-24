@@ -1,0 +1,23 @@
+<svg width="376" height="455" viewBox="0 0 376 455" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="376" height="455" fill="#F5F7FA"/>
+<circle cx="188" cy="180" r="80" fill="#E0E7FF"/>
+<path d="M188 120C218.376 120 243 145.624 243 177C243 208.376 218.376 234 188 234C157.624 234 133 208.376 133 177C133 145.624 157.624 120 188 120Z" fill="#C7D2FE"/>
+<path d="M188 140C208.435 140 225 156.565 225 177C225 197.435 208.435 214 188 214C167.565 214 151 197.435 151 177C151 156.565 167.565 140 188 140Z" fill="#A5B4FC"/>
+<circle cx="168" cy="167" r="8" fill="#4F46E5"/>
+<circle cx="208" cy="167" r="8" fill="#4F46E5"/>
+<path d="M168 195C168 190.582 171.582 187 176 187H200C204.418 187 208 190.582 208 195C208 199.418 204.418 203 200 203H176C171.582 203 168 199.418 168 195Z" fill="#4F46E5"/>
+<path d="M120 320C120 280 152 248 192 248H184C144 248 112 280 112 320V400H120V320Z" fill="#E0E7FF"/>
+<path d="M256 320C256 280 224 248 184 248H192C232 248 264 280 264 320V400H256V320Z" fill="#E0E7FF"/>
+<rect x="104" y="395" width="168" height="60" rx="30" fill="#3268F2"/>
+<text x="188" y="430" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Psikolog Meltem Tugay</text>
+<path d="M100 395H100C111.046 395 120 403.954 120 415V415C120 426.046 111.046 435 100 435H100C88.9543 435 80 426.046 80 415V415C80 403.954 88.9543 395 100 395Z" fill="#3268F2"/>
+<path d="M276 395H276C287.046 395 296 403.954 296 415V415C296 426.046 287.046 435 276 435H276C264.954 435 256 426.046 256 415V415C256 403.954 264.954 395 276 395Z" fill="#3268F2"/>
+<circle cx="90" cy="375" r="5" fill="white"/>
+<circle cx="286" cy="375" r="5" fill="white"/>
+<circle cx="90" cy="390" r="5" fill="white"/>
+<circle cx="286" cy="390" r="5" fill="white"/>
+<circle cx="90" cy="405" r="5" fill="white"/>
+<circle cx="286" cy="405" r="5" fill="white"/>
+<circle cx="90" cy="420" r="5" fill="white"/>
+<circle cx="286" cy="420" r="5" fill="white"/>
+</svg>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Online Terapi Odası - Psikolog Meltem Tugay</title>
+    <link rel="canonical" href="https://www.meltemtugay.com/terapi-odasi" />
+
+    <meta property="og:locale" content="tr-TR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Online Terapi Odası - Psikolog Meltem Tugay" />
+    <meta property="og:description" content="Güvenli ve gizli online terapi odasında seansınıza katılın." />
+    <meta property="og:url" content="https://www.meltemtugay.com/terapi-odasi" />
+    <meta property="og:site_name" content="Psikolog Meltem Tugay" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        body {
+            background-color: red;
+            font-family: 'Sofia Pro', sans-serif;
+            overflow: hidden;
+        }
+        
+        .therapy-room {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .therapy-header {
+            background-color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .therapy-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .video-container {
+            flex: 1;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+        
+        .video-placeholder {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .video-controls {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .control-btn {
+            background-color: #f0f5ff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background-color: #3268f2;
+            color: white;
+        }
+        
+        .control-btn.active {
+            background-color: #3268f2;
+            color: white;
+        }
+        
+        .control-btn.danger {
+            background-color: #ff4757;
+            color: white;
+        }
+        
+        .control-btn.danger:hover {
+            background-color: #ff3838;
+        }
+        
+        .chat-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+        
+        .message-therapist {
+            background-color: #f0f5ff;
+            align-self: flex-start;
+        }
+        
+        .message-client {
+            background-color: #3268f2;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            border: 1px solid #e1e8ed;
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-right: 10px;
+        }
+        
+        .waiting-room {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: red;
+        }
+        
+        .waiting-content {
+            text-align: center;
+            max-width: 500px;
+            padding: 40px;
+            background-color: red;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3268f2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .session-info {
+            background-color: #f0f5ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .session-timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3268f2;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .notes-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+        
+        .notes-textarea {
+            width: 100%;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 10px;
+            min-height: 100px;
+            resize: none;
+        }
+        
+        .emergency-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .emergency-button:hover {
+            background-color: #ff3838;
+        }
+        
+        .quality-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .connection-good {
+            background-color: rgba(0, 128, 0, 0.7);
+        }
+        
+        .connection-poor {
+            background-color: rgba(255, 0, 0, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Bekleme Odası -->
+<div class="waiting-room" id="waitingRoom">
+    <div class="waiting-content">
+        <div class="spinner"></div>
+        <h2 style="color: white;">Terapi Odasına Bağlanılıyor</h2>
+        <p style="color: white;">Lütfen bekleyin, terapistiniz odaya katılacak.</p>
+        
+        <div class="session-info">
+            <h5 style="color: white;">Randevu Bilgileri</h5>
+            <p style="color: white;"><strong>Tarih:</strong> <span id="sessionDate">21 Ekim 2024</span></p>
+            <p style="color: white;"><strong>Saat:</strong> <span id="sessionTime">14:00</span></p>
+            <p style="color: white;"><strong>Tür:</strong> <span id="sessionType">Bireysel Terapi</span></p>
+        </div>
+        
+        <div class="alert alert-info">
+            <strong>İpucu:</strong> İyi bir bağlantı için lütfen güçlü bir Wi-Fi ağına bağlandığınızdan emin olun.
+        </div>
+        
+        <button class="btn btn-outline-secondary" id="cancelSession">Oturumu İptal Et</button>
+    </div>
+</div>
+
+<!-- Terapi Odası -->
+<div class="therapy-room" id="therapyRoom" style="display: none;">
+    <header class="therapy-header" style="background-color: red;">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0" style="color: white;">Terapi Odası</h4>
+            <div class="d-flex align-items-center">
+                <span class="me-3" id="connectionStatus">
+                    <span class="badge bg-success">Bağlantı İyi</span>
+                </span>
+                <button class="btn btn-sm btn-outline-danger" id="endSession">Oturumu Bitir</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="therapy-content">
+        <div class="session-timer" id="sessionTimer">00:00:00</div>
+        
+        <div class="video-container">
+            <div class="video-placeholder" id="videoPlaceholder">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268f2"/>
+                </svg>
+                <p class="mt-3">Kamera ve mikrofonunuz kapalı</p>
+                <button class="btn btn-primary mt-3" id="startVideo">Görüşmeyi Başlat</button>
+            </div>
+            
+            <div id="videoContainer" style="display: none; width: 100%; height: 100%;">
+                <!-- Gerçek bir uygulamada video elementleri burada yer alır -->
+                <div style="width: 100%; height: 100%; background-color: #000; display: flex; justify-content: center; align-items: center; color: white;">
+                    <p>Video bağlantısı kuruluyor...</p>
+                </div>
+                <div class="quality-indicator connection-good">HD</div>
+            </div>
+        </div>
+        
+        <div class="video-controls">
+            <div class="d-flex justify-content-center">
+                <button class="control-btn" id="micBtn" title="Mikrofon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" fill="currentColor"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" fill="currentColor"/>
+                    </svg>
+                </button>
+                
+                <button class="control-btn" id="cameraBtn" title="Kamera">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 15.2A3.2 3.2 0 1 0 8.8 12 3.2 3.2 0 0 0 12 15.2zm0-4.8A1.6 1.6 0 1 1 10.4 12 1.6 1.6 0 0 1 12 10.4z" fill="currentColor"/>
+                        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="currentColor"/>
+                    </svg>
+                </button>
+                
+                <button class="control-btn" id="screenShareBtn" title="Ekran Paylaşımı">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H20z" fill="currentColor"/>
+                        <path d="M4 6h16v10H4z" fill="white"/>
+                    </svg>
+                </button>
+                
+                <button class="control-btn" id="chatBtn" title="Sohbet">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="currentColor"/>
+                    </svg>
+                </button>
+                
+                <button class="control-btn" id="notesBtn" title="Notlar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="currentColor"/>
+                    </svg>
+                </button>
+                
+                <button class="control-btn danger" id="endCallBtn" title="Aramayı Sonlandır">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.57.9-.98.49-2.05.85-3.18.85-1.06 0-2.06-.32-2.88-.89-.34-.23-.57-.58-.57-.97V6.72C2.13 6.27 1.59 6.12 1 6.12c-.55 0-1 .45-1 1v10.16c0 .55.45 1 1 1h.01c.59 0 1.13-.15 1.62-.42v3.1c0 .39.23.74.57.9.82.57 1.82.89 2.88.89 1.13 0 2.2-.36 3.18-.85.34-.16.57-.51.57-.9v-3.1c1.45.47 3 .72 4.6.72 2.76 0 5-2.24 5-5s-2.24-5-5-5z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-message message-therapist">
+                <strong>Psikolog Meltem Tugay:</strong> Merhaba, nasıl hissediyorsunuz bugün?
+            </div>
+            <div class="chat-message message-client">
+                <strong>Siz:</strong> Merhaba, biraz gerginim.
+            </div>
+            <div class="chat-message message-therapist">
+                <strong>Psikolog Meltem Tugay:</strong> Bu çok normal, endişelenmeyin. Rahatlayabilmek için birlikte birkaç nefes egzersizi yapalım mı?
+            </div>
+        </div>
+        
+        <div class="chat-input-container" id="chatInputContainer" style="display: none;">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Mesajınızı yazın...">
+            <button class="btn btn-primary btn-sm" id="sendMessage">Gönder</button>
+        </div>
+        
+        <div class="notes-container" id="notesContainer">
+            <h5>Terapi Notları</h5>
+            <textarea class="notes-textarea" id="notesTextarea" placeholder="Buraya notlarınızı yazabilirsiniz..."></textarea>
+            <div class="mt-2">
+                <button class="btn btn-sm btn-outline-secondary" id="saveNotes">Notları Kaydet</button>
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            <a href="travma-ptsd.html" class="btn btn-primary btn-rounded">Travma ve PTSD Hakkında</a>
+        </div>
+    </div>
+</div>
+
+<button class="emergency-button" id="emergencyButton" title="Acil Durum">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="white"/>
+    </svg>
+</button>
+
+<!-- Acil Durum Modal -->
+<div class="modal fade" id="emergencyModal" tabindex="-1" aria-labelledby="emergencyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emergencyModalLabel">Acil Durum Kaynakları</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Eğer acil bir durumdaysanız, lütfen aşağıdaki kaynaklardan birini kullanın:</p>
+                <div class="list-group">
+                    <a href="tel:112" class="list-group-item list-group-item-action">
+                        <strong>Acil Yardım Hattı:</strong> 112
+                    </a>
+                    <a href="tel:183" class="list-group-item list-group-item-action">
+                        <strong>Aile İçi Şiddet Yardım Hattı:</strong> 183
+                    </a>
+                    <a href="tel:08508885428" class="list-group-item list-group-item-action">
+                        <strong>LGBT+ Danışma Hattı:</strong> 0850 888 54 28
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Oturum Bitirme Modal -->
+<div class="modal fade" id="endSessionModal" tabindex="-1" aria-labelledby="endSessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="endSessionModalLabel">Oturumu Bitir</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Oturumu bitirmek istediğinizden emin misiniz?</p>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="saveNotesCheck" checked>
+                    <label class="form-check-label" for="saveNotesCheck">
+                        Notlarımı kaydet
+                    </label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="sendSummaryCheck" checked>
+                    <label class="form-check-label" for="sendSummaryCheck">
+                        Oturum özetini e-posta ile gönder
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-danger" id="confirmEndSession">Oturumu Bitir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).ready(function() {
+    let sessionTimer = null;
+    let sessionSeconds = 0;
+    let isInSession = false;
+    
+    // Bekleme odasından terapi odasına geçiş (simülasyon)
+    setTimeout(function() {
+        $('#waitingRoom').hide();
+        $('#therapyRoom').show();
+        startSessionTimer();
+    }, 3000);
+    
+    // Oturum iptal etme
+    $('#cancelSession').on('click', function() {
+        if (confirm('Oturumu iptal etmek istediğinizden emin misiniz?')) {
+            window.location.href = '../index.html';
+        }
+    });
+    
+    // Video başlatma
+    $('#startVideo').on('click', function() {
+        $('#videoPlaceholder').hide();
+        $('#videoContainer').show();
+        isInSession = true;
+        
+        // Simüle edilmiş bağlantı
+        setTimeout(function() {
+            $('#videoContainer').html(`
+                <div style="width: 100%; height: 100%; background-color: #000; display: flex; justify-content: center; align-items: center; color: white; position: relative;">
+                    <div style="position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.5); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px;">
+                        Psikolog Meltem Tugay
+                    </div>
+                    <img src="../assets/images/instagram-1.jpeg" alt="Psikolog Meltem Tugay" style="max-width: 100%; max-height: 100%; object-fit: cover;">
+                    <div class="quality-indicator connection-good">HD</div>
+                </div>
+            `);
+        }, 2000);
+    });
+    
+    // Mikrofon kontrolü
+    $('#micBtn').on('click', function() {
+        $(this).toggleClass('active');
+        const isActive = $(this).hasClass('active');
+        
+        // Gerçek bir uygulamada mikrofon açılır/kapanır
+        if (isActive) {
+            console.log('Mikrofon açıldı');
+        } else {
+            console.log('Mikrofon kapatıldı');
+        }
+    });
+    
+    // Kamera kontrolü
+    $('#cameraBtn').on('click', function() {
+        $(this).toggleClass('active');
+        const isActive = $(this).hasClass('active');
+        
+        // Gerçek bir uygulamada kamera açılır/kapanır
+        if (isActive) {
+            console.log('Kamera açıldı');
+        } else {
+            console.log('Kamera kapatıldı');
+        }
+    });
+    
+    // Ekran paylaşımı kontrolü
+    $('#screenShareBtn').on('click', function() {
+        $(this).toggleClass('active');
+        const isActive = $(this).hasClass('active');
+        
+        // Gerçek bir uygulamada ekran paylaşımı başlatılır/durdurulur
+        if (isActive) {
+            console.log('Ekran paylaşımı başlatıldı');
+        } else {
+            console.log('Ekran paylaşımı durduruldu');
+        }
+    });
+    
+    // Sohbet penceresi kontrolü
+    $('#chatBtn').on('click', function() {
+        $(this).toggleClass('active');
+        const isActive = $(this).hasClass('active');
+        
+        if (isActive) {
+            $('#chatContainer').show();
+            $('#chatInputContainer').show();
+        } else {
+            $('#chatContainer').hide();
+            $('#chatInputContainer').hide();
+        }
+    });
+    
+    // Notlar penceresi kontrolü
+    $('#notesBtn').on('click', function() {
+        $(this).toggleClass('active');
+        const isActive = $(this).hasClass('active');
+        
+        if (isActive) {
+            $('#notesContainer').show();
+        } else {
+            $('#notesContainer').hide();
+        }
+    });
+    
+    // Mesaj gönderme
+    $('#sendMessage').on('click', function() {
+        const message = $('#chatInput').val().trim();
+        if (message) {
+            // Kullanıcı mesajını ekle
+            const messageHtml = `
+                <div class="chat-message message-client">
+                    <strong>Siz:</strong> ${message}
+                </div>
+            `;
+            $('#chatContainer').append(messageHtml);
+            
+            // Mesaj alanını temizle
+            $('#chatInput').val('');
+            
+            // Otomatik yanıt (simülasyon)
+            setTimeout(function() {
+                const responseHtml = `
+                    <div class="chat-message message-therapist">
+                        <strong>Psikolog Meltem Tugay:</strong> Anladım, bu konuyu daha detaylı konuşalım.
+                    </div>
+                `;
+                $('#chatContainer').append(responseHtml);
+                
+                // Sohbet penceresini aşağı kaydır
+                $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
+            }, 2000);
+            
+            // Sohbet penceresini aşağı kaydır
+            $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
+        }
+    });
+    
+    // Enter tuşu ile mesaj gönderme
+    $('#chatInput').on('keypress', function(e) {
+        if (e.which === 13) {
+            $('#sendMessage').click();
+        }
+    });
+    
+    // Notları kaydetme
+    $('#saveNotes').on('click', function() {
+        const notes = $('#notesTextarea').val();
+        
+        // Gerçek bir uygulamada notlar backend'e gönderilir
+        console.log('Notlar kaydedildi:', notes);
+        
+        // Başarı mesajı göster
+        const alertHtml = `
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Notlarınız başarıyla kaydedildi.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        $('#notesContainer').prepend(alertHtml);
+        
+        // 3 saniye sonra uyarıyı kaldır
+        setTimeout(function() {
+            $('.alert').alert('close');
+        }, 3000);
+    });
+    
+    // Oturum bitirme modalını gösterme
+    $('#endSession, #endCallBtn').on('click', function() {
+        $('#endSessionModal').modal('show');
+    });
+    
+    // Oturumu onayla bitirme
+    $('#confirmEndSession').on('click', function() {
+        const saveNotes = $('#saveNotesCheck').is(':checked');
+        const sendSummary = $('#sendSummaryCheck').is(':checked');
+        
+        // Oturum bitirme işlemleri
+        if (saveNotes) {
+            console.log('Notlar kaydediliyor...');
+        }
+        
+        if (sendSummary) {
+            console.log('Oturum özeti gönderiliyor...');
+        }
+        
+        // Modalı kapat
+        $('#endSessionModal').modal('hide');
+        
+        // Ana sayfaya yönlendir
+        setTimeout(function() {
+            window.location.href = '../index.html';
+        }, 1000);
+    });
+    
+    // Acil durum butonu
+    $('#emergencyButton').on('click', function() {
+        $('#emergencyModal').modal('show');
+    });
+    
+    // Oturum zamanlayıcısı
+    function startSessionTimer() {
+        sessionTimer = setInterval(function() {
+            sessionSeconds++;
+            
+            const hours = Math.floor(sessionSeconds / 3600);
+            const minutes = Math.floor((sessionSeconds % 3600) / 60);
+            const seconds = sessionSeconds % 60;
+            
+            const formattedTime = 
+                (hours < 10 ? '0' + hours : hours) + ':' +
+                (minutes < 10 ? '0' + minutes : minutes) + ':' +
+                (seconds < 10 ? '0' + seconds : seconds);
+            
+            $('#sessionTimer').text(formattedTime);
+        }, 1000);
+    }
+    
+    // Bağlantı durumu simülasyonu
+    setInterval(function() {
+        if (isInSession) {
+            const connectionQuality = Math.random();
+            let statusHtml = '';
+            
+            if (connectionQuality > 0.7) {
+                statusHtml = '<span class="badge bg-success">Bağlantı İyi</span>';
+            } else if (connectionQuality > 0.3) {
+                statusHtml = '<span class="badge bg-warning">Bağlantı Orta</span>';
+            } else {
+                statusHtml = '<span class="badge bg-danger">Bağlantı Zayıf</span>';
+            }
+            
+            $('#connectionStatus').html(statusHtml);
+        }
+    }, 5000);
+    
+    // Sayfadan ayrılırken uyarı
+    $(window).on('beforeunload', function() {
+        if (isInSession) {
+            return "Oturum devam ediyor. Sayfadan ayrılmak istediğinizden emin misiniz?";
+        }
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Randevu Al - Psikolog Meltem Tugay</title>
+    <link rel="canonical" href="https://www.meltemtugay.com/randevu" />
+
+    <meta property="og:locale" content="tr-TR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Online Terapi Randevusu - Psikolog Meltem Tugay" />
+    <meta property="og:description" content="Psikolog Meltem Tugay'dan online terapi randevusu alın. Ücretsiz ön görüşme ile tanışın." />
+    <meta property="og:url" content="https://www.meltemtugay.com/randevu" />
+    <meta property="og:site_name" content="Psikolog Meltem Tugay" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .appointment-form {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .time-slot {
+            cursor: pointer;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .time-slot:hover {
+            border-color: #3268f2;
+            background-color: #f0f5ff;
+        }
+        
+        .time-slot.selected {
+            border-color: #3268f2;
+            background-color: #3268f2;
+            color: white;
+        }
+        
+        .form-section {
+            display: none;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3268f2 0%, #61ea4b 100%);
+            width: 33.33%;
+            transition: width 0.3s ease;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .calendar-day {
+            cursor: pointer;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 2px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-day:hover {
+            border-color: #3268f2;
+            background-color: #f0f5ff;
+        }
+        
+        .calendar-day.selected {
+            border-color: #3268f2;
+            background-color: #3268f2;
+            color: white;
+        }
+        
+        .calendar-day.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+
+<header id="header" class="header-bg-colored">
+    <nav class="navbar navbar-expand-lg navbar-light px-md-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/images/meltemtugay-logo.svg" width="131" height="58" alt="Meltem Tugay logo">
+            </a>
+            <button class="menu d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#hizmetler">Hizmetler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#hakkimda">Hakkımda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#nasil-calisir">Nasıl Çalışır</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#iletisim">İletişim</a>
+                    </li>
+                </ul>
+                <div class="navbar-buttons">
+                    <div style="display: flex; align-items: center; justify-content: start;">
+                        <a href="../index.html" class="btn btn-rounded btn-outline-primary mr-3" style="margin-right:5px; padding-left: 20px;padding-right: 20px;">Ana Sayfa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main id="page-wrapper" class="page-wrapper pt-0 page-bg-white pt-120">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h1 class="fw-bold fs-1">Online Terapi Randevusu</h1>
+                    <p class="fs-5 text-muted">3 kolay adımda randevunuzu oluşturun</p>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                
+                <!-- Adım 1: Kişisel Bilgiler -->
+                <div class="form-section active" id="step1">
+                    <div class="appointment-form">
+                        <h2 class="text-center mb-4">Adım 1: Kişisel Bilgiler</h2>
+                        <form id="personalInfoForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">Adınız *</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Soyadınız *</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-posta Adresiniz *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefon Numaranız *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="0555 123 45 67" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Yaşınız *</label>
+                                <input type="number" class="form-control" id="age" min="18" max="100" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="therapyType" class="form-label">Terapi Türü *</label>
+                                <select class="form-control" id="therapyType" required>
+                                    <option value="">Seçiniz...</option>
+                                    <option value="individual">Bireysel Terapi</option>
+                                    <option value="couple">Çift Terapisi</option>
+                                    <option value="family">Aile Danışmanlığı</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="reason" class="form-label">Terapi Görme Nedeniniz (Kısa)</label>
+                                <textarea class="form-control" id="reason" rows="3" placeholder="Terapiye başlamak istediğiniz ana konuları kısaca belirtin..."></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="previousTherapy" class="form-label">Daha önce terapi gördünüz mü?</label>
+                                <select class="form-control" id="previousTherapy">
+                                    <option value="no">Hayır</option>
+                                    <option value="yes">Evet</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="emergencyContact" class="form-label">Acil Durum İletişim Bilgisi</label>
+                                <input type="text" class="form-control" id="emergencyContact" placeholder="İsim ve telefon numarası">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="consent" required>
+                                    <label class="form-check-label" for="consent">
+                                        Psikolojik danışmanlık hizmetleri hakkında bilgilendirildiğimi ve gizlilik politikasını kabul ediyorum. *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary btn-rounded btn-lg">İleri</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Adım 2: Takvim Seçimi -->
+                <div class="form-section" id="step2">
+                    <div class="appointment-form">
+                        <h2 class="text-center mb-4">Adım 2: Tarih Seçimi</h2>
+                        <p class="text-center text-muted mb-4">Randevu almak istediğiniz tarihi seçin</p>
+                        
+                        <div class="calendar-container">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <button class="btn btn-outline-secondary" id="prevMonth"><</button>
+                                <h4 id="currentMonth">Ekim 2024</h4>
+                                <button class="btn btn-outline-secondary" id="nextMonth">></button>
+                            </div>
+                            
+                            <div class="row text-center mb-2">
+                                <div class="col"><strong>Pzt</strong></div>
+                                <div class="col"><strong>Sal</strong></div>
+                                <div class="col"><strong>Çar</strong></div>
+                                <div class="col"><strong>Per</strong></div>
+                                <div class="col"><strong>Cum</strong></div>
+                                <div class="col"><strong>Cmt</strong></div>
+                                <div class="col"><strong>Paz</strong></div>
+                            </div>
+                            
+                            <div class="row" id="calendarDays">
+                                <!-- Takvim günleri JavaScript ile doldurulacak -->
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button class="btn btn-outline-secondary me-2" id="backToStep1">Geri</button>
+                            <button class="btn btn-primary btn-rounded btn-lg" id="toStep3" disabled>İleri</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adım 3: Saat Seçimi -->
+                <div class="form-section" id="step3">
+                    <div class="appointment-form">
+                        <h2 class="text-center mb-4">Adım 3: Saat Seçimi</h2>
+                        <p class="text-center text-muted mb-4">Seçili tarih için uygun saat dilimini seçin</p>
+                        
+                        <div class="selected-date-info mb-4">
+                            <h5>Seçili Tarih: <span id="selectedDateDisplay"></span></h5>
+                        </div>
+                        
+                        <div class="row" id="timeSlots">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="09:00">09:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="10:00">10:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="11:00">11:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="14:00">14:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="15:00">15:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="16:00">16:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="17:00">17:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="18:00">18:00</div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="time-slot" data-time="19:00">19:00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button class="btn btn-outline-secondary me-2" id="backToStep2">Geri</button>
+                            <button class="btn btn-primary btn-rounded btn-lg" id="submitAppointment" disabled>Randevuyu Tamamla</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Başarı Mesajı -->
+                <div class="success-message" id="successMessage">
+                    <div class="appointment-form">
+                        <div class="text-center">
+                            <div class="mb-4">
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="40" cy="40" r="40" fill="#4CAF50"/>
+                                    <path d="M25 40L35 50L55 30" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h2 class="fw-bold mb-3">Randevunuz Oluşturuldu!</h2>
+                            <p class="fs-5 mb-4">Randevu bilgileriniz e-posta adresinize gönderilmiştir.</p>
+                            
+                            <div class="appointment-details mb-4">
+                                <h5>Randevu Detayları:</h5>
+                                <p><strong>Tarih:</strong> <span id="confirmDate"></span></p>
+                                <p><strong>Saat:</strong> <span id="confirmTime"></span></p>
+                                <p><strong>Tür:</strong> <span id="confirmType"></span></p>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <strong>Önemli:</strong> Randevunuza 5 dakika önce bağlanmanız önerilir. Görüşme linki randevu saatinde e-posta adresinize gönderilecektir.
+                            </div>
+                            
+                            <div class="mt-4">
+                                <a href="../index.html" class="btn btn-primary btn-rounded">Ana Sayfaya Dön</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer id="footer">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>&copy; 2024 Psikolog Meltem Tugay - Tüm hakları saklıdır.</p>
+                <div class="mt-2">
+                    <a href="#" class="text-decoration-none me-3">Gizlilik Politikası</a>
+                    <a href="#" class="text-decoration-none">Kullanım Şartları</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/database.js"></script>
+<script>
+$(document).ready(function() {
+    let currentStep = 1;
+    let selectedDate = null;
+    let selectedTime = null;
+    let appointmentData = {};
+    
+    // Adım 1: Kişisel bilgiler formu
+    $('#personalInfoForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Form verilerini kaydet
+        appointmentData = {
+            firstName: $('#firstName').val(),
+            lastName: $('#lastName').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            age: $('#age').val(),
+            therapyType: $('#therapyType').val(),
+            reason: $('#reason').val(),
+            previousTherapy: $('#previousTherapy').val(),
+            emergencyContact: $('#emergencyContact').val()
+        };
+        
+        // Adım 2'ye geç
+        goToStep(2);
+    });
+    
+    // Takvim işlevleri
+    const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+        "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+    
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    
+    function renderCalendar() {
+        $('#currentMonth').text(monthNames[currentMonth] + ' ' + currentYear);
+        
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        
+        let calendarHTML = '';
+        
+        // Boş günler
+        for (let i = 0; i < firstDay; i++) {
+            calendarHTML += '<div class="col"></div>';
+        }
+        
+        // Günler
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(currentYear, currentMonth, day);
+            const dayOfWeek = date.getDay();
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            const isPast = date < new Date().setHours(0, 0, 0, 0);
+            
+            let disabledClass = '';
+            if (isWeekend || isPast) {
+                disabledClass = 'disabled';
+            }
+            
+            calendarHTML += `<div class="col calendar-day ${disabledClass}" data-date="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}">${day}</div>`;
+        }
+        
+        $('#calendarDays').html(calendarHTML);
+        
+        // Gün tıklama olayı
+        $('.calendar-day:not(.disabled)').on('click', function() {
+            $('.calendar-day').removeClass('selected');
+            $(this).addClass('selected');
+            selectedDate = $(this).data('date');
+            $('#selectedDateDisplay').text(formatDate(selectedDate));
+            $('#toStep3').prop('disabled', false);
+        });
+    }
+    
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('tr-TR', options);
+    }
+    
+    $('#prevMonth').on('click', function() {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        renderCalendar();
+    });
+    
+    $('#nextMonth').on('click', function() {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        renderCalendar();
+    });
+    
+    // Saat seçimi
+    $('.time-slot').on('click', function() {
+        $('.time-slot').removeClass('selected');
+        $(this).addClass('selected');
+        selectedTime = $(this).data('time');
+        $('#submitAppointment').prop('disabled', false);
+    });
+    
+    // Navigasyon butonları
+    $('#backToStep1').on('click', function() {
+        goToStep(1);
+    });
+    
+    $('#backToStep2').on('click', function() {
+        goToStep(2);
+    });
+    
+    $('#toStep3').on('click', function() {
+        goToStep(3);
+    });
+    
+    $('#submitAppointment').on('click', function() {
+        // Randevuyu tamamla
+        completeAppointment();
+    });
+    
+    function goToStep(step) {
+        $('.form-section').removeClass('active');
+        $('#step' + step).addClass('active');
+        
+        // Progress bar'ı güncelle
+        const progress = (step / 3) * 100;
+        $('#progressBar').css('width', progress + '%');
+        
+        currentStep = step;
+        
+        // Adım 2'ye geçince takvimi oluştur
+        if (step === 2) {
+            renderCalendar();
+        }
+    }
+    
+    function completeAppointment() {
+        // Başarı mesajını göster
+        $('.form-section').removeClass('active');
+        $('#successMessage').show();
+        
+        // Progress bar'ı tamamla
+        $('#progressBar').css('width', '100%');
+        
+        // Onay bilgilerini göster
+        $('#confirmDate').text(formatDate(selectedDate));
+        $('#confirmTime').text(selectedTime);
+        $('#confirmType').text(getTherapyTypeText(appointmentData.therapyType));
+        
+        // Randevu verilerini oluştur
+        const appointmentDataComplete = {
+            ...appointmentData,
+            date: selectedDate,
+            time: selectedTime,
+            status: 'new',
+            createdAt: new Date().toISOString()
+        };
+        
+        // Yönetim paneline randevu verilerini gönder
+        saveAppointmentToAdmin(appointmentDataComplete);
+        
+        // Simüle edilmiş e-posta gönderimi
+        setTimeout(function() {
+            console.log('E-posta gönderildi: ' + appointmentData.email);
+        }, 1000);
+    }
+    
+    // Yönetim paneline randevu verilerini kaydet
+    async function saveAppointmentToAdmin(appointmentData) {
+        try {
+            // Veritabanı servisi kullanarak randevuyu kaydet
+            const result = await dbService.addAppointment(appointmentData);
+            
+            if (result.success) {
+                console.log('Randevu yönetim paneline kaydedildi:', result.data);
+                
+                // Başarılı mesajı göster
+                showNotification('Randevunuz başarıyla oluşturuldu!', 'success');
+            } else {
+                console.error('Randevu kaydedilemedi:', result.error);
+                
+                // Hata mesajı göster
+                showNotification('Randevu oluşturulurken bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'error');
+            }
+        } catch (error) {
+            console.error('Randevu kaydetme hatası:', error);
+            
+            // Hata mesajı göster
+            showNotification('Randevu oluşturulurken bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'error');
+        }
+    }
+    
+    // Bildirim gösterme fonksiyonu
+    function showNotification(message, type) {
+        // Bildirim elementi oluştur
+        const notification = document.createElement('div');
+        notification.className = `alert alert-${type} position-fixed top-0 start-50 translate-middle-x mt-3`;
+        notification.style.zIndex = '9999';
+        notification.textContent = message;
+        
+        // Sayfaya ekle
+        document.body.appendChild(notification);
+        
+        // 3 saniye sonra kaldır
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+    
+    function getTherapyTypeText(type) {
+        const types = {
+            'individual': 'Bireysel Terapi',
+            'couple': 'Çift Terapisi',
+            'family': 'Aile Danışmanlığı'
+        };
+        return types[type] || type;
+    }
+    
+    // Telefon numarası formatlama
+    $('#phone').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 0) {
+            if (value.length <= 3) {
+                value = value;
+            } else if (value.length <= 6) {
+                value = value.slice(0, 3) + ' ' + value.slice(3);
+            } else if (value.length <= 10) {
+                value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6);
+            } else {
+                value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8, 10);
+            }
+        }
+        $(this).val(value);
+    });
+});
+</script>
+
+</body>
+</html>

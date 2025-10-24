@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Yönetim Paneli Girişi | Psikolog Meltem Tugay</title>
+    <link rel="canonical" href="https://www.meltemtugay.com/admin/login" />
+
+    <meta property="og:locale" content="tr-TR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yönetim Paneli Girişi | Psikolog Meltem Tugay" />
+    <meta property="og:description" content="Psikolog Meltem Tugay yönetim paneli giriş sayfası" />
+    <meta property="og:url" content="https://www.meltemtugay.com/admin/login" />
+    <meta property="og:site_name" content="Psikolog Meltem Tugay" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #3268F3 0%, #5D8BF4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .login-header h2 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #3268F3;
+            box-shadow: 0 0 0 0.2rem rgba(50, 130, 243, 0.25);
+            outline: 0;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #3268F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-login:hover {
+            background: #2256E3;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .back-to-site {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-to-site a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .back-to-site a:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="../assets/images/meltemtugay-logo-text.svg" alt="Meltem Tugay logo">
+            <h2>Yönetim Paneli</h2>
+            <p>Lütfen giriş yapmak için bilgilerinizi girin</p>
+        </div>
+        
+        <div class="alert alert-danger" id="loginError">
+            Kullanıcı adı veya şifre hatalı. Lütfen tekrar deneyin.
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Kullanıcı Adı</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="btn-login">Giriş Yap</button>
+        </form>
+        
+        <div class="back-to-site">
+            <a href="../index.html">← Ana Sayfaya Dön</a>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Form gönderildiğinde
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const username = $('#username').val();
+                const password = $('#password').val();
+                
+                // Basit doğrulama (gerçek bir uygulamada backend'e gönderilir)
+                if (username === 'psikologmeltemtugay' && password === 'meltem') {
+                    // Başarılı giriş - yönetim paneline yönlendir
+                    window.location.href = 'dashboard.html';
+                } else {
+                    // Hatalı giriş - hata mesajını göster
+                    $('#loginError').show();
+                    
+                    // 3 saniye sonra hata mesajını gizle
+                    setTimeout(function() {
+                        $('#loginError').hide();
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

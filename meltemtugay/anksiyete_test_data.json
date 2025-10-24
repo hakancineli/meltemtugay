@@ -1,0 +1,8 @@
+{
+  "questions": [],
+  "low_threshold": 4,
+  "medium_threshold": 9,
+  "low_result": "Minimal anksiyete seviyesi.",
+  "medium_result": "Hafif anksiyete seviyesi.",
+  "high_result": "Şiddetli anksiyete seviyesi."
+}

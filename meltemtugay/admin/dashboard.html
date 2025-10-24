@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Yönetim Paneli | Psikolog Meltem Tugay</title>
+    <link rel="canonical" href="https://www.meltemtugay.com/admin/dashboard" />
+
+    <meta property="og:locale" content="tr-TR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yönetim Paneli | Psikolog Meltem Tugay" />
+    <meta property="og:description" content="Psikolog Meltem Tugay yönetim paneli" />
+    <meta property="og:url" content="https://www.meltemtugay.com/admin/dashboard" />
+    <meta property="og:site_name" content="Psikolog Meltem Tugay" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #34495e;
+        }
+        
+        .sidebar-header img {
+            width: 100%;
+            max-width: 180px;
+        }
+        
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background-color: #3498db;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .content-header h1 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .section-header {
+            margin-bottom: 20px;
+        }
+        
+        .section-header h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .page-selector {
+            margin-bottom: 20px;
+        }
+        
+        .page-selector select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .content-editor {
+            margin-bottom: 20px;
+        }
+        
+        .content-editor label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .content-editor input,
+        .content-editor textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .content-editor textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+        
+        .image-upload {
+            margin-bottom: 20px;
+        }
+        
+        .image-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .calendar-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .calendar-day:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .calendar-day.today {
+            background-color: #e3f2fd;
+            border-color: #3498db;
+        }
+        
+        .calendar-day.has-appointment {
+            background-color: #e8f5e9;
+            border-color: #2ecc71;
+        }
+        
+        .day-number {
+            font-weight: 500;
+        }
+        
+        .appointment-count {
+            font-size: 12px;
+            color: #2ecc71;
+        }
+        
+        .appointment-list {
+            margin-top: 20px;
+        }
+        
+        .appointment-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .appointment-time {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .appointment-name {
+            color: #7f8c8d;
+        }
+        
+        .appointment-status {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .status-new {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status-pending {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+        
+        .status-confirmed {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-cancelled {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .status-completed {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/images/meltemtugay-logo-text.svg" alt="Meltem Tugay logo">
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a href="#" class="menu-item active" data-section="dashboard">Ana Sayfa</a></li>
+                    <li><a href="#" class="menu-item" data-section="pages">Sayfa Yönetimi</a></li>
+                    <li><a href="#" class="menu-item" data-section="appointments">Randevular</a></li>
+                    <li><a href="#" class="menu-item" data-section="content">İçerik Yönetimi</a></li>
+                    <li><a href="#" class="menu-item" data-section="settings">Ayarlar</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-header">
+                <h1>Yönetim Paneli</h1>
+                <div class="user-info">
+                    <div class="user-avatar">MT</div>
+                    <span>Psikolog Meltem Tugay</span>
+                    <a href="login.html" class="logout-btn ms-3">Çıkış</a>
+                </div>
+            </div>
+            
+            <!-- Dashboard Section -->
+            <div class="content-section active" id="dashboard-section">
+                <div class="section-header">
+                    <h2>Panel Özeti</h2>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Toplam Sayfa</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Bu Haftaki Randevu</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Bu Ayki Randevu</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Toplam Ziyaretçi</div>
+                    </div>
+                </div>
+                
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h3>Bugünkü Randevular</h3>
+                        <span id="current-date"></span>
+                    </div>
+                    
+                    <div class="appointment-list">
+                        <div class="appointment-item">
+                            <div class="appointment-time">09:00 - 10:00</div>
+                            <div class="appointment-name">Ayşe Yılmaz - Bireysel Terapi</div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">14:00 - 15:00</div>
+                            <div class="appointment-name">Mehmet Kaya - Çift Terapisi</div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">16:00 - 17:00</div>
+                            <div class="appointment-name">Zeynep Demir - Bireysel Terapi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pages Management Section -->
+            <div class="content-section" id="pages-section">
+                <div class="section-header">
+                    <h2>Sayfa Yönetimi</h2>
+                </div>
+                
+                <div class="page-selector">
+                    <label for="page-select">Düzenlenecek Sayfayı Seçin:</label>
+                    <select id="page-select">
+                        <option value="">-- Sayfa Seçin --</option>
+                        <option value="index">Ana Sayfa</option>
+                        <option value="hakkimda">Hakkımda</option>
+                        <option value="hizmetler">Hizmetler</option>
+                        <option value="terapi">Terapi</option>
+                        <option value="blog">Blog</option>
+                        <option value="anksiyete-kaygi">Anksiyete ve Kaygı</option>
+                        <option value="depresyon">Depresyon</option>
+                        <option value="iliski-sorunlari">İlişki Sorunları</option>
+                        <option value="travma-ptsd">Travma ve PTSD</option>
+                        <option value="randevu">Randevu</option>
+                    </select>
+                </div>
+                
+                <div id="page-editor" style="display: none;">
+                    <div class="content-editor">
+                        <label for="page-title">Sayfa Başlığı:</label>
+                        <input type="text" id="page-title" class="form-control">
+                    </div>
+                    
+                    <div class="content-editor">
+                        <label for="page-description">Sayfa Açıklaması:</label>
+                        <textarea id="page-description" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="image-upload">
+                        <label for="page-image">Sayfa Görseli:</label>
+                        <input type="file" id="page-image" class="form-control">
+                        <img id="page-image-preview" class="image-preview" alt="Sayfa görseli önizlemesi">
+                    </div>
+                    
+                    <div class="content-editor">
+                        <label for="page-content">Sayfa İçeriği:</label>
+                        <textarea id="page-content" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <button class="btn-primary" id="save-page">Değişiklikleri Kaydet</button>
+                        <button class="btn-secondary" id="cancel-page">İptal</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Appointments Section -->
+            <div class="content-section" id="appointments-section">
+                <div class="section-header">
+                    <h2>Randevu Takvimi</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-primary btn-sm" id="refresh-appointments">Yenile</button>
+                        <button class="btn btn-success btn-sm" id="export-appointments">Dışa Aktar</button>
+                    </div>
+                </div>
+                
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="btn-secondary" id="prev-month">←</button>
+                        <h3 id="current-month">Ekim 2024</h3>
+                        <button class="btn-secondary" id="next-month">→</button>
+                    </div>
+                    
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Calendar days will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="appointment-list">
+                    <h3>Seçilen Tarih <span id="selected-date"></span></h3>
+                    <div id="appointments-for-date">
+                        <div class="appointment-item">
+                            <div class="appointment-time">09:00 - 10:00</div>
+                            <div class="appointment-name">Ayşe Yılmaz - Bireysel Terapi</div>
+                            <div class="appointment-status">Onaylandı</div>
+                            <button class="btn-sm btn-primary ms-2" id="view-details-1">Detaylar</button>
+                            <button class="btn-sm btn-danger ms-2" id="cancel-appointment-1">İptal</button>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">14:00 - 15:00</div>
+                            <div class="appointment-name">Mehmet Kaya - Çift Terapisi</div>
+                            <div class="appointment-status">Beklemede</div>
+                            <button class="btn-sm btn-success ms-2" id="confirm-appointment-2">Onayla</button>
+                            <button class="btn-sm btn-danger ms-2" id="cancel-appointment-2">İptal</button>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">16:00 - 17:00</div>
+                            <div class="appointment-name">Zeynep Demir - Bireysel Terapi</div>
+                            <div class="appointment-status">Yeni</div>
+                            <button class="btn-sm btn-info ms-2" id="edit-appointment-3">Düzenle</button>
+                            <button class="btn-sm btn-danger ms-2" id="cancel-appointment-3">İptal</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Appointment Details Modal -->
+                <div class="modal fade" id="appointmentDetailsModal" tabindex="-1" aria-labelledby="appointmentDetailsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="appointmentDetailsModalLabel">Randevu Detayları</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <strong>Adı Soyadı:</strong> <span id="modal-patient-name"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>Telefon:</strong> <span id="modal-patient-phone"></span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <strong>E-posta:</strong> <span id="modal-patient-email"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>Terapi Türü:</strong> <span id="modal-therapy-type"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Randevu Tarihi:</strong> <span id="modal-appointment-date"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Randevu Saati:</strong> <span id="modal-appointment-time"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Durum:</strong> <span id="modal-appointment-status"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Notlar:</strong> <span id="modal-appointment-notes"></span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                <button type="button" class="btn btn-primary" id="edit-appointment-modal">Düzenle</button>
+                                <button type="button" class="btn btn-danger" id="cancel-appointment-modal">İptal Et</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Edit Appointment Modal -->
+                <div class="modal fade" id="editAppointmentModal" tabindex="-1" aria-labelledby="editAppointmentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editAppointmentModalLabel">Randevu Düzenle</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="edit-appointment-form">
+                                    <div class="mb-3">
+                                        <label for="edit-patient-name" class="form-label">Hasta Adı Soyadı</label>
+                                        <input type="text" class="form-control" id="edit-patient-name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit-patient-phone" class="form-label">Hasta Telefonu</label>
+                                        <input type="tel" class="form-control" id="edit-patient-phone" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit-therapy-type" class="form-label">Terapi Türü</label>
+                                        <select class="form-control" id="edit-therapy-type" required>
+                                            <option value="individual">Bireysel Terapi</option>
+                                            <option value="couple">Çift Terapisi</option>
+                                            <option value="family">Aile Danışmanlığı</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit-appointment-date" class="form-label">Randevu Tarihi</label>
+                                        <input type="date" class="form-control" id="edit-appointment-date" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit-appointment-time" class="form-label">Randevu Saati</label>
+                                        <select class="form-control" id="edit-appointment-time" required>
+                                            <option value="09:00">09:00</option>
+                                            <option value="10:00">10:00</option>
+                                            <option value="11:00">11:00</option>
+                                            <option value="14:00">14:00</option>
+                                            <option value="15:00">15:00</option>
+                                            <option value="16:00">16:00</option>
+                                            <option value="17:00">17:00</option>
+                                            <option value="18:00">18:00</option>
+                                            <option value="19:00">19:00</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit-appointment-status" class="form-label">Durum</label>
+                                        <select class="form-control" id="edit-appointment-status" required>
+                                            <option value="new">Yeni</option>
+                                            <option value="pending">Beklemede</option>
+                                            <option value="confirmed">Onaylandı</option>
+                                            <option value="cancelled">İptal Edildi</option>
+                                            <option value="completed">Tamamlandı</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit-appointment-notes" class="form-label">Notlar</label>
+                                        <textarea class="form-control" id="edit-appointment-notes" rows="3"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                <button type="button" class="btn btn-primary" id="save-appointment-changes">Kaydet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Management Section -->
+            <div class="content-section" id="content-section">
+                <div class="section-header">
+                    <h2>İçerik Yönetimi</h2>
+                </div>
+                
+                <div class="page-selector">
+                    <label for="content-select">Düzenlenecek İçeriği Seçin:</label>
+                    <select id="content-select">
+                        <option value="">-- İçerik Seçin --</option>
+                        <option value="hero-banner">Ana Sayfa Hero Banner</option>
+                        <option value="how-it-works">Nasıl Çalışır</option>
+                        <option value="testimonials">Müşteri Yorumları</option>
+                        <option value="blog-posts">Blog Yazıları</option>
+                        <option value="popular-topics">Popüler Başlıklar</option>
+                    </select>
+                </div>
+                
+                <div id="content-editor-container" style="display: none;">
+                    <!-- Content editor will be populated based on selection -->
+                </div>
+            </div>
+            
+            <!-- Settings Section -->
+            <div class="content-section" id="settings-section">
+                <div class="section-header">
+                    <h2>Ayarlar</h2>
+                </div>
+                
+                <div class="content-editor">
+                    <label for="site-title">Site Başlığı:</label>
+                    <input type="text" id="site-title" class="form-control" value="Psikolog Meltem Tugay">
+                </div>
+                
+                <div class="content-editor">
+                    <label for="site-description">Site Açıklaması:</label>
+                    <textarea id="site-description" class="form-control">Uzman Klinik Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</textarea>
+                </div>
+                
+                <div class="content-editor">
+                    <label for="contact-email">İletişim E-postası:</label>
+                    <input type="email" id="contact-email" class="form-control" value="pskmeltemtugay@gmail.com">
+                </div>
+                
+                <div class="content-editor">
+                    <label for="contact-phone">İletişim Telefonu:</label>
+                    <input type="tel" id="contact-phone" class="form-control" value="+90 535 521 34 58">
+                </div>
+                
+                <button class="btn-primary" id="save-settings">Ayarları Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/database.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Set current date
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = today.toLocaleDateString('tr-TR', options);
+            
+            // Menu navigation
+            $('.menu-item').on('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all menu items and sections
+                $('.menu-item').removeClass('active');
+                $('.content-section').removeClass('active');
+                
+                // Add active class to clicked menu item
+                $(this).addClass('active');
+                
+                // Show corresponding section
+                const sectionId = $(this).data('section') + '-section';
+                $('#' + sectionId).addClass('active');
+            });
+            
+            // Page management
+            $('#page-select').on('change', function() {
+                const selectedPage = $(this).val();
+                
+                if (selectedPage) {
+                    $('#page-editor').show();
+                    
+                    // In a real application, this would load the actual page data
+                    // For demo purposes, we'll use placeholder data
+                    $('#page-title').val('Sayfa Başlığı');
+                    $('#page-description').val('Bu sayfanın açıklaması burada yer alacak.');
+                    $('#page-content').val('Sayfa içeriği burada yer alacak.');
+                } else {
+                    $('#page-editor').hide();
+                }
+            });
+            
+            // Save page
+            $('#save-page').on('click', function() {
+                // In a real application, this would save the page data to the backend
+                alert('Sayfa başarıyla kaydedildi!');
+            });
+            
+            // Cancel page editing
+            $('#cancel-page').on('click', function() {
+                $('#page-select').val('');
+                $('#page-editor').hide();
+            });
+            
+            // Page image preview
+            $('#page-image').on('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#page-image-preview').attr('src', e.target.result).show();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Calendar functionality
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            let displayMonth = currentMonth;
+            let displayYear = currentYear;
+            
+            const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+            
+            function updateCalendar() {
+                $('#current-month').text(monthNames[displayMonth] + ' ' + displayYear);
+                
+                const firstDay = new Date(displayYear, displayMonth, 1).getDay();
+                const daysInMonth = new Date(displayYear, displayMonth + 1, 0).getDate();
+                
+                $('#calendar-grid').empty();
+                
+                // Add day headers
+                const dayHeaders = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+                dayHeaders.forEach(day => {
+                    $('#calendar-grid').append('<div class="calendar-day-header">' + day + '</div>');
+                });
+                
+                // Add empty cells for days before month starts
+                for (let i = 0; i < firstDay; i++) {
+                    $('#calendar-grid').append('<div class="calendar-day empty"></div>');
+                }
+                
+                // Add days of the month
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const isToday = day === today.getDate() && displayMonth === currentMonth && displayYear === currentYear;
+                    const hasAppointment = Math.random() > 0.7; // Random appointment for demo
+                    
+                    const dayClass = isToday ? 'calendar-day today' : 'calendar-day';
+                    const appointmentClass = hasAppointment ? ' has-appointment' : '';
+                    
+                    const dayHtml = `
+                        <div class="${dayClass}${appointmentClass}" data-day="${day}" data-month="${displayMonth}" data-year="${displayYear}">
+                            <div class="day-number">${day}</div>
+                            ${hasAppointment ? '<div class="appointment-count">1</div>' : ''}
+                        </div>
+                    `;
+                    
+                    $('#calendar-grid').append(dayHtml);
+                }
+            }
+            
+            updateCalendar();
+            
+            // Previous month
+            $('#prev-month').on('click', function() {
+                displayMonth--;
+                if (displayMonth < 0) {
+                    displayMonth = 11;
+                    displayYear--;
+                }
+                updateCalendar();
+            });
+            
+            // Next month
+            $('#next-month').on('click', function() {
+                displayMonth++;
+                if (displayMonth > 11) {
+                    displayMonth = 0;
+                    displayYear++;
+                }
+                updateCalendar();
+            });
+            
+            // Calendar day click
+            $(document).on('click', '.calendar-day:not(.empty)', function() {
+                const day = $(this).data('day');
+                const month = $(this).data('month');
+                const year = $(this).data('year');
+                
+                const selectedDate = new Date(year, month, day);
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                $('#selected-date').text(selectedDate.toLocaleDateString('tr-TR', options));
+                
+                // Load appointments for the selected date
+                loadAppointmentsForDate(year, month, day);
+            });
+            
+            // Load appointments for a specific date
+            async function loadAppointmentsForDate(year, month, day) {
+                // Format date as YYYY-MM-DD
+                const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+                
+                try {
+                    // Get appointments from database
+                    const result = await dbService.getAppointmentsByDate(dateStr);
+                    
+                    // Clear current appointments
+                    $('#appointments-for-date').empty();
+                    
+                    if (result.success) {
+                        const dateAppointments = result.data;
+                        
+                        // Add appointments to the list
+                        if (dateAppointments.length === 0) {
+                            $('#appointments-for-date').html('<p>Bu tarihte randevu bulunmamaktadır.</p>');
+                        } else {
+                            dateAppointments.forEach((appointment, index) => {
+                                const statusClass = getStatusClass(appointment.status);
+                                const statusText = getStatusText(appointment.status);
+                                
+                                const appointmentHtml = `
+                                    <div class="appointment-item">
+                                        <div class="appointment-time">${appointment.time} - ${getNextTime(appointment.time)}</div>
+                                        <div class="appointment-name">${appointment.firstName} ${appointment.lastName} - ${getTherapyTypeText(appointment.therapyType)}</div>
+                                        <div class="appointment-status ${statusClass}">${statusText}</div>
+                                        <button class="btn-sm btn-primary ms-2" id="view-details-${index}">Detaylar</button>
+                                        ${appointment.status === 'new' ? `<button class="btn-sm btn-success ms-2" id="confirm-appointment-${index}">Onayla</button>` : ''}
+                                        <button class="btn-sm btn-danger ms-2" id="cancel-appointment-${index}">İptal</button>
+                                    </div>
+                                `;
+                                
+                                $('#appointments-for-date').append(appointmentHtml);
+                                
+                                // Add event handlers for the buttons
+                                $(`#view-details-${index}`).on('click', function() {
+                                    showAppointmentDetails(appointment);
+                                });
+                                
+                                $(`#confirm-appointment-${index}`).on('click', function() {
+                                    updateAppointmentStatus(appointment, 'confirmed');
+                                });
+                                
+                                $(`#cancel-appointment-${index}`).on('click', function() {
+                                    updateAppointmentStatus(appointment, 'cancelled');
+                                });
+                            });
+                        }
+                    } else {
+                        $('#appointments-for-date').html('<p>Randevular yüklenirken bir hata oluştu.</p>');
+                        console.error('Randevular yüklenemedi:', result.error);
+                    }
+                } catch (error) {
+                    $('#appointments-for-date').html('<p>Randevular yüklenirken bir hata oluştu.</p>');
+                    console.error('Randevu yükleme hatası:', error);
+                }
+            }
+            
+            // Get next time (e.g., 09:00 -> 10:00)
+            function getNextTime(time) {
+                const [hours, minutes] = time.split(':').map(Number);
+                const nextHours = hours + 1;
+                return `${nextHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            }
+            
+            // Get status class for styling
+            function getStatusClass(status) {
+                const statusClasses = {
+                    'new': 'status-new',
+                    'pending': 'status-pending',
+                    'confirmed': 'status-confirmed',
+                    'cancelled': 'status-cancelled',
+                    'completed': 'status-completed'
+                };
+                return statusClasses[status] || '';
+            }
+            
+            // Get status text in Turkish
+            function getStatusText(status) {
+                const statusTexts = {
+                    'new': 'Yeni',
+                    'pending': 'Beklemede',
+                    'confirmed': 'Onaylandı',
+                    'cancelled': 'İptal Edildi',
+                    'completed': 'Tamamlandı'
+                };
+                return statusTexts[status] || status;
+            }
+            
+            // Show appointment details modal
+            function showAppointmentDetails(appointment) {
+                $('#modal-patient-name').text(`${appointment.firstName} ${appointment.lastName}`);
+                $('#modal-patient-phone').text(appointment.phone);
+                $('#modal-patient-email').text(appointment.email);
+                $('#modal-therapy-type').text(getTherapyTypeText(appointment.therapyType));
+                $('#modal-appointment-date').text(formatDate(appointment.date));
+                $('#modal-appointment-time').text(appointment.time);
+                $('#modal-appointment-status').text(getStatusText(appointment.status));
+                $('#modal-appointment-notes').text(appointment.reason || 'Belirtilmemiş');
+                
+                $('#appointmentDetailsModal').modal('show');
+            }
+            
+            // Update appointment status
+            async function updateAppointmentStatus(appointment, newStatus) {
+                try {
+                    // Update appointment status in database
+                    const result = await dbService.updateAppointment(appointment.id, { status: newStatus });
+                    
+                    if (result.success) {
+                        // Reload appointments for the current date
+                        const [year, month, day] = appointment.date.split('-').map(Number);
+                        await loadAppointmentsForDate(year, month - 1, day);
+                        
+                        // Show success message
+                        alert(`Randevu durumu "${getStatusText(newStatus)}" olarak güncellendi.`);
+                    } else {
+                        console.error('Randevu durumu güncellenemedi:', result.error);
+                        alert('Randevu durumu güncellenirken bir hata oluştu.');
+                    }
+                } catch (error) {
+                    console.error('Randevu durumu güncelleme hatası:', error);
+                    alert('Randevu durumu güncellenirken bir hata oluştu.');
+                }
+            }
+            
+            // Format date for display
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                return date.toLocaleDateString('tr-TR', options);
+            }
+            
+            // Get therapy type text
+            function getTherapyTypeText(type) {
+                const types = {
+                    'individual': 'Bireysel Terapi',
+                    'couple': 'Çift Terapisi',
+                    'family': 'Aile Danışmanlığı'
+                };
+                return types[type] || type;
+            }
+            
+            // Content management
+            $('#content-select').on('change', function() {
+                const selectedContent = $(this).val();
+                
+                if (selectedContent) {
+                    $('#content-editor-container').show();
+                    
+                    // In a real application, this would load the actual content data
+                    // For demo purposes, we'll use placeholder data
+                    let editorHtml = '';
+                    
+                    switch (selectedContent) {
+                        case 'hero-banner':
+                            editorHtml = `
+                                <div class="content-editor">
+                                    <label for="hero-title">Hero Başlığı:</label>
+                                    <input type="text" id="hero-title" class="form-control" value="Profesyonel Psikolojik Destek">
+                                </div>
+                                <div class="content-editor">
+                                    <label for="hero-subtitle">Hero Alt Başlığı:</label>
+                                    <input type="text" id="hero-subtitle" class="form-control" value="Yaşam kalitenizi artırın">
+                                </div>
+                                <div class="content-editor">
+                                    <label for="hero-description">Hero Açıklaması:</label>
+                                    <textarea id="hero-description" class="form-control">Uzman Klinik Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</textarea>
+                                </div>
+                            `;
+                            break;
+                        case 'how-it-works':
+                            editorHtml = `
+                                <div class="content-editor">
+                                    <label for="how-title">Nasıl Çalışır Başlığı:</label>
+                                    <input type="text" id="how-title" class="form-control" value="Nasıl Çalışır">
+                                </div>
+                                <div class="content-editor">
+                                    <label for="how-description">Nasıl Çalışır Açıklaması:</label>
+                                    <textarea id="how-description" class="form-control">3 basit adımda psikolojik destek alın</textarea>
+                                </div>
+                            `;
+                            break;
+                        default:
+                            editorHtml = `
+                                <div class="content-editor">
+                                    <label for="content-title">Başlık:</label>
+                                    <input type="text" id="content-title" class="form-control">
+                                </div>
+                                <div class="content-editor">
+                                    <label for="content-description">Açıklama:</label>
+                                    <textarea id="content-description" class="form-control"></textarea>
+                                </div>
+                            `;
+                    }
+                    
+                    $('#content-editor-container').html(editorHtml);
+                } else {
+                    $('#content-editor-container').hide();
+                }
+            });
+            
+            // Save settings
+            $('#save-settings').on('click', function() {
+                // In a real application, this would save the settings to the backend
+                alert('Ayarlar başarıyla kaydedildi!');
+            });
+        });
+    </script>
+</body>
+</html>
