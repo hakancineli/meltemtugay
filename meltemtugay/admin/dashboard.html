@@ -307,6 +307,12 @@
             margin-left: 10px;
         }
         
+        .appointment-phone {
+            color: #3268f2;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
         .status-new {
             background-color: #e3f2fd;
             color: #1976d2;
@@ -973,6 +979,7 @@
                                     <div class="appointment-item">
                                         <div class="appointment-time">${appointment.time} - ${getNextTime(appointment.time)}</div>
                                         <div class="appointment-name">${appointment.firstName} ${appointment.lastName} - ${getTherapyTypeText(appointment.therapyType)}</div>
+                                        <div class="appointment-phone">📞 ${appointment.phone}</div>
                                         <div class="appointment-status ${statusClass}">${statusText}</div>
                                         <button class="btn-sm btn-primary ms-2" id="view-details-${index}">Detaylar</button>
                                         ${appointment.status === 'new' ? `<button class="btn-sm btn-success ms-2" id="confirm-appointment-${index}">Onayla</button>` : ''}
