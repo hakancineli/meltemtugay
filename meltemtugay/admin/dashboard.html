@@ -517,6 +517,7 @@
                     <h2>Randevu Takvimi</h2>
                     <div class="d-flex justify-content-between align-items-center">
                         <button class="btn btn-primary btn-sm" id="refresh-appointments">Yenile</button>
+                        <button class="btn btn-warning btn-sm" id="sync-appointments">Ana Siteden Senkronize Et</button>
                         <button class="btn btn-success btn-sm" id="create-appointment">Yeni Randevu Oluştur</button>
                         <button class="btn btn-success btn-sm" id="export-appointments">Dışa Aktar</button>
                     </div>
@@ -1470,6 +1471,94 @@
             $('#create-appointment').on('click', function() {
                 $('#createAppointmentModal').modal('show');
             });
+            
+            // Sync appointments from main site
+            $('#sync-appointments').on('click', async function() {
+                // Show loading indicator
+                $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Senkronize Ediliyor...').prop('disabled', true);
+                
+                try {
+                    // Sync appointments from main site
+                    const result = await dbService.syncAppointmentsFromMainSite();
+                    
+                    if (result.success) {
+                        alert('Randevular ana siteden başarıyla senkronize edildi!');
+                        
+                        // Update calendar to show appointments
+                        updateCalendarWithAppointments();
+                        
+                        // Refresh current date view if a date is selected
+                        const selectedDateText = $('#selected-date').text();
+                        if (selectedDateText) {
+                            // Extract date from selected date text
+                            const dateMatch = selectedDateText.match(/(\d+)\.(\w+)\s+(\d+)/);
+                            if (dateMatch) {
+                                const day = parseInt(dateMatch[1]);
+                                const monthStr = dateMatch[2];
+                                const year = parseInt(dateMatch[3]);
+                                
+                                // Convert month name to number
+                                const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+                                const month = monthNames.indexOf(monthStr);
+                                
+                                if (month !== -1) {
+                                    await loadAppointmentsForDate(year, month, day);
+                                }
+                            }
+                        }
+                    } else {
+                        console.error('Senkronizasyon başarısız:', result.error);
+                        alert('Senkronizasyon sırasında bir hata oluştu: ' + result.error);
+                    }
+                } catch (error) {
+                    console.error('Senkronizasyon hatası:', error);
+                    alert('Senkronizasyon sırasında bir hata oluştu.');
+                } finally {
+                    // Reset button
+                    $(this).html('Ana Siteden Senkronize Et').prop('disabled', false);
+                }
+            });
+            
+            // Update calendar to show appointments
+            function updateCalendarWithAppointments() {
+                // Get all appointments
+                dbService.getAppointments().then(result => {
+                    if (result.success) {
+                        const appointments = result.data;
+                        
+                        // Group appointments by date
+                        const appointmentsByDate = {};
+                        appointments.forEach(appointment => {
+                            if (!appointmentsByDate[appointment.date]) {
+                                appointmentsByDate[appointment.date] = [];
+                            }
+                            appointmentsByDate[appointment.date].push(appointment);
+                        });
+                        
+                        // Update calendar days to show appointment indicators
+                        $('.calendar-day').each(function() {
+                            const day = $(this).data('day');
+                            const month = $(this).data('month');
+                            const year = $(this).data('year');
+                            
+                            // Format date as YYYY-MM-DD
+                            const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+                            
+                            // Check if there are appointments for this date
+                            if (appointmentsByDate[dateStr] && appointmentsByDate[dateStr].length > 0) {
+                                $(this).addClass('has-appointment');
+                                
+                                // Update appointment count
+                                const count = appointmentsByDate[dateStr].length;
+                                $(this).find('.appointment-count').text(count);
+                            } else {
+                                $(this).removeClass('has-appointment');
+                                $(this).find('.appointment-count').text('');
+                            }
+                        });
+                    }
+                });
+            }
             
             // Save new appointment
             $('#save-new-appointment').on('click', async function() {

@@ -72,6 +72,10 @@ class DatabaseService {
             if (this.useLocalStorage) {
                 // localStorage kullanarak randevuları getir
                 const appointments = JSON.parse(localStorage.getItem(this.storageKeys.appointments)) || [];
+                
+                // Ana sitedeki randevuları da getir ve birleştir
+                await this.syncAppointmentsFromMainSite();
+                
                 return { success: true, data: appointments };
             } else {
                 // API kullanarak randevuları getir
@@ -399,6 +403,54 @@ class DatabaseService {
         } catch (error) {
             console.error('Ana site ile senkronizasyon hatası:', error);
             return { success: false, error: 'Ana site ile senkronizasyon hatası' };
+        }
+    }
+    
+    // Ana siteden randevuları getir ve localStorage'a senkronize et
+    async syncAppointmentsFromMainSite() {
+        try {
+            const response = await fetch(`${this.mainSiteApiEndpoint}/appointments`, {
+                headers: {
+                    'X-Project-Name': this.projectName
+                }
+            });
+            
+            if (!response.ok) {
+                console.error('Ana siteden randevular getirilemedi:', response.statusText);
+                return { success: false, error: 'Ana siteden randevular getirilemedi' };
+            }
+            
+            const result = await response.json();
+            
+            if (result.success && result.data && Array.isArray(result.data)) {
+                // localStorage'daki mevcut randevuları al
+                const localAppointments = JSON.parse(localStorage.getItem(this.storageKeys.appointments)) || [];
+                
+                // Ana sitedeki randevuları localStorage'a ekle (tekrar etmeyenleri)
+                result.data.forEach(mainAppointment => {
+                    // Aynı ID'ye sahip randevu varsa güncelle, yoksa ekle
+                    const existingIndex = localAppointments.findIndex(apt => apt.id === mainAppointment.id);
+                    
+                    if (existingIndex !== -1) {
+                        // Mevcut randevuyu güncelle
+                        localAppointments[existingIndex] = mainAppointment;
+                    } else {
+                        // Yeni randevu ekle
+                        localAppointments.push(mainAppointment);
+                    }
+                });
+                
+                // localStorage'ı güncelle
+                localStorage.setItem(this.storageKeys.appointments, JSON.stringify(localAppointments));
+                
+                return { success: true, data: localAppointments };
+            } else {
+                console.error('Ana siteden geçersiz randevu verisi alındı');
+                return { success: false, error: 'Ana siteden geçersiz randevu verisi alındı' };
+            }
+        } catch (error) {
+            console.error('Ana siteden randevu senkronizasyon hatası:', error);
+            return { success: false, error: 'Ana siteden randevu senkronizasyon hatası' };
         }
     }
 }
