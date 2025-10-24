@@ -674,22 +674,50 @@
             <div class="content-section" id="content-section">
                 <div class="section-header">
                     <h2>İçerik Yönetimi</h2>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-primary btn-sm" id="load-content">İçerikleri Yükle</button>
+                        <button class="btn btn-success btn-sm" id="save-all-content">Tümünü Kaydet</button>
+                    </div>
                 </div>
                 
                 <div class="page-selector">
-                    <label for="content-select">Düzenlenecek İçeriği Seçin:</label>
+                    <label for="content-select">Düzenlenecek Sayfayı Seçin:</label>
                     <select id="content-select">
-                        <option value="">-- İçerik Seçin --</option>
-                        <option value="hero-banner">Ana Sayfa Hero Banner</option>
-                        <option value="how-it-works">Nasıl Çalışır</option>
-                        <option value="testimonials">Müşteri Yorumları</option>
-                        <option value="blog-posts">Blog Yazıları</option>
-                        <option value="popular-topics">Popüler Başlıklar</option>
+                        <option value="">-- Sayfa Seçin --</option>
+                        <option value="index">Ana Sayfa</option>
+                        <option value="hakkimda">Hakkımda</option>
+                        <option value="hizmetler">Hizmetler</option>
+                        <option value="terapi">Terapi</option>
+                        <option value="blog">Blog</option>
+                        <option value="anksiyete-kaygi">Anksiyete ve Kaygı</option>
+                        <option value="depresyon">Depresyon</option>
+                        <option value="iliski-sorunlari">İlişki Sorunları</option>
+                        <option value="travma-ptsd">Travma ve PTSD</option>
+                        <option value="randevu">Randevu</option>
                     </select>
                 </div>
                 
                 <div id="content-editor-container" style="display: none;">
                     <!-- Content editor will be populated based on selection -->
+                </div>
+                
+                <div id="content-list-container" style="display: none;">
+                    <h3>Mevcut İçerikler</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sayfa</th>
+                                    <th>Başlık</th>
+                                    <th>Son Güncelleme</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content-list-tbody">
+                                <!-- Content list will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             
@@ -750,26 +778,72 @@
             });
             
             // Page management
-            $('#page-select').on('change', function() {
+            $('#page-select').on('change', async function() {
                 const selectedPage = $(this).val();
                 
                 if (selectedPage) {
                     $('#page-editor').show();
                     
-                    // In a real application, this would load the actual page data
-                    // For demo purposes, we'll use placeholder data
-                    $('#page-title').val('Sayfa Başlığı');
-                    $('#page-description').val('Bu sayfanın açıklaması burada yer alacak.');
-                    $('#page-content').val('Sayfa içeriği burada yer alacak.');
+                    // Load page content from HTML file
+                    try {
+                        const result = await dbService.extractContentFromHTML(`../${selectedPage}.html`);
+                        
+                        if (result.success) {
+                            const content = result.data;
+                            $('#page-title').val(content.title || '');
+                            $('#page-description').val(content.metaDescription || '');
+                            
+                            // Combine all content into a single textarea
+                            let fullContent = '';
+                            if (content.hero) {
+                                fullContent += `<h1>${content.hero.title}</h1>\n`;
+                                fullContent += `<p>${content.hero.description}</p>\n\n`;
+                            }
+                            if (content.about) {
+                                fullContent += `<h2>${content.about.title}</h2>\n`;
+                                fullContent += `<p>${content.about.description}</p>\n\n`;
+                            }
+                            if (content.howItWorks) {
+                                fullContent += `<h2>${content.howItWorks.title}</h2>\n`;
+                                fullContent += `<p>${content.howItWorks.description}</p>\n\n`;
+                            }
+                            
+                            $('#page-content').val(fullContent);
+                        } else {
+                            console.error('Sayfa içeriği yüklenemedi:', result.error);
+                            alert('Sayfa içeriği yüklenirken bir hata oluştu.');
+                        }
+                    } catch (error) {
+                        console.error('Sayfa yükleme hatası:', error);
+                        alert('Sayfa içeriği yüklenirken bir hata oluştu.');
+                    }
                 } else {
                     $('#page-editor').hide();
                 }
             });
             
             // Save page
-            $('#save-page').on('click', function() {
-                // In a real application, this would save the page data to the backend
-                alert('Sayfa başarıyla kaydedildi!');
+            $('#save-page').on('click', async function() {
+                const selectedPage = $('#page-select').val();
+                const pageData = {
+                    title: $('#page-title').val(),
+                    metaDescription: $('#page-description').val(),
+                    content: $('#page-content').val()
+                };
+                
+                try {
+                    const result = await dbService.savePageContent(selectedPage, pageData);
+                    
+                    if (result.success) {
+                        alert('Sayfa başarıyla kaydedildi!');
+                    } else {
+                        console.error('Sayfa kaydedilemedi:', result.error);
+                        alert('Sayfa kaydedilirken bir hata oluştu.');
+                    }
+                } catch (error) {
+                    console.error('Sayfa kaydetme hatası:', error);
+                    alert('Sayfa kaydedilirken bir hata oluştu.');
+                }
             });
             
             // Cancel page editing
@@ -1018,61 +1092,262 @@
             }
             
             // Content management
-            $('#content-select').on('change', function() {
-                const selectedContent = $(this).val();
-                
-                if (selectedContent) {
-                    $('#content-editor-container').show();
+            let currentContentData = {};
+            
+            // Load content button
+            $('#load-content').on('click', async function() {
+                await loadAllContent();
+            });
+            
+            // Load all content
+            async function loadAllContent() {
+                try {
+                    const result = await dbService.getAllPageContents();
                     
-                    // In a real application, this would load the actual content data
-                    // For demo purposes, we'll use placeholder data
-                    let editorHtml = '';
-                    
-                    switch (selectedContent) {
-                        case 'hero-banner':
-                            editorHtml = `
-                                <div class="content-editor">
-                                    <label for="hero-title">Hero Başlığı:</label>
-                                    <input type="text" id="hero-title" class="form-control" value="Profesyonel Psikolojik Destek">
-                                </div>
-                                <div class="content-editor">
-                                    <label for="hero-subtitle">Hero Alt Başlığı:</label>
-                                    <input type="text" id="hero-subtitle" class="form-control" value="Yaşam kalitenizi artırın">
-                                </div>
-                                <div class="content-editor">
-                                    <label for="hero-description">Hero Açıklaması:</label>
-                                    <textarea id="hero-description" class="form-control">Uzman Klinik Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</textarea>
-                                </div>
-                            `;
-                            break;
-                        case 'how-it-works':
-                            editorHtml = `
-                                <div class="content-editor">
-                                    <label for="how-title">Nasıl Çalışır Başlığı:</label>
-                                    <input type="text" id="how-title" class="form-control" value="Nasıl Çalışır">
-                                </div>
-                                <div class="content-editor">
-                                    <label for="how-description">Nasıl Çalışır Açıklaması:</label>
-                                    <textarea id="how-description" class="form-control">3 basit adımda psikolojik destek alın</textarea>
-                                </div>
-                            `;
-                            break;
-                        default:
-                            editorHtml = `
-                                <div class="content-editor">
-                                    <label for="content-title">Başlık:</label>
-                                    <input type="text" id="content-title" class="form-control">
-                                </div>
-                                <div class="content-editor">
-                                    <label for="content-description">Açıklama:</label>
-                                    <textarea id="content-description" class="form-control"></textarea>
-                                </div>
-                            `;
+                    if (result.success) {
+                        currentContentData = result.data;
+                        displayContentList();
+                        $('#content-list-container').show();
+                    } else {
+                        console.error('İçerikler yüklenemedi:', result.error);
+                        alert('İçerikler yüklenirken bir hata oluştu.');
                     }
+                } catch (error) {
+                    console.error('İçerik yükleme hatası:', error);
+                    alert('İçerikler yüklenirken bir hata oluştu.');
+                }
+            }
+            
+            // Display content list
+            function displayContentList() {
+                const tbody = $('#content-list-tbody');
+                tbody.empty();
+                
+                Object.keys(currentContentData).forEach(pageName => {
+                    const content = currentContentData[pageName];
+                    const updatedAt = content.updatedAt ? new Date(content.updatedAt).toLocaleString('tr-TR') : 'Bilinmiyor';
+                    const title = content.title || content.hero?.title || pageName;
                     
-                    $('#content-editor-container').html(editorHtml);
+                    const row = `
+                        <tr>
+                            <td>${pageName}</td>
+                            <td>${title}</td>
+                            <td>${updatedAt}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary edit-content" data-page="${pageName}">Düzenle</button>
+                                <button class="btn btn-sm btn-danger delete-content" data-page="${pageName}">Sil</button>
+                            </td>
+                        </tr>
+                    `;
+                    
+                    tbody.append(row);
+                });
+                
+                // Add event handlers
+                $('.edit-content').on('click', function() {
+                    const pageName = $(this).data('page');
+                    loadContentEditor(pageName);
+                });
+                
+                $('.delete-content').on('click', function() {
+                    const pageName = $(this).data('page');
+                    if (confirm(`"${pageName}" sayfasının içeriğini silmek istediğinizden emin misiniz?`)) {
+                        deleteContent(pageName);
+                    }
+                });
+            }
+            
+            // Load content editor
+            async function loadContentEditor(pageName) {
+                try {
+                    // Extract content from HTML file
+                    const result = await dbService.extractContentFromHTML(`../${pageName}.html`);
+                    
+                    if (result.success) {
+                        const content = result.data;
+                        displayContentEditor(pageName, content);
+                        $('#content-editor-container').show();
+                        $('#content-list-container').hide();
+                    } else {
+                        console.error('İçerik çıkarılamadı:', result.error);
+                        alert('İçerik yüklenirken bir hata oluştu.');
+                    }
+                } catch (error) {
+                    console.error('İçerik düzenleyici yükleme hatası:', error);
+                    alert('İçerik yüklenirken bir hata oluştu.');
+                }
+            }
+            
+            // Display content editor
+            function displayContentEditor(pageName, content) {
+                let editorHtml = `
+                    <div class="mb-3">
+                        <h4>${pageName} Sayfası İçeriği</h4>
+                    </div>
+                    <div class="content-editor">
+                        <label for="page-title">Sayfa Başlığı:</label>
+                        <input type="text" id="page-title" class="form-control" value="${content.title || ''}">
+                    </div>
+                    <div class="content-editor">
+                        <label for="meta-description">Meta Açıklaması:</label>
+                        <textarea id="meta-description" class="form-control">${content.metaDescription || ''}</textarea>
+                    </div>
+                `;
+                
+                // Hero section
+                if (content.hero) {
+                    editorHtml += `
+                        <div class="content-editor">
+                            <label for="hero-title">Hero Başlığı:</label>
+                            <input type="text" id="hero-title" class="form-control" value="${content.hero.title || ''}">
+                        </div>
+                        <div class="content-editor">
+                            <label for="hero-description">Hero Açıklaması:</label>
+                            <textarea id="hero-description" class="form-control">${content.hero.description || ''}</textarea>
+                        </div>
+                    `;
+                }
+                
+                // About section
+                if (content.about) {
+                    editorHtml += `
+                        <div class="content-editor">
+                            <label for="about-title">Hakkımda Başlığı:</label>
+                            <input type="text" id="about-title" class="form-control" value="${content.about.title || ''}">
+                        </div>
+                        <div class="content-editor">
+                            <label for="about-description">Hakkımda Açıklaması:</label>
+                            <textarea id="about-description" class="form-control">${content.about.description || ''}</textarea>
+                        </div>
+                    `;
+                }
+                
+                // How it works section
+                if (content.howItWorks) {
+                    editorHtml += `
+                        <div class="content-editor">
+                            <label for="how-title">Nasıl Çalışır Başlığı:</label>
+                            <input type="text" id="how-title" class="form-control" value="${content.howItWorks.title || ''}">
+                        </div>
+                        <div class="content-editor">
+                            <label for="how-description">Nasıl Çalışır Açıklaması:</label>
+                            <textarea id="how-description" class="form-control">${content.howItWorks.description || ''}</textarea>
+                        </div>
+                    `;
+                }
+                
+                editorHtml += `
+                    <div class="d-flex justify-content-between mt-3">
+                        <button class="btn-primary" id="save-content" data-page="${pageName}">Değişiklikleri Kaydet</button>
+                        <button class="btn-secondary" id="cancel-content">İptal</button>
+                    </div>
+                `;
+                
+                $('#content-editor-container').html(editorHtml);
+                
+                // Add event handlers
+                $('#save-content').on('click', function() {
+                    const pageName = $(this).data('page');
+                    saveContent(pageName);
+                });
+                
+                $('#cancel-content').on('click', function() {
+                    $('#content-editor-container').hide();
+                    $('#content-list-container').show();
+                });
+            }
+            
+            // Save content
+            async function saveContent(pageName) {
+                try {
+                    const contentData = {
+                        title: $('#page-title').val(),
+                        metaDescription: $('#meta-description').val(),
+                        hero: {
+                            title: $('#hero-title').val(),
+                            description: $('#hero-description').val()
+                        },
+                        about: {
+                            title: $('#about-title').val(),
+                            description: $('#about-description').val()
+                        },
+                        howItWorks: {
+                            title: $('#how-title').val(),
+                            description: $('#how-description').val()
+                        }
+                    };
+                    
+                    const result = await dbService.savePageContent(pageName, contentData);
+                    
+                    if (result.success) {
+                        alert('İçerik başarıyla kaydedildi!');
+                        $('#content-editor-container').hide();
+                        loadAllContent();
+                    } else {
+                        console.error('İçerik kaydedilemedi:', result.error);
+                        alert('İçerik kaydedilirken bir hata oluştu.');
+                    }
+                } catch (error) {
+                    console.error('İçerik kaydetme hatası:', error);
+                    alert('İçerik kaydedilirken bir hata oluştu.');
+                }
+            }
+            
+            // Delete content
+            async function deleteContent(pageName) {
+                try {
+                    const result = await dbService.deletePageContent(pageName);
+                    
+                    if (result.success) {
+                        alert('İçerik başarıyla silindi!');
+                        loadAllContent();
+                    } else {
+                        console.error('İçerik silinemedi:', result.error);
+                        alert('İçerik silinirken bir hata oluştu.');
+                    }
+                } catch (error) {
+                    console.error('İçerik silme hatası:', error);
+                    alert('İçerik silinirken bir hata oluştu.');
+                }
+            }
+            
+            // Content select change
+            $('#content-select').on('change', function() {
+                const selectedPage = $(this).val();
+                
+                if (selectedPage) {
+                    loadContentEditor(selectedPage);
                 } else {
                     $('#content-editor-container').hide();
+                }
+            });
+            
+            // Save all content
+            $('#save-all-content').on('click', async function() {
+                try {
+                    let successCount = 0;
+                    let errorCount = 0;
+                    
+                    for (const pageName in currentContentData) {
+                        const content = currentContentData[pageName];
+                        const result = await dbService.savePageContent(pageName, content);
+                        
+                        if (result.success) {
+                            successCount++;
+                        } else {
+                            errorCount++;
+                            console.error(`${pageName} kaydedilemedi:`, result.error);
+                        }
+                    }
+                    
+                    if (errorCount === 0) {
+                        alert(`Tüm ${successCount} sayfa başarıyla kaydedildi!`);
+                    } else {
+                        alert(`${successCount} sayfa başarıyla kaydedildi, ${errorCount} sayfa kaydedilemedi.`);
+                    }
+                } catch (error) {
+                    console.error('Toplu kaydetme hatası:', error);
+                    alert('İçerikler kaydedilirken bir hata oluştu.');
                 }
             });
             
@@ -1080,6 +1355,16 @@
             $('#save-settings').on('click', function() {
                 // In a real application, this would save the settings to the backend
                 alert('Ayarlar başarıyla kaydedildi!');
+            });
+            
+            // Initialize content management
+            $(document).ready(function() {
+                // Auto-load content when content section is activated
+                $('.menu-item[data-section="content"]').on('click', function() {
+                    setTimeout(function() {
+                        loadAllContent();
+                    }, 100);
+                });
             });
         });
     </script>

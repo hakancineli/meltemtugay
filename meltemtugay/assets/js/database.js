@@ -236,6 +236,131 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
+    
+    // Tüm sayfa içeriklerini getirme
+    async getAllPageContents() {
+        try {
+            if (this.useLocalStorage) {
+                // localStorage kullanarak tüm sayfa içeriklerini getir
+                const pageContents = JSON.parse(localStorage.getItem(this.storageKeys.pageContents)) || {};
+                return { success: true, data: pageContents };
+            } else {
+                // API kullanarak tüm sayfa içeriklerini getir
+                const response = await fetch(`${this.apiEndpoint}/pages`, {
+                    headers: {
+                        'X-Project-Name': this.projectName
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Sayfa içerikleri getirilirken hata oluştu');
+                }
+                
+                const data = await response.json();
+                return { success: true, data };
+            }
+        } catch (error) {
+            console.error('Sayfa içerikleri getirme hatası:', error);
+            return { success: false, error: error.message };
+        }
+    }
+    
+    // Sayfa içeriği silme
+    async deletePageContent(pageName) {
+        try {
+            if (this.useLocalStorage) {
+                // localStorage kullanarak sayfa içeriğini sil
+                const pageContents = JSON.parse(localStorage.getItem(this.storageKeys.pageContents)) || {};
+                delete pageContents[pageName];
+                localStorage.setItem(this.storageKeys.pageContents, JSON.stringify(pageContents));
+                return { success: true };
+            } else {
+                // API kullanarak sayfa içeriğini sil
+                const response = await fetch(`${this.apiEndpoint}/pages/${pageName}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-Project-Name': this.projectName
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Sayfa içeriği silinirken hata oluştu');
+                }
+                
+                return { success: true };
+            }
+        } catch (error) {
+            console.error('Sayfa içeriği silme hatası:', error);
+            return { success: false, error: error.message };
+        }
+    }
+    
+    // HTML dosyasından içerik çıkarma
+    async extractContentFromHTML(filePath) {
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                throw new Error('HTML dosyası okunamadı');
+            }
+            
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Başlık
+            const title = doc.querySelector('title')?.textContent || '';
+            
+            // Meta description
+            const metaDescription = doc.querySelector('meta[name="description"]')?.content || '';
+            
+            // Hero bölümü
+            const heroTitle = doc.querySelector('#banner-caption h1')?.innerHTML || '';
+            const heroDescription = doc.querySelector('#banner-caption p')?.innerHTML || '';
+            
+            // Hakkımda bölümü
+            const aboutTitle = doc.querySelector('#hakkimda-content h2')?.innerHTML || '';
+            const aboutDescription = doc.querySelector('#hakkimda-content p')?.innerHTML || '';
+            
+            // Nasıl çalışır bölümü
+            const howItWorksTitle = doc.querySelector('#nasil-calisir h2')?.innerHTML || '';
+            const howItWorksDescription = doc.querySelector('#nasil-calisir p')?.innerHTML || '';
+            
+            // Blog yazıları
+            const blogPosts = [];
+            doc.querySelectorAll('.blog-carousel-v2 .card-blog-box').forEach(post => {
+                const title = post.querySelector('.card-title')?.textContent || '';
+                const description = post.querySelector('.card-text')?.textContent || '';
+                const category = post.querySelector('.blog-datetime')?.textContent || '';
+                const image = post.querySelector('.card-img-top')?.src || '';
+                
+                blogPosts.push({ title, description, category, image });
+            });
+            
+            return {
+                success: true,
+                data: {
+                    title,
+                    metaDescription,
+                    hero: {
+                        title: heroTitle,
+                        description: heroDescription
+                    },
+                    about: {
+                        title: aboutTitle,
+                        description: aboutDescription
+                    },
+                    howItWorks: {
+                        title: howItWorksTitle,
+                        description: howItWorksDescription
+                    },
+                    blogPosts
+                }
+            };
+        } catch (error) {
+            console.error('HTML içerik çıkarma hatası:', error);
+            return { success: false, error: error.message };
+        }
+    }
 }
 
 // Veritabanı servisini oluştur
