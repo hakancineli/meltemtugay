@@ -9,6 +9,9 @@ class DatabaseService {
         // Vercel'de çalışırken API endpoint kullanacağız
         this.apiEndpoint = "/api";
         
+        // Ana site API endpoint'i (senkronizasyon için)
+        this.mainSiteApiEndpoint = "https://meltemtugay.com/api";
+        
         // Başlangıçta localStorage kullanıyoruz (fallback)
         this.useLocalStorage = true;
         
@@ -22,17 +25,23 @@ class DatabaseService {
     // Randevu ekleme
     async addAppointment(appointmentData) {
         try {
+            const appointmentWithId = {
+                ...appointmentData,
+                id: Date.now().toString(),
+                createdAt: new Date().toISOString(),
+                projectName: this.projectName
+            };
+            
             if (this.useLocalStorage) {
                 // localStorage kullanarak randevu ekle
                 let appointments = JSON.parse(localStorage.getItem(this.storageKeys.appointments)) || [];
-                appointments.push({
-                    ...appointmentData,
-                    id: Date.now().toString(),
-                    createdAt: new Date().toISOString(),
-                    projectName: this.projectName
-                });
+                appointments.push(appointmentWithId);
                 localStorage.setItem(this.storageKeys.appointments, JSON.stringify(appointments));
-                return { success: true, data: appointmentData };
+                
+                // Ana site ile senkronize et
+                this.syncAppointmentToMainSite(appointmentWithId);
+                
+                return { success: true, data: appointmentWithId };
             } else {
                 // API kullanarak randevu ekle
                 const response = await fetch(`${this.apiEndpoint}/appointments`, {
@@ -365,6 +374,31 @@ class DatabaseService {
         } catch (error) {
             console.error('HTML içerik çıkarma hatası:', error);
             return { success: false, error: error.message };
+        }
+    }
+    
+    // Ana site ile randevu senkronizasyonu
+    async syncAppointmentToMainSite(appointmentData) {
+        try {
+            const response = await fetch(`${this.mainSiteApiEndpoint}/appointments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Project-Name': this.projectName
+                },
+                body: JSON.stringify(appointmentData)
+            });
+            
+            if (!response.ok) {
+                console.error('Ana site ile senkronizasyon başarısız:', response.statusText);
+                return { success: false, error: 'Ana site ile senkronizasyon başarısız' };
+            }
+            
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('Ana site ile senkronizasyon hatası:', error);
+            return { success: false, error: 'Ana site ile senkronizasyon hatası' };
         }
     }
 }
