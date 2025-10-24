@@ -1,0 +1,9 @@
+{
+  "name": "meltemtugay-root",
+  "version": "1.0.0",
+  "description": "Root package for Vercel deployment",
+  "scripts": {
+    "vercel-build": "echo 'No build step needed for static site'",
+    "dev": "echo 'No dev command needed for static site'"
+  }
+}
