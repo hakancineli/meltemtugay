@@ -702,8 +702,8 @@
                                             <input type="tel" class="form-control" id="create-phone" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="create-email" class="form-label">E-posta</label>
-                                            <input type="email" class="form-control" id="create-email" required>
+                                            <label for="create-email" class="form-label">E-posta (Opsiyonel)</label>
+                                            <input type="email" class="form-control" id="create-email">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -851,6 +851,11 @@
             const today = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('current-date').textContent = today.toLocaleDateString('tr-TR', options);
+            
+            // Set default date for appointment forms
+            const todayStr = today.toISOString().split('T')[0];
+            $('#create-appointment-date').val(todayStr);
+            $('#edit-appointment-date').val(todayStr);
             
             // Menu navigation
             $('.menu-item').on('click', function(e) {
@@ -1141,6 +1146,24 @@
                 $('#modal-appointment-notes').text(appointment.reason || 'Belirtilmemiş');
                 
                 $('#appointmentDetailsModal').modal('show');
+                
+                // Set up edit button functionality
+                $('#edit-appointment-modal').off('click').on('click', function() {
+                    $('#appointmentDetailsModal').modal('hide');
+                    $('#editAppointmentModal').modal('show');
+                    
+                    // Populate edit form with appointment data
+                    $('#edit-patient-name').val(`${appointment.firstName} ${appointment.lastName}`);
+                    $('#edit-patient-phone').val(appointment.phone);
+                    $('#edit-therapy-type').val(appointment.therapyType);
+                    $('#edit-appointment-date').val(appointment.date);
+                    $('#edit-appointment-time').val(appointment.time);
+                    $('#edit-appointment-status').val(appointment.status);
+                    $('#edit-appointment-notes').val(appointment.reason || '');
+                    
+                    // Store appointment ID for saving
+                    $('#edit-appointment-form').data('appointment-id', appointment.id);
+                });
             }
             
             // Update appointment status
@@ -1481,6 +1504,44 @@
                 } catch (error) {
                     console.error('Randevu oluşturma hatası:', error);
                     alert('Randevu oluşturulurken bir hata oluştu.');
+                }
+            });
+            
+            // Save appointment changes
+            $('#save-appointment-changes').on('click', async function() {
+                const appointmentId = $('#edit-appointment-form').data('appointment-id');
+                const nameParts = $('#edit-patient-name').val().split(' ');
+                const firstName = nameParts[0] || '';
+                const lastName = nameParts.slice(1).join(' ') || '';
+                
+                const updatedData = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: $('#edit-patient-phone').val(),
+                    therapyType: $('#edit-therapy-type').val(),
+                    date: $('#edit-appointment-date').val(),
+                    time: $('#edit-appointment-time').val(),
+                    status: $('#edit-appointment-status').val(),
+                    reason: $('#edit-appointment-notes').val()
+                };
+                
+                try {
+                    const result = await dbService.updateAppointment(appointmentId, updatedData);
+                    
+                    if (result.success) {
+                        alert('Randevu başarıyla güncellendi!');
+                        $('#editAppointmentModal').modal('hide');
+                        
+                        // Reload appointments for the selected date
+                        const [year, month, day] = updatedData.date.split('-').map(Number);
+                        await loadAppointmentsForDate(year, month - 1, day);
+                    } else {
+                        console.error('Randevu güncellenemedi:', result.error);
+                        alert('Randevu güncellenirken bir hata oluştu.');
+                    }
+                } catch (error) {
+                    console.error('Randevu güncelleme hatası:', error);
+                    alert('Randevu güncellenirken bir hata oluştu.');
                 }
             });
             
