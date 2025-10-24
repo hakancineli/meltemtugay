@@ -298,7 +298,13 @@ class DatabaseService {
     // HTML dosyasından içerik çıkarma
     async extractContentFromHTML(filePath) {
         try {
-            const response = await fetch(filePath);
+            // Dosya yolunu düzelt
+            let correctedPath = filePath;
+            if (!filePath.startsWith('../') && !filePath.startsWith('/')) {
+                correctedPath = '../' + filePath;
+            }
+            
+            const response = await fetch(correctedPath);
             if (!response.ok) {
                 throw new Error('HTML dosyası okunamadı');
             }
