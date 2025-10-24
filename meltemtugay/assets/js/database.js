@@ -10,7 +10,7 @@ class DatabaseService {
         this.apiEndpoint = "/api";
         
         // Ana site API endpoint'i (senkronizasyon için)
-        this.mainSiteApiEndpoint = "https://meltemtugay.com/api";
+        this.mainSiteApiEndpoint = "https://meltemtugay.com";
         
         // Başlangıçta localStorage kullanıyoruz (fallback)
         this.useLocalStorage = true;
