@@ -85,7 +85,7 @@
 </style></head>
 <body>
 <header class="header-bg-colored" id="header">
-<div style="display: flex; justify-content: center; align-items: center; padding: 10px; width: 100vw; background-color: #D7D4F4; text-align:center;">
+<div class="top-banner" style="display: flex; justify-content: center; align-items: center; padding: 10px; width: 100vw; background-color: #D7D4F4; text-align:center;">
 </div>
 <nav class="navbar navbar-expand-lg navbar-light px-md-4">
 <div class="container-fluid">
@@ -117,7 +117,7 @@
 </li>
 </ul>
 <div class="navbar-buttons">
-<div style="display: flex; align-items: center; justify-content: start;">
+<div class="navbar-buttons-container" style="display: flex; align-items: center; justify-content: start;">
 <a class="btn btn-rounded btn-primary hero-btn" href="pages/randevu.html" style="padding-left: 20px;padding-right: 20px;">
                             Ücretsiz Deneyin
                         </a>
@@ -291,7 +291,7 @@
 <div class="how-it-works-box how-it-works-box-v2 how-it-works-box-final py-5">
 <div class="how-it-works-box-detail py-3 text-center">
 <h3>Daha iyi hissetmek için ilk adımı bugün atın!</h3>
-<a class="btn btn-primary hero-btn mt-3" href="https://wa.me/905355213458?text=Merhaba, Meltem Tugay ile görüşmek istiyorum." style="max-width:fit-content;" target="_blank">
+<a class="btn btn-primary hero-btn mt-3" href="https://wa.me/905355213458?text=Merhaba, Meltem Tugay ile görüşmek istiyorum." id="cta-whatsapp-button" rel="noopener" style="max-width:fit-content;" target="_blank">
 <span>💬 WhatsApp ile İletişime Geçin</span>
 </a>
 </div>
@@ -351,7 +351,7 @@
 <div class="row">
 <div class="col-md-6 col-12 col-lg-6 my-3 text-start">
 <h2 class="fw-bolder mb-4">
-<svg fill="none" height="60" style=" margin-top: -50px; position: absolute; margin-left: -50px; " viewbox="0 0 57 60" width="57" xmlns="http://www.w3.org/2000/svg">
+<svg class="quote-icon" fill="none" height="60" style=" margin-top: -50px; position: absolute; margin-left: -50px; " viewbox="0 0 57 60" width="57" xmlns="http://www.w3.org/2000/svg">
 <path d="M25.146 53.8776L25.1703 53.8838L26.9837 54.3483C27.5738 54.4712 28.0558 54.8474 28.3984 55.2281C28.7518 55.6208 29.0277 56.0958 29.1741 56.5356L29.1741 56.5357C29.2843 56.867 29.3665 57.3724 29.2293 57.8299C29.1555 58.0757 28.9995 58.3634 28.6917 58.5525C28.381 58.7434 28.0305 58.7636 27.71 58.7001L25.146 53.8776ZM25.146 53.8776L25.1214 53.873L15.0213 51.9945L14.8763 52.7303M25.146 53.8776L15.0135 51.993M2.34691 51.5743L1.63565 51.8122C1.78723 52.2654 2.05809 52.7184 2.40364 53.0921C2.74696 53.4633 3.20265 53.7972 3.74328 53.9441C5.18323 54.3379 6.69283 54.6083 8.15606 54.8704C8.77525 54.9813 9.38615 55.0907 9.97994 55.2073C9.98007 55.2074 9.98019 55.2074 9.98032 55.2074L27.7086 58.6998L2.94311 50.4203M2.34691 51.5743L1.63586 51.8129C1.52345 51.4778 1.4344 50.9825 1.58683 50.5269C1.67029 50.2775 1.83602 50.0172 2.12565 49.8445C2.40939 49.6753 2.72826 49.64 3.02904 49.6752C3.02974 49.6753 3.03044 49.6754 3.03114 49.6755L2.94311 50.4203M2.34691 51.5743C2.57913 52.2686 3.20296 53.0208 3.94113 53.2207C5.34726 53.6052 6.8019 53.8657 8.25017 54.125L8.25075 54.1251C8.87815 54.2375 9.50435 54.3496 10.1249 54.4715L27.855 57.9642C28.6269 58.1178 28.6297 57.275 28.4625 56.7725C28.2386 56.1001 27.5776 55.2288 26.816 55.0795L24.9842 54.6104L14.8763 52.7303M2.34691 51.5743C2.16856 51.0428 2.19629 50.332 2.94311 50.4203M2.94311 50.4203C4.38996 50.583 5.83097 50.8953 7.26422 51.2059C7.87635 51.3386 8.48706 51.4709 9.0962 51.5912M9.0962 51.5912L14.8763 52.7303M9.0962 51.5912L9.24147 50.8554L15.0135 51.993M9.0962 51.5912L9.24122 50.8554L15.0135 51.993M14.8763 52.7303L15.0135 51.993M52.4424 4.59623C52.1047 6.08603 51.8921 7.64182 51.6858 9.151C51.6102 9.70349 51.5356 10.2497 51.4559 10.7842L48.7242 28.8929L48.7242 28.8932C48.6455 29.4165 48.8613 29.965 49.0778 30.3673C49.3132 30.8045 49.6422 31.2387 49.9911 31.5802C50.1663 31.7518 50.3587 31.9119 50.5598 32.0387C50.7533 32.1608 50.9979 32.2796 51.2713 32.3158C51.5677 32.355 51.9181 32.2954 52.2026 32.0305C52.4617 31.7892 52.5694 31.4657 52.6132 31.1793L52.6432 30.9827L52.6399 30.9742L55.3084 13.2594C55.3084 13.2593 55.3085 13.2592 55.3085 13.2591C55.3938 12.6944 55.4884 12.1198 55.5841 11.5386C55.8248 10.0772 56.0724 8.57361 56.1962 7.07729L56.1966 7.07201C56.2388 6.51468 56.0377 5.9789 55.8128 5.56678C55.5816 5.14305 55.2774 4.76216 54.9956 4.48841M52.4424 4.59623L53.1739 4.76203L52.4422 4.59732C52.4423 4.59696 52.4423 4.59659 52.4424 4.59623ZM52.4424 4.59623C52.4817 4.42254 52.5592 4.23425 52.7054 4.07211C52.8577 3.90324 53.0482 3.80336 53.2416 3.76003C53.5875 3.68254 53.9048 3.79162 54.0851 3.86925C54.4722 4.03589 54.8339 4.33018 54.9956 4.48841M54.9956 4.48841C54.9961 4.48896 54.9967 4.48951 54.9972 4.49005L54.472 5.02539L54.9942 4.48713C54.9947 4.48755 54.9951 4.48798 54.9956 4.48841ZM33.8379 33.6149C31.2716 30.6144 28.7118 27.6055 26.1511 24.5956C19.9603 17.3188 13.7641 10.0356 7.45598 2.84785C7.29825 2.66567 6.96591 2.28741 6.5611 2.01605C6.1832 1.76273 5.454 1.42381 4.74292 1.91126L4.74289 1.91122L4.73607 1.91601C4.01626 2.4213 4.13059 3.25401 4.2545 3.67532C4.393 4.14621 4.66299 4.58721 4.86496 4.82915L4.865 4.8292C11.2175 12.4375 17.6937 19.9573 24.1657 27.4721C26.7173 30.435 29.2684 33.3971 31.8109 36.3636L31.8133 36.3663C31.978 36.5566 32.3243 36.9518 32.745 37.2331C33.1389 37.4964 33.8852 37.8365 34.608 37.3326C35.3437 36.8236 35.2304 35.9688 35.1047 35.5339C34.9638 35.0468 34.6839 34.581 34.4583 34.3235L33.8379 33.6149Z" fill="#3268F3" stroke="#3268F3" stroke-width="1.5"></path>
 </svg>
                     Psikolog Meltem Tugay'dan hizmet alanlar ne düşünüyor?
@@ -479,7 +479,7 @@
 </div>
 </div>
 <div class="col-12 text-center mt-4">
-<a class="btn btn-rounded btn-primary large-btn text-white" href="https://wa.me/905355213458?text=Merhaba, Meltem Tugay ile görüşmek istiyorum." target="_blank">
+<a class="btn btn-rounded btn-primary large-btn text-white" href="https://wa.me/905355213458?text=Merhaba, Meltem Tugay ile görüşmek istiyorum." rel="noopener" target="_blank">
 <span>💬 WhatsApp ile İletişime Geçin</span>
 </a>
 </div>
@@ -792,22 +792,22 @@
 </button>
 </div>
 <div class="modal-body">
-<table style="width: 100%;">
+<table class="emergency-table" style="width: 100%;">
 <tr>
-<td style="padding: 5px;">Acil Yardım Hattı</td>
-<td style="padding: 5px;">112 / 911 </td>
+<td class="emergency-td" style="padding: 5px;">Acil Yardım Hattı</td>
+<td class="emergency-td" style="padding: 5px;">112 / 911 </td>
 </tr>
 <tr>
-<td style="padding: 5px;">Aile İçi Şiddet Yardım Hattı</td>
-<td style="padding: 5px;">183</td>
+<td class="emergency-td" style="padding: 5px;">Aile İçi Şiddet Yardım Hattı</td>
+<td class="emergency-td" style="padding: 5px;">183</td>
 </tr>
 <tr>
-<td style="padding: 5px;">LGBT+ Danışma Hattı</td>
-<td style="padding: 5px;">+90 535 521 34 58</td>
+<td class="emergency-td" style="padding: 5px;">LGBT+ Danışma Hattı</td>
+<td class="emergency-td" style="padding: 5px;">+90 535 521 34 58</td>
 </tr>
 <tr>
-<td style="padding: 5px;">Uyuşturucu ile Mücadele Hattı</td>
-<td style="padding: 5px;">191</td>
+<td class="emergency-td" style="padding: 5px;">Uyuşturucu ile Mücadele Hattı</td>
+<td class="emergency-td" style="padding: 5px;">191</td>
 </tr>
 </table>
 </div>
@@ -838,7 +838,7 @@
 <div class="col-md-4">
 <div class="footer-logo">
 <a href="./index.html">
-<img alt="Meltem Tugay logo" height="58" loading="lazy" src="./assets/images/meltemtugay-logo-text.svg" width="131"/>
+<img alt="Meltem Tugay logo" height="58" loading="lazy" src="./assets/images/meltemtugay-logo-text.svg" width="500"/>
 </a>
 </div>
 <div class="footer-company-description mt-4" style="font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: #3268f2; font-weight: 500;">Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</div>
@@ -936,7 +936,7 @@
 <div>
 <ul class="nav social-links">
 <li class="nav-item">
-<a class="nav-link" href="https://www.facebook.com/meltemtugay" target="_blank">
+<a class="nav-link" href="https://www.facebook.com/meltemtugay" rel="noopener" target="_blank">
 <img alt="facebook icon" height="14" loading="lazy" src="./assets/images/social-facebook-dark.svg" width="30"/>
 </a>
 </li>
@@ -946,7 +946,7 @@
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="https://www.instagram.com/meltemtugay" target="_blank">
+<a class="nav-link" href="https://www.instagram.com/meltemtugay" rel="noopener" target="_blank">
 <img alt="instagram icon" height="14" loading="lazy" src="./assets/images/social-instagram-dark.svg" width="30"/>
 </a>
 </li>
