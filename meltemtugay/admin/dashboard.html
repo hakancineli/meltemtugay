@@ -517,6 +517,7 @@
                     <h2>Randevu Takvimi</h2>
                     <div class="d-flex justify-content-between align-items-center">
                         <button class="btn btn-primary btn-sm" id="refresh-appointments">Yenile</button>
+                        <button class="btn btn-success btn-sm" id="create-appointment">Yeni Randevu Oluştur</button>
                         <button class="btn btn-success btn-sm" id="export-appointments">Dışa Aktar</button>
                     </div>
                 </div>
@@ -670,6 +671,89 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
                                 <button type="button" class="btn btn-primary" id="save-appointment-changes">Kaydet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Create Appointment Modal -->
+                <div class="modal fade" id="createAppointmentModal" tabindex="-1" aria-labelledby="createAppointmentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="createAppointmentModalLabel">Yeni Randevu Oluştur</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="create-appointment-form">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="create-first-name" class="form-label">Hasta Adı</label>
+                                            <input type="text" class="form-control" id="create-first-name" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="create-last-name" class="form-label">Hasta Soyadı</label>
+                                            <input type="text" class="form-control" id="create-last-name" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="create-phone" class="form-label">Telefon</label>
+                                            <input type="tel" class="form-control" id="create-phone" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="create-email" class="form-label">E-posta</label>
+                                            <input type="email" class="form-control" id="create-email" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="create-therapy-type" class="form-label">Terapi Türü</label>
+                                            <select class="form-control" id="create-therapy-type" required>
+                                                <option value="individual">Bireysel Terapi</option>
+                                                <option value="couple">Çift Terapisi</option>
+                                                <option value="family">Aile Danışmanlığı</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="create-appointment-date" class="form-label">Randevu Tarihi</label>
+                                            <input type="date" class="form-control" id="create-appointment-date" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="create-appointment-time" class="form-label">Randevu Saati</label>
+                                            <select class="form-control" id="create-appointment-time" required>
+                                                <option value="09:00">09:00</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="14:00">14:00</option>
+                                                <option value="15:00">15:00</option>
+                                                <option value="16:00">16:00</option>
+                                                <option value="17:00">17:00</option>
+                                                <option value="18:00">18:00</option>
+                                                <option value="19:00">19:00</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="create-appointment-status" class="form-label">Durum</label>
+                                            <select class="form-control" id="create-appointment-status" required>
+                                                <option value="new">Yeni</option>
+                                                <option value="pending">Beklemede</option>
+                                                <option value="confirmed">Onaylandı</option>
+                                                <option value="completed">Tamamlandı</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="create-appointment-notes" class="form-label">Notlar</label>
+                                        <textarea class="form-control" id="create-appointment-notes" rows="3"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                <button type="button" class="btn btn-primary" id="save-new-appointment">Kaydet</button>
                             </div>
                         </div>
                     </div>
@@ -1355,6 +1439,47 @@
                 } catch (error) {
                     console.error('Toplu kaydetme hatası:', error);
                     alert('İçerikler kaydedilirken bir hata oluştu.');
+                }
+            });
+            
+            // Create appointment button
+            $('#create-appointment').on('click', function() {
+                $('#createAppointmentModal').modal('show');
+            });
+            
+            // Save new appointment
+            $('#save-new-appointment').on('click', async function() {
+                const appointmentData = {
+                    firstName: $('#create-first-name').val(),
+                    lastName: $('#create-last-name').val(),
+                    phone: $('#create-phone').val(),
+                    email: $('#create-email').val(),
+                    therapyType: $('#create-therapy-type').val(),
+                    date: $('#create-appointment-date').val(),
+                    time: $('#create-appointment-time').val(),
+                    status: $('#create-appointment-status').val(),
+                    reason: $('#create-appointment-notes').val(),
+                    createdAt: new Date().toISOString()
+                };
+                
+                try {
+                    const result = await dbService.addAppointment(appointmentData);
+                    
+                    if (result.success) {
+                        alert('Randevu başarıyla oluşturuldu!');
+                        $('#createAppointmentModal').modal('hide');
+                        $('#create-appointment-form')[0].reset();
+                        
+                        // Reload appointments for the selected date
+                        const [year, month, day] = appointmentData.date.split('-').map(Number);
+                        await loadAppointmentsForDate(year, month - 1, day);
+                    } else {
+                        console.error('Randevu oluşturulamadı:', result.error);
+                        alert('Randevu oluşturulurken bir hata oluştu.');
+                    }
+                } catch (error) {
+                    console.error('Randevu oluşturma hatası:', error);
+                    alert('Randevu oluşturulurken bir hata oluştu.');
                 }
             });
             
