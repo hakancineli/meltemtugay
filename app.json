@@ -1,0 +1,64 @@
+{
+  "expo": {
+    "name": "UETDS Mobil",
+    "slug": "uetds-mobil-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.uetds.mobileapp"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.uetds.mobileapp",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "UETDS uygulaması kamera erişimi gerektirir."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "UETDS uygulaması fotoğraf erişimi gerektirir."
+        }
+      ],
+      [
+        "expo-permissions",
+        {
+          "camera": {
+            "description": "UETDS uygulaması kamera erişimi gerektirir."
+          },
+          "photos": {
+            "description": "UETDS uygulaması fotoğraf erişimi gerektirir."
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "uetds-mobil-app"
+      }
+    }
+  }
+}
