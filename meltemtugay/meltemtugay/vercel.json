@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "/admin/login.html"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/admin/$1"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/admin/dashboard.html"
+    },
+    {
+      "source": "/dashboard.html",
+      "destination": "/admin/dashboard.html"
+    }
+  ]
+}

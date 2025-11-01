@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Kendini Test Et | Psikolog Meltem Tugay</title>
+    <link rel="canonical" href="https://www.meltemtugay.com/psikolojik-testler" />
+
+    <meta property="og:locale" content="tr-TR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kendini Test Et | Psikolog Meltem Tugay" />
+    <meta property="og:description" content="Online ve ücretsiz olarak çözebileceğiniz psikoloji testleri ile kendinizi test edin, mental sağlık durumunuz hakkında bilgi edinin. Hemen tıklayın ve test seçeneklerini görün." />
+    <meta property="og:url" content="https://www.meltemtugay.com/psikolojik-testler" />
+    <meta property="og:site_name" content="Psikolog Meltem Tugay" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .test-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .test-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .test-card-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0f7ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+        .test-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        .test-card-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .test-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .test-card-time {
+            color: #888;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .test-card-btn {
+            background: #3268F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .test-card-btn:hover {
+            background: #2256E3;
+        }
+        .test-questions {
+            display: none;
+            margin-top: 24px;
+        }
+        .test-question {
+            margin-bottom: 24px;
+        }
+        .test-question h4 {
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .test-options label {
+            display: block;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        .test-options input[type="radio"] {
+            margin-right: 8px;
+        }
+        .test-result {
+            display: none;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        .test-result h4 {
+            margin-bottom: 16px;
+            color: #333;
+        }
+        .test-result p {
+            margin-bottom: 12px;
+            color: #666;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: #3268F3;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .page-header {
+            background: linear-gradient(135deg, #3268F3 0%, #5D8BF4 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<header id="header" class="header-bg-colored">
+    <nav class="navbar navbar-expand-lg navbar-light px-md-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/images/meltemtugay-logo-text.svg" width="131" height="58" alt="Meltem Tugay logo">
+            </a>
+            <button class="menu d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#hizmetler">Hizmetler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#hakkimda">Hakkımda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#nasil-calisir">Nasıl Çalışır</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-lg-3 py-3 py-lg-0" href="../index.html#iletisim">İletişim</a>
+                    </li>
+                </ul>
+                <div class="navbar-buttons">
+                    <div style="display: flex; align-items: center; justify-content: start;">
+                        <a href="../index.html" class="btn btn-rounded btn-outline-primary mr-3" style="margin-right:5px; padding-left: 20px;padding-right: 20px;">Ana Sayfa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="page-header">
+    <div class="container text-center">
+        <h1>Kendini Test Et</h1>
+        <p>Online ve ücretsiz olarak çözebileceğiniz psikoloji testleri ile kendinizi test edin, mental sağlık durumunuz hakkında bilgi edinin.</p>
+    </div>
+</div>
+
+<main id="page-wrapper" class="page-wrapper pt-0 page-bg-white">
+    <div class="container">
+        
+        <!-- Depresyon Testi -->
+        <div class="test-card" data-test="depresyon">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Depresyon Testi</h3>
+            </div>
+            <p class="test-card-description">Depresif belirtilerinizi ölçmek için kullanılan bir öz bildirim envanteridir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('depresyon')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="depresyon-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="depresyon-progress"></div>
+                </div>
+                
+                <div class="test-question" id="depresyon-q1">
+                    <h4>1. Karamsarlık ve mutsuzluk</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="depresyon-q1" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="depresyon-q1" value="1"> Hafif</label>
+                        <label><input type="radio" name="depresyon-q1" value="2"> Orta</label>
+                        <label><input type="radio" name="depresyon-q1" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="depresyon-q2">
+                    <h4>2. Geleceğe dair umutsuzluk</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="depresyon-q2" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="depresyon-q2" value="1"> Hafif</label>
+                        <label><input type="radio" name="depresyon-q2" value="2"> Orta</label>
+                        <label><input type="radio" name="depresyon-q2" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="depresyon-q3">
+                    <h4>3. Başarısızlık hissi</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="depresyon-q3" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="depresyon-q3" value="1"> Hafif</label>
+                        <label><input type="radio" name="depresyon-q3" value="2"> Orta</label>
+                        <label><input type="radio" name="depresyon-q3" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('depresyon')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('depresyon')">Sonraki</button>
+                    <button class="btn btn-success" id="depresyon-submit" onclick="submitTest('depresyon')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="depresyon-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="depresyon-score"></p>
+                <p id="depresyon-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Anksiyete (Kaygı) Testi -->
+        <div class="test-card" data-test="anksiyete">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Anksiyete (Kaygı) Testi</h3>
+            </div>
+            <p class="test-card-description">Anksiyete belirtilerinizi ölçmek için kullanılan bir öz bildirim envanteridir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('anksiyete')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="anksiyete-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="anksiyete-progress"></div>
+                </div>
+                
+                <div class="test-question" id="anksiyete-q1">
+                    <h4>1. Uyuşukluk, karıncalanma veya uyuşma hissi</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="anksiyete-q1" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="anksiyete-q1" value="1"> Hafif</label>
+                        <label><input type="radio" name="anksiyete-q1" value="2"> Orta</label>
+                        <label><input type="radio" name="anksiyete-q1" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="anksiyete-q2">
+                    <h4>2. Sıcak basması</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="anksiyete-q2" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="anksiyete-q2" value="1"> Hafif</label>
+                        <label><input type="radio" name="anksiyete-q2" value="2"> Orta</label>
+                        <label><input type="radio" name="anksiyete-q2" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="anksiyete-q3">
+                    <h4>3. Titreme, sarsılma</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="anksiyete-q3" value="0"> Hiçbiri</label>
+                        <label><input type="radio" name="anksiyete-q3" value="1"> Hafif</label>
+                        <label><input type="radio" name="anksiyete-q3" value="2"> Orta</label>
+                        <label><input type="radio" name="anksiyete-q3" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('anksiyete')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('anksiyete')">Sonraki</button>
+                    <button class="btn btn-success" id="anksiyete-submit" onclick="submitTest('anksiyete')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="anksiyete-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="anksiyete-score"></p>
+                <p id="anksiyete-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stres Testi -->
+        <div class="test-card" data-test="stres">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Stres Testi</h3>
+            </div>
+            <p class="test-card-description">Son bir ay içinde yaşadığınız stresi ölçmek için kullanılan bir ölçektir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 3-5 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('stres')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="stres-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="stres-progress"></div>
+                </div>
+                
+                <div class="test-question" id="stres-q1">
+                    <h4>1. Son bir ayda, ne sıklıkla beklenmedik olaylar yaşadınız?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="stres-q1" value="0"> Hiç</label>
+                        <label><input type="radio" name="stres-q1" value="1"> Neredeyse hiç</label>
+                        <label><input type="radio" name="stres-q1" value="2"> Bazen</label>
+                        <label><input type="radio" name="stres-q1" value="3"> Sık sık</label>
+                        <label><input type="radio" name="stres-q1" value="4"> Çok sık</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="stres-q2">
+                    <h4>2. Son bir ayda, ne sıklıkla hayatınızın kontrolünü kaybettiğinizi hissettiniz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="stres-q2" value="0"> Hiç</label>
+                        <label><input type="radio" name="stres-q2" value="1"> Neredeyse hiç</label>
+                        <label><input type="radio" name="stres-q2" value="2"> Bazen</label>
+                        <label><input type="radio" name="stres-q2" value="3"> Sık sık</label>
+                        <label><input type="radio" name="stres-q2" value="4"> Çok sık</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="stres-q3">
+                    <h4>3. Son bir ayda, ne sıklıkla sinirli veya stresli hissettiniz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="stres-q3" value="0"> Hiç</label>
+                        <label><input type="radio" name="stres-q3" value="1"> Neredeyse hiç</label>
+                        <label><input type="radio" name="stres-q3" value="2"> Bazen</label>
+                        <label><input type="radio" name="stres-q3" value="3"> Sık sık</label>
+                        <label><input type="radio" name="stres-q3" value="4"> Çok sık</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('stres')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('stres')">Sonraki</button>
+                    <button class="btn btn-success" id="stres-submit" onclick="submitTest('stres')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="stres-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="stres-score"></p>
+                <p id="stres-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Travmatik Yas Testi -->
+        <div class="test-card" data-test="travmatik-yas">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Travmatik Yas Testi</h3>
+            </div>
+            <p class="test-card-description">Travmatik bir olay sonrası yaşadığınız yas sürecini değerlendirmek için kullanılan bir ölçektir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('travmatik-yas')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="travmatik-yas-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="travmatik-yas-progress"></div>
+                </div>
+                
+                <div class="test-question" id="travmatik-yas-q1">
+                    <h4>1. Kayıp sonrası yaşadığınız üzüntünün yoğunluğu</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="travmatik-yas-q1" value="0"> Hiç</label>
+                        <label><input type="radio" name="travmatik-yas-q1" value="1"> Hafif</label>
+                        <label><input type="radio" name="travmatik-yas-q1" value="2"> Orta</label>
+                        <label><input type="radio" name="travmatik-yas-q1" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="travmatik-yas-q2">
+                    <h4>2. Kayıp sonrası yaşadığınız öfke veya suçluluk hissi</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="travmatik-yas-q2" value="0"> Hiç</label>
+                        <label><input type="radio" name="travmatik-yas-q2" value="1"> Hafif</label>
+                        <label><input type="radio" name="travmatik-yas-q2" value="2"> Orta</label>
+                        <label><input type="radio" name="travmatik-yas-q2" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="travmatik-yas-q3">
+                    <h4>3. Kayıp sonrası günlük yaşamınıza etkisi</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="travmatik-yas-q3" value="0"> Hiç</label>
+                        <label><input type="radio" name="travmatik-yas-q3" value="1"> Hafif</label>
+                        <label><input type="radio" name="travmatik-yas-q3" value="2"> Orta</label>
+                        <label><input type="radio" name="travmatik-yas-q3" value="3"> Ciddi</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('travmatik-yas')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('travmatik-yas')">Sonraki</button>
+                    <button class="btn btn-success" id="travmatik-yas-submit" onclick="submitTest('travmatik-yas')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="travmatik-yas-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="travmatik-yas-score"></p>
+                <p id="travmatik-yas-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Travma Sonrası Stres Bozukluğu Testi -->
+        <div class="test-card" data-test="tssb">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Travma Sonrası Stres Bozukluğu Testi</h3>
+            </div>
+            <p class="test-card-description">Travmatik bir olay sonrası gelişebilecek TSSB belirtilerini değerlendirmek için kullanılan bir ölçektir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('tssb')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="tssb-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="tssb-progress"></div>
+                </div>
+                
+                <div class="test-question" id="tssb-q1">
+                    <h4>1. Travmatik olayı rahatsız edici şekilde hatırlıyor veya yeniden yaşıyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="tssb-q1" value="0"> Hiç</label>
+                        <label><input type="radio" name="tssb-q1" value="1"> Az</label>
+                        <label><input type="radio" name="tssb-q1" value="2"> Orta</label>
+                        <label><input type="radio" name="tssb-q1" value="3"> Çok</label>
+                        <label><input type="radio" name="tssb-q1" value="4"> Aşırı</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="tssb-q2">
+                    <h4>2. Travmatik olayla ilgili rahatsız edici düşüncelere, görüntülere veya duyulara sahip oluyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="tssb-q2" value="0"> Hiç</label>
+                        <label><input type="radio" name="tssb-q2" value="1"> Az</label>
+                        <label><input type="radio" name="tssb-q2" value="2"> Orta</label>
+                        <label><input type="radio" name="tssb-q2" value="3"> Çok</label>
+                        <label><input type="radio" name="tssb-q2" value="4"> Aşırı</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="tssb-q3">
+                    <h4>3. Travmatik olayla ilgili aktivitelerden veya durumlardan kaçınıyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="tssb-q3" value="0"> Hiç</label>
+                        <label><input type="radio" name="tssb-q3" value="1"> Az</label>
+                        <label><input type="radio" name="tssb-q3" value="2"> Orta</label>
+                        <label><input type="radio" name="tssb-q3" value="3"> Çok</label>
+                        <label><input type="radio" name="tssb-q3" value="4"> Aşırı</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('tssb')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('tssb')">Sonraki</button>
+                    <button class="btn btn-success" id="tssb-submit" onclick="submitTest('tssb')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="tssb-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="tssb-score"></p>
+                <p id="tssb-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alkol Bağımlılığı Testi -->
+        <div class="test-card" data-test="alkol-bagimliligi">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Alkol Bağımlılığı Testi</h3>
+            </div>
+            <p class="test-card-description">Alkol kullanımınızı ve alkol bağımlılığı riskinizi değerlendirmek için kullanılan bir ölçektir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('alkol-bagimliligi')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="alkol-bagimliligi-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="alkol-bagimliligi-progress"></div>
+                </div>
+                
+                <div class="test-question" id="alkol-bagimliligi-q1">
+                    <h4>1. Son bir ayda, ne sıklıkla alkol tükettiniz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="alkol-bagimliligi-q1" value="0"> Hiç</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q1" value="1"> Ayda bir veya daha az</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q1" value="2"> Ayda 2-4 kez</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q1" value="3"> Haftada 2-3 kez</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q1" value="4"> Haftada 4 veya daha fazla</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="alkol-bagimliligi-q2">
+                    <h4>2. Alkol tükettiğinizde, genellikle kaç içki içer misiniz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="alkol-bagimliligi-q2" value="0"> 1-2 içki</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q2" value="1"> 3-4 içki</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q2" value="2"> 5-6 içki</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q2" value="3"> 7-9 içki</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q2" value="4"> 10 veya daha fazla içki</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="alkol-bagimliligi-q3">
+                    <h4>3. Alkol tükettiğinizde, 6 veya daha fazla içki içtiğiniz ne sıklıkta oluyor?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="alkol-bagimliligi-q3" value="0"> Hiç</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q3" value="1"> Yılda birkaç kez</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q3" value="2"> Ayda bir</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q3" value="3"> Haftada bir</label>
+                        <label><input type="radio" name="alkol-bagimliligi-q3" value="4"> Her gün veya neredeyse her gün</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('alkol-bagimliligi')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('alkol-bagimliligi')">Sonraki</button>
+                    <button class="btn btn-success" id="alkol-bagimliligi-submit" onclick="submitTest('alkol-bagimliligi')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="alkol-bagimliligi-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="alkol-bagimliligi-score"></p>
+                <p id="alkol-bagimliligi-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sosyal Kaygı Testi -->
+        <div class="test-card" data-test="sosyal-kaygi">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Sosyal Kaygı Testi</h3>
+            </div>
+            <p class="test-card-description">Sosyal durumlarda yaşadığınız kaygıyı ölçmek için kullanılan bir ölçektir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('sosyal-kaygi')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="sosyal-kaygi-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="sosyal-kaygi-progress"></div>
+                </div>
+                
+                <div class="test-question" id="sosyal-kaygi-q1">
+                    <h4>1. Yabancılarla birlikteyken endişeli veya rahatsız hissediyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="sosyal-kaygi-q1" value="0"> Hiç</label>
+                        <label><input type="radio" name="sosyal-kaygi-q1" value="1"> Bazen</label>
+                        <label><input type="radio" name="sosyal-kaygi-q1" value="2"> Sık sık</label>
+                        <label><input type="radio" name="sosyal-kaygi-q1" value="3"> Her zaman</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="sosyal-kaygi-q2">
+                    <h4>2. İnsanların sizi eleştirdiğini düşünüyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="sosyal-kaygi-q2" value="0"> Hiç</label>
+                        <label><input type="radio" name="sosyal-kaygi-q2" value="1"> Bazen</label>
+                        <label><input type="radio" name="sosyal-kaygi-q2" value="2"> Sık sık</label>
+                        <label><input type="radio" name="sosyal-kaygi-q2" value="3"> Her zaman</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="sosyal-kaygi-q3">
+                    <h4>3. Yeni insanlarla tanışmaktan kaçınıyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="sosyal-kaygi-q3" value="0"> Hiç</label>
+                        <label><input type="radio" name="sosyal-kaygi-q3" value="1"> Bazen</label>
+                        <label><input type="radio" name="sosyal-kaygi-q3" value="2"> Sık sık</label>
+                        <label><input type="radio" name="sosyal-kaygi-q3" value="3"> Her zaman</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('sosyal-kaygi')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('sosyal-kaygi')">Sonraki</button>
+                    <button class="btn btn-success" id="sosyal-kaygi-submit" onclick="submitTest('sosyal-kaygi')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="sosyal-kaygi-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="sosyal-kaygi-score"></p>
+                <p id="sosyal-kaygi-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Borderline (Sınırda) Kişilik Bozukluğu Testi -->
+        <div class="test-card" data-test="borderline">
+            <div class="test-card-header">
+                <div class="test-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3268F3"/>
+                    </svg>
+                </div>
+                <h3 class="test-card-title">Borderline (Sınırda) Kişilik Bozukluğu Testi</h3>
+            </div>
+            <p class="test-card-description">Borderline Kişilik Bozukluğu belirtilerini değerlendirmek için kullanılan bir ölçektir.</p>
+            <div class="test-card-footer">
+                <div class="test-card-time">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#888"/>
+                    </svg>
+                    Yaklaşık 5-10 dakika
+                </div>
+                <button class="test-card-btn" onclick="startTest('borderline')">Testi Başlat</button>
+            </div>
+            
+            <div class="test-questions" id="borderline-questions">
+                <div class="progress-bar">
+                    <div class="progress" id="borderline-progress"></div>
+                </div>
+                
+                <div class="test-question" id="borderline-q1">
+                    <h4>1. İlişkilerde aşırı dalgalanmalar yaşıyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="borderline-q1" value="0"> Hiç</label>
+                        <label><input type="radio" name="borderline-q1" value="1"> Bazen</label>
+                        <label><input type="radio" name="borderline-q1" value="2"> Sık sık</label>
+                        <label><input type="radio" name="borderline-q1" value="3"> Her zaman</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="borderline-q2">
+                    <h4>2. Terk edilme korkusu yaşıyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="borderline-q2" value="0"> Hiç</label>
+                        <label><input type="radio" name="borderline-q2" value="1"> Bazen</label>
+                        <label><input type="radio" name="borderline-q2" value="2"> Sık sık</label>
+                        <label><input type="radio" name="borderline-q2" value="3"> Her zaman</label>
+                    </div>
+                </div>
+                
+                <div class="test-question" id="borderline-q3">
+                    <h4>3. Öfke kontrolünde zorluk yaşıyor musunuz?</h4>
+                    <div class="test-options">
+                        <label><input type="radio" name="borderline-q3" value="0"> Hiç</label>
+                        <label><input type="radio" name="borderline-q3" value="1"> Bazen</label>
+                        <label><input type="radio" name="borderline-q3" value="2"> Sık sık</label>
+                        <label><input type="radio" name="borderline-q3" value="3"> Her zaman</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary me-2" onclick="previousQuestion('borderline')">Önceki</button>
+                    <button class="btn btn-primary" onclick="nextQuestion('borderline')">Sonraki</button>
+                    <button class="btn btn-success" id="borderline-submit" onclick="submitTest('borderline')" style="display:none;">Testi Bitir</button>
+                </div>
+            </div>
+            
+            <div class="test-result" id="borderline-result">
+                <h4>Test Sonucunuz</h4>
+                <p id="borderline-score"></p>
+                <p id="borderline-interpretation"></p>
+                <div class="alert alert-info mt-3">
+                    <strong>Önemli Not:</strong> Bu test sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın.
+                </div>
+                <div class="text-center mt-3">
+                    <a href="../pages/randevu.html" class="btn btn-primary">Randevu Alın</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <h5>Önemli Not:</h5>
+                    <p>Bu testler sadece bilgilendirme amaçlıdır ve profesyonel bir tanı koymaz. Test sonuçlarınız endişe vericiyse, lütfen bir uzmana danışın. Psikolojik destek almak, zihinsel sağlığınız için önemli bir adımdır.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="../pages/randevu.html" class="btn btn-primary btn-rounded btn-lg">Randevu Alın</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer id="footer">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>&copy; 2024 Psikolog Meltem Tugay - Tüm hakları saklıdır.</p>
+                <div class="mt-2">
+                    <a href="#" class="text-decoration-none me-3">Gizlilik Politikası</a>
+                    <a href="#" class="text-decoration-none">Kullanım Şartları</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../assets/js/jquery-3.6.0.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Test yönetimi için JavaScript kodları
+    let currentTest = '';
+    let currentQuestion = 1;
+    let totalQuestions = {
+        'depresyon': 3,
+        'anksiyete': 3,
+        'stres': 3,
+        'travmatik-yas': 3,
+        'tssb': 3,
+        'alkol-bagimliligi': 3,
+        'sosyal-kaygi': 3,
+        'borderline': 3
+    };
+    
+    function startTest(testName) {
+        currentTest = testName;
+        currentQuestion = 1;
+        
+        // Tüm testleri gizle
+        $('.test-questions').hide();
+        $('.test-result').hide();
+        
+        // Seçilen testin sorularını göster
+        $(`#${testName}-questions`).show();
+        
+        // İlk soruyu göster
+        showQuestion(testName, 1);
+        
+        // Başlangıçta butonları ayarla
+        updateButtons(testName);
+    }
+    
+    function showQuestion(testName, questionNumber) {
+        // Tüm soruları gizle
+        $(`#${testName}-questions .test-question`).hide();
+        
+        // Mevcut soruyu göster
+        $(`#${testName}-q${questionNumber}`).show();
+        
+        // İlerleme çubuğunu güncelle
+        const progress = (questionNumber / totalQuestions[testName]) * 100;
+        $(`#${testName}-progress`).css('width', `${progress}%`);
+    }
+    
+    function nextQuestion(testName) {
+        // Mevcut sorunun cevaplanıp cevaplanmadığını kontrol et
+        const answered = $(`input[name="${testName}-q${currentQuestion}"]:checked`).length > 0;
+        
+        if (!answered) {
+            alert('Lütfen bu soruyu cevaplayın.');
+            return;
+        }
+        
+        // Sonraki soruya geç
+        if (currentQuestion < totalQuestions[testName]) {
+            currentQuestion++;
+            showQuestion(testName, currentQuestion);
+        }
+        
+        // Butonları güncelle
+        updateButtons(testName);
+    }
+    
+    function previousQuestion(testName) {
+        // Önceki soruya geç
+        if (currentQuestion > 1) {
+            currentQuestion--;
+            showQuestion(testName, currentQuestion);
+        }
+        
+        // Butonları güncelle
+        updateButtons(testName);
+    }
+    
+    function updateButtons(testName) {
+        // Önceki butonunu kontrol et
+        if (currentQuestion === 1) {
+            $(`#${testName}-questions .btn-outline-secondary`).hide();
+        } else {
+            $(`#${testName}-questions .btn-outline-secondary`).show();
+        }
+        
+        // Sonraki ve gönder butonlarını kontrol et
+        if (currentQuestion === totalQuestions[testName]) {
+            $(`#${testName}-questions .btn-primary`).hide();
+            $(`#${testName}-submit`).show();
+        } else {
+            $(`#${testName}-questions .btn-primary`).show();
+            $(`#${testName}-submit`).hide();
+        }
+    }
+    
+    function submitTest(testName) {
+        // Tüm soruların cevaplanıp cevaplanmadığını kontrol et
+        let allAnswered = true;
+        let score = 0;
+        
+        for (let i = 1; i <= totalQuestions[testName]; i++) {
+            const answered = $(`input[name="${testName}-q${i}"]:checked`).length > 0;
+            
+            if (!answered) {
+                allAnswered = false;
+                break;
+            }
+            
+            // Puanı hesapla
+            const value = parseInt($(`input[name="${testName}-q${i}"]:checked`).val());
+            score += value;
+        }
+        
+        if (!allAnswered) {
+            alert('Lütfen tüm soruları cevaplayın.');
+            return;
+        }
+        
+        // Sonucu göster
+        showResult(testName, score);
+    }
+    
+    function showResult(testName, score) {
+        // Soruları gizle
+        $(`#${testName}-questions`).hide();
+        
+        // Sonucu göster
+        $(`#${testName}-result`).show();
+        
+        // Puanı ve yorumu ayarla
+        let interpretation = '';
+        let maxScore = 0;
+        
+        // Her test için maksimum puanı hesapla
+        for (let i = 1; i <= totalQuestions[testName]; i++) {
+            maxScore += 3; // Her sorunun maksimum puanı 3
+        }
+        
+        if (testName === 'depresyon') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 4) {
+                interpretation = 'Depresyon belirtileri düşük düzeyde. Bu, normal ruh hali aralığında olabilir.';
+            } else if (score <= 7) {
+                interpretation = 'Hafif depresyon belirtileri. Bu belirtiler günlük yaşamınızı etkileyebilir ve bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Orta-şiddette depresyon belirtileri. Bu belirtiler günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        } else if (testName === 'anksiyete') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 4) {
+                interpretation = 'Anksiyete belirtileri düşük düzeyde. Bu, normal ruh hali aralığında olabilir.';
+            } else if (score <= 7) {
+                interpretation = 'Hafif anksiyete belirtileri. Bu belirtiler günlük yaşamınızı etkileyebilir ve bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Orta-şiddette anksiyete belirtileri. Bu belirtiler günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        } else if (testName === 'stres') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 6) {
+                interpretation = 'Stres düzeyiniz düşük. Bu, normal stres seviyesi aralığında olabilir.';
+            } else if (score <= 10) {
+                interpretation = 'Orta düzeyde stres. Bu stres düzeyi günlük yaşamınızı etkileyebilir ve stres yönetimi teknikleri öğrenmek faydalı olabilir.';
+            } else {
+                interpretation = 'Yüksek düzeyde stres. Bu stres düzeyi günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        } else if (testName === 'travmatik-yas') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 4) {
+                interpretation = 'Travmatik yas belirtileri düşük düzeyde. Bu, normal yas süreci aralığında olabilir.';
+            } else if (score <= 7) {
+                interpretation = 'Orta düzeyde travmatik yas belirtileri. Bu belirtiler günlük yaşamınızı etkileyebilir ve bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Yüksek düzeyde travmatik yas belirtileri. Bu belirtiler günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        } else if (testName === 'tssb') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 6) {
+                interpretation = 'TSSB belirtileri düşük düzeyde.';
+            } else if (score <= 10) {
+                interpretation = 'Hafif TSSB belirtileri. Bu belirtiler travmatik bir olay sonrası normal olabilir, ancak devam ederse bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Orta-şiddette TSSB belirtileri. Bu belirtiler travmatik bir olay sonrası günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        } else if (testName === 'alkol-bagimliligi') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 4) {
+                interpretation = 'Alkol kullanım riskiniz düşük. Bu, normal alkol kullanım aralığında olabilir.';
+            } else if (score <= 7) {
+                interpretation = 'Orta düzeyde alkol kullanım riski. Bu alkol kullanım düzeyi günlük yaşamınızı etkileyebilir ve bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Yüksek düzeyde alkol kullanım riski. Bu alkol kullanım düzeyi günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        } else if (testName === 'sosyal-kaygi') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 3) {
+                interpretation = 'Sosyal kaygı düzeyiniz düşük. Bu, normal sosyal kaygı aralığında olabilir.';
+            } else if (score <= 6) {
+                interpretation = 'Orta düzeyde sosyal kaygı. Bu sosyal kaygı düzeyi sosyal durumları etkileyebilir ve bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Yüksek düzeyde sosyal kaygı. Bu sosyal kaygı düzeyi sosyal durumları önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        } else if (testName === 'borderline') {
+            $(`#${testName}-score`).text(`Puanınız: ${score} / ${maxScore}`);
+            
+            if (score <= 3) {
+                interpretation = 'Borderline belirtileri düşük düzeyde. Bu, normal ruh hali aralığında olabilir.';
+            } else if (score <= 6) {
+                interpretation = 'Hafif Borderline belirtileri. Bu belirtiler günlük yaşamınızı etkileyebilir ve bir uzmandan destek almanız faydalı olabilir.';
+            } else {
+                interpretation = 'Orta-şiddette Borderline belirtileri. Bu belirtiler günlük yaşamınızı önemli ölçüde etkileyebilir ve bir uzmandan destek almanız önemlidir.';
+            }
+        }
+        
+        $(`#${testName}-interpretation`).text(interpretation);
+    }
+</script>
+
+</body>
+</html<section class="my-5 mx-2">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="row" id="accordionExample">
+
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-anksiyete.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading0">
+                                            Anksiyete (Kaygı) Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Yaygın Kaygı Bozukluğu 7 (GAD-7), yaygın anksiyete bozukluğunun taranması ve şiddetinin ölçülmesi için kullanılan bir psikoloji testidir. GAD-7, çeşitli yaygın anksiyete bozukluğu belirtilerinin şiddetini ölçen yedi maddeye sahiptir.</div>
+                                    <div class="mt-3" aria-labelledby="heading0">
+                                        <a   href="test-anksiyete.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-anksiyete.html"><img alt="Anksiyete (Kaygı) Testi" loading="lazy" src="../assets/images/test-images/cb670e7b-6109-405b-9eab-6a4128406083.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-depresyon.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading1">
+                                            Depresyon Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Hasta Sağlık Anketi 9 (PHQ-9) depresyonun taranması ve şiddetinin ölçülmesi için kullanılan bir psikoloji testidir. Dokuz maddeyle hızlı ve kolay bir şekilde tarama yapan başarılı bir depresyon ölçeğidir.</div>
+                                    <div class="mt-3" aria-labelledby="heading1">
+                                        <a   href="test-depresyon.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-depresyon.html"><img alt="Depresyon Testi" loading="lazy" src="../assets/images/test-images/3197cfd1-6a7b-495c-924f-090659289784.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-travmatik-yas-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading2">
+                                            Travmatik Yas Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Travmatik yas; ilişkimiz olan bir kişinin beklenmedik ve özellikle kötü bir olay sonucu vefat etmesiyle oluşan yas sürecine denir. Bu ölçek bahsi geçen travmatik yas tepkilerinin şiddetini değerlendirmektedir.</div>
+                                    <div class="mt-3" aria-labelledby="heading2">
+                                        <a   href="test-travmatik-yas-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-travmatik-yas-testi.html"><img alt="Travmatik Yas Testi" loading="lazy" src="../assets/images/test-images/f154aff5-5108-43e7-863f-1e94b2b60d5a.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-travma-sonrasi-stres-bozuklugu-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading3">
+                                            Travma Sonrası Stres Bozukluğu Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Travma Sonrası Stres Bozukluğu Envanteri - Sivil Versiyon, Türkiye’de yaşayan bireylerde Travma Sonrası Stres Bozukluğu tanı ve şiddet değerlendirmesinde rutin uygulama kapsamında kullanılabilmektedir. Bu test tüm DSM-IV TSSB semptomlarını sorgulayan bir ölçektir.</div>
+                                    <div class="mt-3" aria-labelledby="heading3">
+                                        <a   href="test-travma-sonrasi-stres-bozuklugu-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-travma-sonrasi-stres-bozuklugu-testi.html"><img alt="Travma Sonrası Stres Bozukluğu Testi" loading="lazy" src="../assets/images/test-images/7e60e533-f03b-4cc4-8c84-6620694df5ac.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-sosyal-kaygi-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading4">
+                                            Sosyal Kaygı Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Sosyal Etkileşim Kaygı Ölçeği, diğer insanlarla tanışırken ve konuşurken sıkıntı olarak tanımlanan sosyal etkileşim kaygısını ölçmektedir. Bu psikolojik test, bir veya daha fazla sosyal durum hakkında korku veya endişe olan sosyal anksiyete bozukluğuna dair fikir verir.</div>
+                                    <div class="mt-3" aria-labelledby="heading4">
+                                        <a   href="test-sosyal-kaygi-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-sosyal-kaygi-testi.html"><img alt="Sosyal Kaygı Testi" loading="lazy" src="../assets/images/test-images/43158b21-6760-4d19-9e10-a3efba5e54c7.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-alkol-bagimliligi-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading5">
+                                            Alkol Bağımlılığı Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">AUDIT (Alkol Kullanım Bozuklukları Tanımlama Testi), riskli veya tehlikeli tüketim veya herhangi bir alkol kullanım bozukluğu olarak tanımlanan sağlıksız alkol kullanımını taramanın basit ve etkili bir yöntemidir.</div>
+                                    <div class="mt-3" aria-labelledby="heading5">
+                                        <a   href="test-alkol-bagimliligi-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-alkol-bagimliligi-testi.html"><img alt="Alkol Bağımlılığı Testi" loading="lazy" src="../assets/images/test-images/4dbcb989-9911-4e6c-bfad-d40f39fa42d8.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-stres-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading6">
+                                            Stres Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">DASS21, son 1 haftadır mevcut olan stres belirtilerini ölçen 7 maddeyi içeren bir araçtır.</div>
+                                    <div class="mt-3" aria-labelledby="heading6">
+                                        <a   href="test-stres-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-stres-testi.html"><img alt="Stres Testi" loading="lazy" src="../assets/images/test-images/837e2a1f-ffa9-4b68-84d1-f06314cde6df.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-ofke-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading7">
+                                            Öfke Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Sürekli öfke, durumsal öfkenin genelde ne sıklıkta yaşandığını anlatan bir kavramdır. Sürekli Öfke ve Öfke Tarzı Ölçeği Testi ya da Öfke Testi bu durumsal öfkenin yaşanma sıklığını ve öfkenin çeşitli boyutlarını ölçmek amacıyla kullanılmaktadır.</div>
+                                    <div class="mt-3" aria-labelledby="heading7">
+                                        <a   href="test-ofke-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-ofke-testi.html"><img alt="Öfke Testi" loading="lazy" src="../assets/images/test-images/9da7b10b-5bfa-4221-aaa9-a7e65d5358c5.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-oz-guven-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading8">
+                                            Öz Güven Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">33 sorudan oluşan Öz Güven testi bireylerin kendilerine olan güvenlerinin seviyesini ölçmek için kullanılan bir psikoloji testidir. </div>
+                                    <div class="mt-3" aria-labelledby="heading8">
+                                        <a   href="test-oz-guven-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-oz-guven-testi.html"><img alt="Öz Güven Testi" loading="lazy" src="../assets/images/test-images/0ea01766-fbe0-4af1-9cc4-fcebc1484e98.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-fobi-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading9">
+                                            Fobi Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Özgül fobi testi herhangi bir konudaki (yükseklik, kapalı alan, hayvanlar, durumlar) fobinizin şiddetini ölçebilir ve bilimsel sonuçlar alabilirsiniz.</div>
+                                    <div class="mt-3" aria-labelledby="heading9">
+                                        <a   href="test-fobi-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-fobi-testi.html"><img alt="Fobi Testi" loading="lazy" src="../assets/images/test-images/47ce4685-00f5-48b3-a3cf-0c933645bc33.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-dikkat-daginikligi-eksikligi-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading10">
+                                            Dikkat Dağınıklığı (Eksikliği) Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Yetişkinler İçin Dikkat Dağınıklığı Testi, yetişkinler için dikkat eksikliği belirtilerinin değerlendirildiği 24 soruluk bir psikoloji ölçeğidir.</div>
+                                    <div class="mt-3" aria-labelledby="heading10">
+                                        <a   href="test-dikkat-daginikligi-eksikligi-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-dikkat-daginikligi-eksikligi-testi.html"><img alt="Dikkat Dağınıklığı (Eksikliği) Testi" loading="lazy" src="../assets/images/test-images/45a4e37e-bb0a-421c-9cca-c54559408756.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-obsesif-kompulsif-bozukluk-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading11">
+                                            Obsesif Kompulsif Bozukluk Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Maudsley Obsesif Kompulsif Bozukluk Testi, Obsesyon (takıntı) ve kompulsiyonların yani takıntıların yarattığı kaygıyı gidermek için uygulanan davranışların belirti düzeylerini ölçen 37 soruluk bir psikoloji testidir.</div>
+                                    <div class="mt-3" aria-labelledby="heading11">
+                                        <a   href="test-obsesif-kompulsif-bozukluk-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-obsesif-kompulsif-bozukluk-testi.html"><img alt="Obsesif Kompulsif Bozukluk Testi" loading="lazy" src="../assets/images/test-images/7012219d-d526-4b35-a835-ae3636659010.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-borderline-sinirda-kisilik-bozuklugu-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading12">
+                                            Borderline (Sınırda) Kişilik Bozukluğu Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Borderline Kişilik Bozukluğu Testi, sınırda kişilik belirtlerini ölçen 51 maddelik bir envanterdir. Sorular doğru-yanlış seçenekleriyle yanıtlanır. Envanterden alınan puanın artması, borderline kişilik özelliklerindeki artışa işaret eder.</div>
+                                    <div class="mt-3" aria-labelledby="heading12">
+                                        <a   href="test-borderline-sinirda-kisilik-bozuklugu-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-borderline-sinirda-kisilik-bozuklugu-testi.html"><img alt="Borderline (Sınırda) Kişilik Bozukluğu Testi" loading="lazy" src="../assets/images/test-images/96829c90-2210-4e35-91ee-a6d4e5809bc5.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 mt-4">
+                            <div class="d-flex flex-column flex-sm-row align-items-center border border-secondary rounded p-3 test-list-box">
+
+                                <div class="d-flex ml-4 ml-3 flex-column test-list-description">
+                                    <a href="test-aleksitimi-duygu-korlugu-testi.html" class="text-black text-decoration-none">
+                                        <h2 class="" id="heading13">
+                                            Aleksitimi (Duygu Körlüğü) Testi
+                                        </h2>
+                                    </a>
+                                    <div class="test-list-summary">Duygu Körlüğü ya da Aleksitimi testi, kişinin kendi duyguları anlama, tanımlama veya ifade etme seviyesini ve duyguları anlamakta bir eksiklik yaşayıp yaşamadığını ölçmektedir.</div>
+                                    <div class="mt-3" aria-labelledby="heading13">
+                                        <a   href="test-aleksitimi-duygu-korlugu-testi.html" class="btn btn-rounded btn-primary" style="align-self: center;">Teste Başla</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="test-list-image" aria-labelledby="heading0">
+                                    <a   href="test-aleksitimi-duygu-korlugu-testi.html"><img alt="Aleksitimi (Duygu Körlüğü) Testi" loading="lazy" src="../assets/images/test-images/bf1f7b5a-a0ac-4a68-9615-27f7ac05d8c2.svg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+                        >
