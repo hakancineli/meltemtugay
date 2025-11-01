@@ -82,8 +82,7 @@
                     </ul>
                     <div class="navbar-buttons">
                         <div style="display: flex; align-items: center; justify-content: start;">
-                            <a href="#" class="btn btn-rounded btn-outline-primary mr-3" style="margin-right:5px; padding-left: 20px;padding-right: 20px;">Giriş</a>
-                            <a href="#" class="btn btn-rounded btn-primary hero-btn" style="padding-left: 20px;padding-right: 20px;">Ücretsiz Deneyin</a>
+                            <button type="button" class="btn btn-rounded btn-primary hero-btn" style="padding-left: 20px;padding-right: 20px;" data-bs-toggle="modal" data-bs-target="#appointmentModal">Ücretsiz Deneyin</button>
                         </div>
                     </div>
                 </div>
@@ -307,6 +306,112 @@
         </section>
 
     </main>
+
+    <!-- Randevu Modal -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appointmentModalLabel">Psikolojik Test Sonrası Randevu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="quickAppointmentForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="quickFirstName" class="form-label">Adınız *</label>
+                                <input type="text" class="form-control" id="quickFirstName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="quickLastName" class="form-label">Soyadınız *</label>
+                                <input type="text" class="form-control" id="quickLastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quickEmail" class="form-label">E-posta Adresiniz *</label>
+                            <input type="email" class="form-control" id="quickEmail" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quickPhone" class="form-label">Telefon Numaranız *</label>
+                            <input type="tel" class="form-control" id="quickPhone" placeholder="0555 123 45 67" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quickTestType" class="form-label">Yaptığınız Test *</label>
+                            <select class="form-control" id="quickTestType" required>
+                                <option value="">Seçiniz...</option>
+                                <option value="anksiyete">Anksiyete (Kaygı) Testi</option>
+                                <option value="depresyon">Depresyon Testi</option>
+                                <option value="travmatik-yas">Travmatik Yas Testi</option>
+                                <option value="tssb">Travma Sonrası Stres Bozukluğu Testi</option>
+                                <option value="sosyal-kaygi">Sosyal Kaygı Testi</option>
+                                <option value="alkol-bagimliligi">Alkol Bağımlılığı Testi</option>
+                                <option value="stres">Stres Testi</option>
+                                <option value="ofke">Öfke Testi</option>
+                                <option value="oz-guven">Öz Güven Testi</option>
+                                <option value="fobi">Fobi Testi</option>
+                                <option value="dikkat-daginikligi">Dikkat Dağınıklığı (Eksikliği) Testi</option>
+                                <option value="okb">Obsesif Kompulsif Bozukluk Testi</option>
+                                <option value="borderline">Borderline (Sınırda) Kişilik Bozukluğu Testi</option>
+                                <option value="aleksitimi">Aleksitimi (Duygu Körlüğü) Testi</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quickTestResult" class="form-label">Test Sonucunuz (Varsa)</label>
+                            <textarea class="form-control" id="quickTestResult" rows="3" placeholder="Test sonucunuz hakkında bilgi verirseniz, randevu öncesinde size daha iyi yardımcı olabiliriz..."></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quickTherapyType" class="form-label">Terapi Türü *</label>
+                            <select class="form-control" id="quickTherapyType" required>
+                                <option value="">Seçiniz...</option>
+                                <option value="individual">Bireysel Terapi</option>
+                                <option value="couple">Çift Terapisi</option>
+                                <option value="family">Aile Danışmanlığı</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quickPreferredDate" class="form-label">Tercih Ettiğiniz Tarih</label>
+                            <input type="date" class="form-control" id="quickPreferredDate">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quickPreferredTime" class="form-label">Tercih Ettiğiniz Saat</label>
+                            <select class="form-control" id="quickPreferredTime">
+                                <option value="">Seçiniz...</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                                <option value="19:00">19:00</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="quickConsent" required>
+                                <label class="form-check-label" for="quickConsent">
+                                    Psikolojik danışmanlık hizmetleri hakkında bilgilendirildiğimi ve gizlilik politikasını kabul ediyorum. *
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary" id="submitQuickAppointment">Randevu Oluştur</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <footer id="footer">
         <div class="footer-contact bg-primary text-white">
@@ -453,5 +558,104 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/database.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Hızlı randevu formu gönderimi
+        $('#submitQuickAppointment').on('click', function() {
+            const form = $('#quickAppointmentForm');
+            
+            // Form validasyonu
+            if (!form[0].checkValidity()) {
+                form[0].reportValidity();
+                return;
+            }
+            
+            // Form verilerini al
+            const appointmentData = {
+                firstName: $('#quickFirstName').val(),
+                lastName: $('#quickLastName').val(),
+                email: $('#quickEmail').val(),
+                phone: $('#quickPhone').val(),
+                testType: $('#quickTestType').val(),
+                testResult: $('#quickTestResult').val(),
+                therapyType: $('#quickTherapyType').val(),
+                preferredDate: $('#quickPreferredDate').val(),
+                preferredTime: $('#quickPreferredTime').val(),
+                source: 'psikolojik-test',
+                status: 'new',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Yönetim paneline randevu verilerini kaydet
+            saveQuickAppointment(appointmentData);
+        });
+        
+        // Telefon numarası formatlama
+        $('#quickPhone').on('input', function() {
+            let value = $(this).val().replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = value;
+                } else if (value.length <= 6) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3);
+                } else if (value.length <= 10) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6);
+                } else {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8, 10);
+                }
+            }
+            $(this).val(value);
+        });
+        
+        // Yönetim paneline hızlı randevu verilerini kaydet
+        async function saveQuickAppointment(appointmentData) {
+            try {
+                // Veritabanı servisi kullanarak randevuyu kaydet
+                const result = await dbService.addAppointment(appointmentData);
+                
+                if (result.success) {
+                    console.log('Hızlı randevu yönetim paneline kaydedildi:', result.data);
+                    
+                    // Modal'ı kapat
+                    $('#appointmentModal').modal('hide');
+                    
+                    // Başarılı mesajı göster
+                    showNotification('Randevu talebiniz başarıyla oluşturuldu! En kısa sürede size dönüş yapacağız.', 'success');
+                    
+                    // Formu temizle
+                    $('#quickAppointmentForm')[0].reset();
+                } else {
+                    console.error('Randevu kaydedilemedi:', result.error);
+                    
+                    // Hata mesajı göster
+                    showNotification('Randevu oluşturulurken bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'error');
+                }
+            } catch (error) {
+                console.error('Randevu kaydetme hatası:', error);
+                
+                // Hata mesajı göster
+                showNotification('Randevu oluşturulurken bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'error');
+            }
+        }
+        
+        // Bildirim gösterme fonksiyonu
+        function showNotification(message, type) {
+            // Bildirim elementi oluştur
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} position-fixed top-0 start-50 translate-middle-x mt-3`;
+            notification.style.zIndex = '9999';
+            notification.textContent = message;
+            
+            // Sayfaya ekle
+            document.body.appendChild(notification);
+            
+            // 5 saniye sonra kaldır
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+    });
+    </script>
 </body>
 </html>
