@@ -5,24 +5,25 @@ class DatabaseService {
         this.projectName = "meltemtugay";
         this.dbUrl = "postgres://19293fc73229a1df27a5879186c4fc5dc31af97ad1a554345750868344a03a10:sk_WETZMQEwkma9BWLXkA3Dk@db.prisma.io:5432/postgres?sslmode=require";
         this.prismaUrl = "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza19XRVRaTVFFd2ttYTlCV0xYa0EzRGsiLCJhcGlfa2V5IjoiMDFLODlEWTNZQ0pQUFYzREdBNTVUNzVZREUiLCJ0ZW5hbnRfaWQiOiIxOTI5M2ZjNzMyMjlhMWRmMjdhNTg3OTE4NmM0ZmM1ZGMzMWFmOTdhZDFhNTU0MzQ1NzUwODY4MzQ0YTAzYTEwIiwiaW50ZXJuYWxfc2VjcmV0IjoiNGExMmFkMzQtNmZkZS00NjhkLWFlYmItNmVhNTZhNTIxYzg5In0.qgEK1zWVoU1x1cNu8ARuu0Q0--nf9R3YPb4LdjqbbKo";
-        
+
         // Vercel'de çalışırken API endpoint kullanacağız
         this.apiEndpoint = "/api";
-        
+
         // Ana site API endpoint'i (senkronizasyon için)
         this.mainSiteApiEndpoint = "https://meltemtugay.com";
-        
+
         // Statik hosting altında gerçek backend olmadığı için localStorage sadece önizleme amaçlıdır.
         // Canlıda kalıcı kayıt için API endpoint zorunludur.
         this.useLocalStorage = false;
-        
+
         // Proje spesifik localStorage anahtarları
         this.storageKeys = {
             appointments: `${this.projectName}_appointments`,
-            pageContents: `${this.projectName}_pageContents`
+            pageContents: `${this.projectName}_pageContents`,
+            settings: `${this.projectName}_settings`
         };
     }
-    
+
     // Randevu ekleme
     async addAppointment(appointmentData) {
         try {
@@ -32,16 +33,16 @@ class DatabaseService {
                 createdAt: new Date().toISOString(),
                 projectName: this.projectName
             };
-            
+
             if (this.useLocalStorage) {
                 // localStorage kullanarak randevu ekle
                 let appointments = JSON.parse(localStorage.getItem(this.storageKeys.appointments)) || [];
                 appointments.push(appointmentWithId);
                 localStorage.setItem(this.storageKeys.appointments, JSON.stringify(appointments));
-                
+
                 // Ana site ile senkronize et
                 this.syncAppointmentToMainSite(appointmentWithId);
-                
+
                 return { success: true, data: appointmentWithId };
             } else {
                 // API kullanarak randevu ekle
@@ -53,11 +54,11 @@ class DatabaseService {
                     },
                     body: JSON.stringify(appointmentData)
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Randevu eklenirken hata oluştu');
                 }
-                
+
                 const data = await response.json();
                 return { success: true, data };
             }
@@ -66,17 +67,17 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Tüm randevuları getirme
     async getAppointments() {
         try {
             if (this.useLocalStorage) {
                 // localStorage kullanarak randevuları getir
                 const appointments = JSON.parse(localStorage.getItem(this.storageKeys.appointments)) || [];
-                
+
                 // Ana sitedeki randevuları da getir ve birleştir
                 await this.syncAppointmentsFromMainSite();
-                
+
                 return { success: true, data: appointments };
             } else {
                 // API kullanarak randevuları getir
@@ -85,11 +86,11 @@ class DatabaseService {
                         'X-Project-Name': this.projectName
                     }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Randevular getirilirken hata oluştu');
                 }
-                
+
                 const data = await response.json();
                 return { success: true, data };
             }
@@ -98,7 +99,7 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Randevu güncelleme
     async updateAppointment(id, updateData) {
         try {
@@ -106,7 +107,7 @@ class DatabaseService {
                 // localStorage kullanarak randevu güncelle
                 let appointments = JSON.parse(localStorage.getItem(this.storageKeys.appointments)) || [];
                 const index = appointments.findIndex(apt => apt.id === id);
-                
+
                 if (index !== -1) {
                     appointments[index] = { ...appointments[index], ...updateData };
                     localStorage.setItem(this.storageKeys.appointments, JSON.stringify(appointments));
@@ -124,11 +125,11 @@ class DatabaseService {
                     },
                     body: JSON.stringify(updateData)
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Randevu güncellenirken hata oluştu');
                 }
-                
+
                 const data = await response.json();
                 return { success: true, data };
             }
@@ -137,7 +138,7 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Randevu silme
     async deleteAppointment(id) {
         try {
@@ -155,11 +156,11 @@ class DatabaseService {
                         'X-Project-Name': this.projectName
                     }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Randevu silinirken hata oluştu');
                 }
-                
+
                 return { success: true };
             }
         } catch (error) {
@@ -167,12 +168,12 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Tarihe göre randevu getirme
     async getAppointmentsByDate(date) {
         try {
             const result = await this.getAppointments();
-            
+
             if (result.success) {
                 const filteredAppointments = result.data.filter(apt => apt.date === date);
                 return { success: true, data: filteredAppointments };
@@ -184,7 +185,7 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Sayfa içeriği kaydetme
     async savePageContent(pageName, content) {
         try {
@@ -212,7 +213,7 @@ class DatabaseService {
                     },
                     body: JSON.stringify(content)
                 });
-                
+
                 let errorMessage = 'Sayfa içeriği kaydedilirken hata oluştu';
                 let responseData = null;
                 try {
@@ -223,11 +224,11 @@ class DatabaseService {
                 } catch (_) {
                     // JSON dönmeyen cevaplarda varsayılan mesajı koru
                 }
-                
+
                 if (!response.ok) {
                     throw new Error(errorMessage);
                 }
-                
+
                 return { success: true, data: responseData };
             }
         } catch (error) {
@@ -235,7 +236,7 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Sayfa içeriği getirme
     async getPageContent(pageName) {
         try {
@@ -251,11 +252,11 @@ class DatabaseService {
                         'X-Project-Name': this.projectName
                     }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Sayfa içeriği getirilirken hata oluştu');
                 }
-                
+
                 const data = await response.json();
                 return { success: true, data };
             }
@@ -264,7 +265,7 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Tüm sayfa içeriklerini getirme
     async getAllPageContents() {
         try {
@@ -279,11 +280,11 @@ class DatabaseService {
                         'X-Project-Name': this.projectName
                     }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Sayfa içerikleri getirilirken hata oluştu');
                 }
-                
+
                 const data = await response.json();
                 return { success: true, data };
             }
@@ -292,7 +293,7 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Sayfa içeriği silme
     async deletePageContent(pageName) {
         try {
@@ -310,11 +311,11 @@ class DatabaseService {
                         'X-Project-Name': this.projectName
                     }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('Sayfa içeriği silinirken hata oluştu');
                 }
-                
+
                 return { success: true };
             }
         } catch (error) {
@@ -322,7 +323,94 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
+    // Site ayarlarını getir
+    async getSettings() {
+        try {
+            if (this.useLocalStorage) {
+                const settings = JSON.parse(localStorage.getItem(this.storageKeys.settings)) || null;
+                return { success: true, data: settings };
+            }
+
+            const response = await fetch(`${this.apiEndpoint}/settings`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Project-Name': this.projectName
+                }
+            });
+
+            let responseData = null;
+            let errorMessage = 'Ayarlar getirilirken hata oluştu';
+
+            try {
+                responseData = await response.json();
+                if (responseData?.error) {
+                    errorMessage = responseData.error;
+                }
+            } catch (_) {
+                // JSON parse edilemezse varsayılan mesajı koru
+            }
+
+            if (!response.ok) {
+                throw new Error(errorMessage);
+            }
+
+            return { success: true, data: responseData };
+        } catch (error) {
+            console.error('Ayarlar getirme hatası:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
+    // Site ayarlarını kaydet
+    async saveSettings(settings) {
+        try {
+            if (this.useLocalStorage) {
+                const data = {
+                    ...settings,
+                    updatedAt: new Date().toISOString(),
+                    projectName: this.projectName
+                };
+                localStorage.setItem(this.storageKeys.settings, JSON.stringify(data));
+                return {
+                    success: true,
+                    data,
+                    warning: 'Ayarlar yalnızca bu tarayıcıda localStorage içine kaydedildi.'
+                };
+            }
+
+            const response = await fetch(`${this.apiEndpoint}/settings`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Project-Name': this.projectName
+                },
+                body: JSON.stringify(settings)
+            });
+
+            let responseData = null;
+            let errorMessage = 'Ayarlar kaydedilirken hata oluştu';
+
+            try {
+                responseData = await response.json();
+                if (responseData?.error) {
+                    errorMessage = responseData.error;
+                }
+            } catch (_) {
+                // JSON parse edilemezse varsayılan mesajı koru
+            }
+
+            if (!response.ok) {
+                throw new Error(errorMessage);
+            }
+
+            return { success: true, data: responseData };
+        } catch (error) {
+            console.error('Ayar kaydetme hatası:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
     // HTML dosyasından içerik çıkarma
     async extractContentFromHTML(filePath) {
         try {
@@ -331,34 +419,34 @@ class DatabaseService {
             if (!filePath.startsWith('../') && !filePath.startsWith('/')) {
                 correctedPath = '../' + filePath;
             }
-            
+
             const response = await fetch(correctedPath);
             if (!response.ok) {
                 throw new Error('HTML dosyası okunamadı');
             }
-            
+
             const html = await response.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            
+
             // Başlık
             const title = doc.querySelector('title')?.textContent || '';
-            
+
             // Meta description
             const metaDescription = doc.querySelector('meta[name="description"]')?.content || '';
-            
+
             // Hero bölümü
             const heroTitle = doc.querySelector('#banner-caption h1')?.innerHTML || '';
             const heroDescription = doc.querySelector('#banner-caption p')?.innerHTML || '';
-            
+
             // Hakkımda bölümü
             const aboutTitle = doc.querySelector('#hakkimda-content h2')?.innerHTML || '';
             const aboutDescription = doc.querySelector('#hakkimda-content p')?.innerHTML || '';
-            
+
             // Nasıl çalışır bölümü
             const howItWorksTitle = doc.querySelector('#nasil-calisir h2')?.innerHTML || '';
             const howItWorksDescription = doc.querySelector('#nasil-calisir p')?.innerHTML || '';
-            
+
             // Blog yazıları
             const blogPosts = [];
             doc.querySelectorAll('.blog-carousel-v2 .card-blog-box').forEach(post => {
@@ -366,10 +454,10 @@ class DatabaseService {
                 const description = post.querySelector('.card-text')?.textContent || '';
                 const category = post.querySelector('.blog-datetime')?.textContent || '';
                 const image = post.querySelector('.card-img-top')?.src || '';
-                
+
                 blogPosts.push({ title, description, category, image });
             });
-            
+
             return {
                 success: true,
                 data: {
@@ -395,7 +483,7 @@ class DatabaseService {
             return { success: false, error: error.message };
         }
     }
-    
+
     // Ana site ile randevu senkronizasyonu
     async syncAppointmentToMainSite(appointmentData) {
         try {
@@ -407,12 +495,12 @@ class DatabaseService {
                 },
                 body: JSON.stringify(appointmentData)
             });
-            
+
             if (!response.ok) {
                 console.error('Ana site ile senkronizasyon başarısız:', response.statusText);
                 return { success: false, error: 'Ana site ile senkronizasyon başarısız' };
             }
-            
+
             const result = await response.json();
             return result;
         } catch (error) {
@@ -420,7 +508,7 @@ class DatabaseService {
             return { success: false, error: 'Ana site ile senkronizasyon hatası' };
         }
     }
-    
+
     // Ana siteden randevuları getir ve localStorage'a senkronize et
     async syncAppointmentsFromMainSite() {
         try {
@@ -429,23 +517,23 @@ class DatabaseService {
                     'X-Project-Name': this.projectName
                 }
             });
-            
+
             if (!response.ok) {
                 console.error('Ana siteden randevular getirilemedi:', response.statusText);
                 return { success: false, error: 'Ana siteden randevular getirilemedi' };
             }
-            
+
             const result = await response.json();
-            
+
             if (result.success && result.data && Array.isArray(result.data)) {
                 // localStorage'daki mevcut randevuları al
                 const localAppointments = JSON.parse(localStorage.getItem(this.storageKeys.appointments)) || [];
-                
+
                 // Ana sitedeki randevuları localStorage'a ekle (tekrar etmeyenleri)
                 result.data.forEach(mainAppointment => {
                     // Aynı ID'ye sahip randevu varsa güncelle, yoksa ekle
                     const existingIndex = localAppointments.findIndex(apt => apt.id === mainAppointment.id);
-                    
+
                     if (existingIndex !== -1) {
                         // Mevcut randevuyu güncelle
                         localAppointments[existingIndex] = mainAppointment;
@@ -454,10 +542,10 @@ class DatabaseService {
                         localAppointments.push(mainAppointment);
                     }
                 });
-                
+
                 // localStorage'ı güncelle
                 localStorage.setItem(this.storageKeys.appointments, JSON.stringify(localAppointments));
-                
+
                 return { success: true, data: localAppointments };
             } else {
                 console.error('Ana siteden geçersiz randevu verisi alındı');
