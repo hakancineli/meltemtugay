@@ -12,8 +12,9 @@ class DatabaseService {
         // Ana site API endpoint'i (senkronizasyon için)
         this.mainSiteApiEndpoint = "https://meltemtugay.com";
         
-        // Başlangıçta localStorage kullanıyoruz (fallback)
-        this.useLocalStorage = true;
+        // Statik hosting altında gerçek backend olmadığı için localStorage sadece önizleme amaçlıdır.
+        // Canlıda kalıcı kayıt için API endpoint zorunludur.
+        this.useLocalStorage = false;
         
         // Proje spesifik localStorage anahtarları
         this.storageKeys = {
@@ -196,7 +197,11 @@ class DatabaseService {
                     projectName: this.projectName
                 };
                 localStorage.setItem(this.storageKeys.pageContents, JSON.stringify(pageContents));
-                return { success: true, data: content };
+                return {
+                    success: true,
+                    data: content,
+                    warning: 'İçerik yalnızca bu tarayıcıda localStorage içine kaydedildi.'
+                };
             } else {
                 // API kullanarak sayfa içeriği kaydet
                 const response = await fetch(`${this.apiEndpoint}/pages/${pageName}`, {
@@ -208,12 +213,22 @@ class DatabaseService {
                     body: JSON.stringify(content)
                 });
                 
-                if (!response.ok) {
-                    throw new Error('Sayfa içeriği kaydedilirken hata oluştu');
+                let errorMessage = 'Sayfa içeriği kaydedilirken hata oluştu';
+                let responseData = null;
+                try {
+                    responseData = await response.json();
+                    if (responseData?.error) {
+                        errorMessage = responseData.error;
+                    }
+                } catch (_) {
+                    // JSON dönmeyen cevaplarda varsayılan mesajı koru
                 }
                 
-                const data = await response.json();
-                return { success: true, data };
+                if (!response.ok) {
+                    throw new Error(errorMessage);
+                }
+                
+                return { success: true, data: responseData };
             }
         } catch (error) {
             console.error('Sayfa içeriği kaydetme hatası:', error);

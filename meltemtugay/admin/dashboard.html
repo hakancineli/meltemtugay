@@ -948,10 +948,13 @@
                     const result = await dbService.savePageContent(selectedPage, pageData);
                     
                     if (result.success) {
-                        alert('Sayfa başarıyla kaydedildi!');
+                        const message = result.warning
+                            ? `Sayfa kaydedildi. ${result.warning}`
+                            : 'Sayfa başarıyla kaydedildi!';
+                        alert(message);
                     } else {
                         console.error('Sayfa kaydedilemedi:', result.error);
-                        alert('Sayfa kaydedilirken bir hata oluştu.');
+                        alert('Sayfa kaydedilirken bir hata oluştu: ' + result.error);
                     }
                 } catch (error) {
                     console.error('Sayfa kaydetme hatası:', error);
@@ -1412,12 +1415,15 @@
                     const result = await dbService.savePageContent(pageName, contentData);
                     
                     if (result.success) {
-                        alert('İçerik başarıyla kaydedildi!');
+                        const message = result.warning
+                            ? `İçerik kaydedildi. ${result.warning}`
+                            : 'İçerik başarıyla kaydedildi!';
+                        alert(message);
                         $('#content-editor-container').hide();
                         loadAllContent();
                     } else {
                         console.error('İçerik kaydedilemedi:', result.error);
-                        alert('İçerik kaydedilirken bir hata oluştu.');
+                        alert('İçerik kaydedilirken bir hata oluştu: ' + result.error);
                     }
                 } catch (error) {
                     console.error('İçerik kaydetme hatası:', error);
@@ -1475,7 +1481,7 @@
                     if (errorCount === 0) {
                         alert(`Tüm ${successCount} sayfa başarıyla kaydedildi!`);
                     } else {
-                        alert(`${successCount} sayfa başarıyla kaydedildi, ${errorCount} sayfa kaydedilemedi.`);
+                        alert(`${successCount} sayfa kaydedildi, ${errorCount} sayfa kaydedilemedi. Canlıda kalıcı kayıt için çalışan bir /api/pages backend endpoint'i gerekli.`);
                     }
                 } catch (error) {
                     console.error('Toplu kaydetme hatası:', error);
