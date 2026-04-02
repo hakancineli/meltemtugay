@@ -833,11 +833,6 @@
                 </div>
                 
                 <div class="content-editor">
-                    <label for="contact-phone">İletişim Telefonu:</label>
-                    <input type="tel" id="contact-phone" class="form-control" value="+90 535 521 34 58">
-                </div>
-                
-                <div class="content-editor">
                     <label for="secure-environment-text">Güvenli ve Gizli Ortam:</label>
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-3 d-flex align-items-center">
@@ -853,13 +848,6 @@
                             </select>
                         </div>
                     </div>
-                </div>
-
-                <div class="content-editor">
-                    <label class="d-flex align-items-center gap-2" for="cv-button-visible">
-                        <input type="checkbox" id="cv-button-visible" checked>
-                        CV butonunu göster
-                    </label>
                 </div>
 
                 <button type="button" class="btn-primary" id="save-settings">Ayarları Kaydet</button>
@@ -1677,10 +1665,7 @@
                     $('#site-title').val(settings.siteTitle || 'Psikolog Meltem Tugay');
                     $('#site-description').val(settings.siteDescription || 'Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!');
                     $('#contact-email').val(settings.contactEmail || 'pskmeltemtugay@gmail.com');
-                    $('#contact-phone').val(settings.contactPhone || '+90 535 521 34 58');
                     $('#secure-environment-text').val(settings.secureEnvironment || 'Güvenli ve Gizli Ortam');
-                    $('#cv-button-visible').prop('checked', settings.cvButtonVisible !== false);
-                    $('.cv-link').toggle(settings.cvButtonVisible !== false);
                 } catch (error) {
                     console.error('Ayarlar yüklenirken hata oluştu:', error);
                 }
@@ -1692,10 +1677,8 @@
                     siteTitle: $('#site-title').val(),
                     siteDescription: $('#site-description').val(),
                     contactEmail: $('#contact-email').val(),
-                    contactPhone: $('#contact-phone').val(),
                     secureEnvironment: $('#secure-environment-text').val(),
-                    cvButtonVisible: $('#cv-button-visible').is(':checked'),
-                    whatsappPhone: ($('#contact-phone').val() || '').toString().replace(/\D/g, '')
+                    whatsappPhone: ''
                 };
 
                 try {
