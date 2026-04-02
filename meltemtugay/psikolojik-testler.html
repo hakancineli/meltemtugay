@@ -4,34 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Psikolojik Testler | Psikolog Meltem Tugay</title>
+    <meta name="description" content="Ücretsiz ve kolayca çözebileceğiniz psikolojik testler ile kendinizi değerlendirin ve psikolojik sıkıntılarınızın düzeyi hakkında fikir edinin.">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/slick.css">
-
     <style>
         .test-icon {
             width: 48px;
             height: 48px;
+            flex-shrink: 0;
         }
         .card {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid rgba(50, 104, 243, 0.08);
+            border-radius: 18px;
+            overflow: hidden;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.14);
         }
         .card-title {
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
+            margin-bottom: 0;
         }
         .card-text {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #666;
+            line-height: 1.65;
         }
         .page-header {
-            background-color: #f8f9fa;
-            padding: 2rem 0;
+            background: linear-gradient(180deg, #f7f9ff 0%, #ffffff 100%);
+            padding: 3rem 0 2.5rem;
+            border-radius: 24px;
         }
         .page-header h1 {
             color: #2c3e50;
@@ -42,9 +49,36 @@
             font-size: 1.1rem;
             max-width: 800px;
             margin: 0 auto;
+            line-height: 1.7;
         }
         .test-section {
-            padding: 3rem 0;
+            padding: 2rem 0 3rem;
+        }
+        .test-category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #3268f3;
+            background: rgba(50, 104, 243, 0.08);
+            border-radius: 999px;
+            padding: 6px 12px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .footer-company-description {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #3268f2;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            .card-title {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -71,13 +105,13 @@
                             <a class="nav-link px-lg-3 py-3 py-lg-0" href="index.html#nasil-calisir">Nasıl Çalışır</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-lg-3 py-3 py-lg-0" href="index.html#blog">Blog</a>
+                            <a class="nav-link px-lg-3 py-3 py-lg-0" href="blog.html">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-lg-3 py-3 py-lg-0 active" href="psikolojik-testler.html">Psikolojik Testler</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-lg-3 py-3 py-lg-0" href="index.html#iletisim">İletişim</a>
+                            <a class="nav-link px-lg-3 py-3 py-lg-0" href="tel:905355213458">İletişim</a>
                         </li>
                     </ul>
                     <div class="navbar-buttons">
@@ -91,28 +125,29 @@
             </div>
         </nav>
     </header>
+
     <main id="page-wrapper" class="page-wrapper pt-0 page-bg-white pt-120">
         <section class="page-header my-3 my-lg-4 mx-2">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
+                        <div class="test-category-badge">Psikolojik Testler</div>
                         <h1 class="fw-bolder">Psikoloji Testleri</h1>
-                        <h3 class="page-header-sub-text">Ücretsiz ve kolayca çözebileceğiniz psikolojik testler ile kendinizi test edin ve psikolojik sıkıntılarınızın düzeyi hakkında bilgi edinin.</h3>
+                        <p class="page-header-sub-text">Ücretsiz ve kolayca çözebileceğiniz psikolojik testler ile kendinizi değerlendirin ve psikolojik sıkıntılarınızın düzeyi hakkında fikir edinin.</p>
                     </div>
                 </div>
             </div>
         </section>
-        
-        
+
         <section class="test-section">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/cb670e7b-6109-405b-9eab-6a4128406083.svg" alt="Anksiyete Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Anksiyete (Kaygı) Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/cb670e7b-6109-405b-9eab-6a4128406083.svg" alt="Anksiyete Testi" class="test-icon">
+                                    <h2 class="card-title">Anksiyete (Kaygı) Testi</h2>
                                 </div>
                                 <p class="card-text">Yaygın Kaygı Bozukluğu 7 (GAD-7), yaygın anksiyete bozukluğunun taranması ve şiddetinin ölçülmesi için kullanılan bir psikoloji testidir. GAD-7, çeşitli yaygın anksiyete bozukluğu belirtilerinin şiddetini ölçen yedi maddeye sahiptir.</p>
                                 <div class="mt-auto pt-3">
@@ -121,184 +156,197 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/3197cfd1-6a7b-495c-924f-090659289784.svg" alt="Depresyon Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Depresyon Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/3197cfd1-6a7b-495c-924f-090659289784.svg" alt="Depresyon Testi" class="test-icon">
+                                    <h2 class="card-title">Depresyon Testi</h2>
                                 </div>
-                                <p class="card-text">Hasta Sağlık Anketi 9 (PHQ-9) depresyonun taranması ve şiddetinin ölçülmesi için kullanılan bir psikoloji testidir. Dokuz maddeyle hızlı ve kolay bir şekilde tarama yapan başarılı bir depresyon ölçeğidir.</p>
+                                <p class="card-text">Hasta Sağlık Anketi 9 (PHQ-9), depresyonun taranması ve şiddetinin ölçülmesi için kullanılan güvenilir bir değerlendirme aracıdır. Dokuz maddelik bu ölçek hızlı ve kolay uygulanır.</p>
                                 <div class="mt-auto pt-3">
                                     <a href="pages/test-depresyon.html" class="btn btn-primary">Testi Çöz</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/f154aff5-5108-43e7-863f-1e94b2b60d5a.svg" alt="Travmatik Yas Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Travmatik Yas Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/f154aff5-5108-43e7-863f-1e94b2b60d5a.svg" alt="Travmatik Yas Testi" class="test-icon">
+                                    <h2 class="card-title">Travmatik Yas Testi</h2>
                                 </div>
-                                <p class="card-text">Travmatik yas; ilişkimiz olan bir kişinin beklenmedik ve özellikle kötü bir olay sonucu vefat etmesiyle oluşan yas sürecine denir. Bu ölçek bahsi geçen travmatik yas tepkilerinin şiddetini değerlendirmektedir.</p>
+                                <p class="card-text">Travmatik yas; beklenmedik ve ağır bir kayıp sonrasında gelişen yas sürecidir. Bu ölçek, travmatik yas tepkilerinin düzeyi hakkında fikir vermeyi amaçlar.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/7e60e533-f03b-4cc4-8c84-6620694df5ac.svg" alt="Travma Sonrası Stres Bozukluğu Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Travma Sonrası Stres Bozukluğu Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/7e60e533-f03b-4cc4-8c84-6620694df5ac.svg" alt="Travma Sonrası Stres Bozukluğu Testi" class="test-icon">
+                                    <h2 class="card-title">Travma Sonrası Stres Bozukluğu Testi</h2>
                                 </div>
-                                <p class="card-text">Travma Sonrası Stres Bozukluğu Envanteri - Sivil Versiyon, Türkiye'de yaşayan bireylerde Travma Sonrası Stres Bozukluğu tanı ve şiddet değerlendirmesinde rutin uygulama kapsamında kullanılabilmektedir.</p>
+                                <p class="card-text">Travma Sonrası Stres Bozukluğu belirtilerini değerlendirmeye yardımcı olan bu ölçek, travmatik yaşantıların günlük yaşam üzerindeki etkisini anlamak için kullanılabilir.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/travma-ptsd.html" class="btn btn-outline-primary">Detaylı Bilgi</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/43158b21-6760-4d19-9e10-a3efba5e54c7.svg" alt="Sosyal Kaygı Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Sosyal Kaygı Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/43158b21-6760-4d19-9e10-a3efba5e54c7.svg" alt="Sosyal Kaygı Testi" class="test-icon">
+                                    <h2 class="card-title">Sosyal Kaygı Testi</h2>
                                 </div>
-                                <p class="card-text">Sosyal Etkileşim Kaygı Ölçeği, diğer insanlarla tanışırken ve konuşurken sıkıntı olarak tanımlanan sosyal etkileşim kaygısını ölçmektedir. Bu psikolojik test, sosyal anksiyete bozukluğuna dair fikir verir.</p>
+                                <p class="card-text">Sosyal Etkileşim Kaygı Ölçeği, özellikle sosyal ortamlarda hissedilen kaygının düzeyini değerlendirmeye yardımcı olur ve sosyal anksiyete belirtileri hakkında genel fikir verir.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/4dbcb989-9911-4e6c-bfad-d40f39fa42d8.svg" alt="Alkol Bağımlılığı Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Alkol Bağımlılığı Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/4dbcb989-9911-4e6c-bfad-d40f39fa42d8.svg" alt="Alkol Bağımlılığı Testi" class="test-icon">
+                                    <h2 class="card-title">Alkol Bağımlılığı Testi</h2>
                                 </div>
-                                <p class="card-text">AUDIT (Alkol Kullanım Bozuklukları Tanımlama Testi), riskli veya tehlikeli tüketim veya herhangi bir alkol kullanım bozukluğu olarak tanımlanan sağlıksız alkol kullanımını taramanın basit ve etkili bir yöntemidir.</p>
+                                <p class="card-text">AUDIT, riskli veya zararlı alkol kullanımını taramak için geliştirilmiş etkili bir ölçektir. Sonuçlar, alkol kullanım düzeyine dair ön değerlendirme sağlar.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/837e2a1f-ffa9-4b68-84d1-f06314cde6df.svg" alt="Stres Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Stres Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/837e2a1f-ffa9-4b68-84d1-f06314cde6df.svg" alt="Stres Testi" class="test-icon">
+                                    <h2 class="card-title">Stres Testi</h2>
                                 </div>
-                                <p class="card-text">DASS21, son 1 haftadır mevcut olan stres belirtilerini ölçen 7 maddeyi içeren bir araçtır.</p>
+                                <p class="card-text">DASS-21 stres alt ölçeği, son bir haftadaki stres belirtilerini anlamaya yardımcı olur. Günlük yaşamın üzerinizdeki yükünü değerlendirmek için pratik bir araçtır.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/9da7b10b-5bfa-4221-aaa9-a7e65d5358c5.svg" alt="Öfke Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Öfke Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/9da7b10b-5bfa-4221-aaa9-a7e65d5358c5.svg" alt="Öfke Testi" class="test-icon">
+                                    <h2 class="card-title">Öfke Testi</h2>
                                 </div>
-                                <p class="card-text">Sürekli öfke, durumsal öfkenin genelde ne sıklıkta yaşandığını anlatan bir kavramdır. Sürekli Öfke ve Öfke Tarzı Ölçeği Testi ya da Öfke Testi bu durumsal öfkenin yaşanma sıklığını ve öfkenin çeşitli boyutlarını ölçmek amacıyla kullanılmaktadır.</p>
+                                <p class="card-text">Öfke düzeyini ve öfkenin ifade ediliş biçimini anlamaya yardımcı olan bu ölçek, duygusal düzenleme konusunda genel bir farkındalık sağlar.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/0ea01766-fbe0-4af1-9cc4-fcebc1484e98.svg" alt="Öz Güven Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Öz Güven Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/0ea01766-fbe0-4af1-9cc4-fcebc1484e98.svg" alt="Öz Güven Testi" class="test-icon">
+                                    <h2 class="card-title">Öz Güven Testi</h2>
                                 </div>
-                                <p class="card-text">33 sorudan oluşan Öz Güven testi bireylerin kendilerine olan güvenlerinin seviyesini ölçmek için kullanılan bir psikoloji testidir.</p>
+                                <p class="card-text">Öz güven testi, kişinin kendine olan inancı ve yeterlilik algısı hakkında genel fikir verir. Günlük ilişkiler ve karar alma süreçlerine etkisi açısından değerlidir.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/ozguyen-sorunlari.html" class="btn btn-outline-primary">Detaylı Bilgi</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/47ce4685-00f5-48b3-a3cf-0c933645bc33.svg" alt="Fobi Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Fobi Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/47ce4685-00f5-48b3-a3cf-0c933645bc33.svg" alt="Fobi Testi" class="test-icon">
+                                    <h2 class="card-title">Fobi Testi</h2>
                                 </div>
-                                <p class="card-text">Özgül fobi testi herhangi bir konudaki (yükseklik, kapalı alan, hayvanlar, durumlar) fobinizin şiddetini ölçebilir ve bilimsel sonuçlar alabilirsiniz.</p>
+                                <p class="card-text">Belirli korku alanlarının günlük yaşam üzerindeki etkisini anlamaya yardımcı olan bu değerlendirme, özgül fobi belirtileri hakkında ön bilgi sağlar.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/45a4e37e-bb0a-421c-9cca-c54559408756.svg" alt="Dikkat Dağınıklığı Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Dikkat Dağınıklığı (Eksikliği) Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/45a4e37e-bb0a-421c-9cca-c54559408756.svg" alt="Dikkat Dağınıklığı Testi" class="test-icon">
+                                    <h2 class="card-title">Dikkat Dağınıklığı Testi</h2>
                                 </div>
-                                <p class="card-text">Yetişkinler İçin Dikkat Dağınıklığı Testi, yetişkinler için dikkat eksikliği belirtilerinin değerlendirildiği 24 soruluk bir psikoloji ölçeğidir.</p>
+                                <p class="card-text">Dikkat sürdürme, odaklanma ve zihinsel dağınıklık belirtilerini değerlendirmeye yardımcı olan bir ön değerlendirme aracıdır.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/7012219d-d526-4b35-a835-ae3636659010.svg" alt="Obsesif Kompulsif Bozukluk Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Obsesif Kompulsif Bozukluk Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/7012219d-d526-4b35-a835-ae3636659010.svg" alt="Obsesif Kompulsif Bozukluk Testi" class="test-icon">
+                                    <h2 class="card-title">Obsesif Kompulsif Bozukluk Testi</h2>
                                 </div>
-                                <p class="card-text">Maudsley Obsesif Kompulsif Bozukluk Testi, Obsesyon (takıntı) ve kompulsiyonların yani takıntıların yarattığı kaygıyı gidermek için uygulanan davranışların belirti düzeylerini ölçen 37 soruluk bir psikoloji testidir.</p>
+                                <p class="card-text">Obsesyon ve kompulsiyon belirtilerinin günlük yaşamı ne kadar etkilediğine dair ön değerlendirme sağlayan bilgilendirici bir testtir.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/96829c90-2210-4e35-91ee-a6d4e5809bc5.svg" alt="Borderline Kişilik Bozukluğu Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Borderline (Sınırda) Kişilik Bozukluğu Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/96829c90-2210-4e35-91ee-a6d4e5809bc5.svg" alt="Borderline Kişilik Bozukluğu Testi" class="test-icon">
+                                    <h2 class="card-title">Borderline (Sınırda) Kişilik Bozukluğu Testi</h2>
                                 </div>
-                                <p class="card-text">Borderline Kişilik Bozukluğu Testi, sınırda kişilik belirtlerini ölçen 51 maddelik bir envanterdir. Sorular doğru-yanlış seçenekleriyle yanıtlanır. Envanterden alınan puanın artması, borderline kişilik özelliklerindeki artışa işaret eder.</p>
+                                <p class="card-text">Sınırda kişilik örüntüsüne eşlik eden duygu düzenleme, ilişki ve dürtüsellik belirtileri hakkında fikir veren kapsamlı bir ön değerlendirmedir.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex mb-3 align-items-center">
-                                    <img src="assets/images/test-images/bf1f7b5a-a0ac-4a68-9615-27f7ac05d8c2.svg" alt="Aleksitimi Testi" class="test-icon me-3">
-                                    <h5 class="card-title">Aleksitimi (Duygu Körlüğü) Testi</h5>
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="d-flex mb-3 align-items-center gap-3">
+                                    <img src="assets/images/test-images/bf1f7b5a-a0ac-4a68-9615-27f7ac05d8c2.svg" alt="Aleksitimi Testi" class="test-icon">
+                                    <h2 class="card-title">Aleksitimi (Duygu Körlüğü) Testi</h2>
                                 </div>
-                                <p class="card-text">Duygu Körlüğü ya da Aleksitimi testi, kişinin kendi duyguları anlama, tanımlama veya ifade etme seviyesini ve duyguları anlamakta bir eksiklik yaşayıp yaşamadığını ölçmektedir.</p>
+                                <p class="card-text">Duyguları tanıma, adlandırma ve ifade etme alanlarında zorlanma düzeyine ilişkin genel fikir sunan bir ön değerlendirme çalışmasıdır.</p>
                                 <div class="mt-auto pt-3">
-                                    <a href="#" class="btn btn-primary">Testi Çöz</a>
+                                    <a href="pages/randevu.html" class="btn btn-outline-primary">Uzman Desteği Al</a>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +354,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer id="footer">
@@ -314,10 +361,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="">
+                        <div>
                             Desteğe mi ihtiyacınız var? Benimle iletişime geçin!
                             <br/>
-                            <a href="index.html#iletisim" class="ms-2 text-decoration-none btn-light btn btn-rounded rounded-pill mt-2">Bize Ulaşın</a>
+                            <a href="tel:905355213458" class="ms-2 text-decoration-none btn-light btn btn-rounded rounded-pill mt-2">Bize Ulaşın</a>
                         </div>
                     </div>
                 </div>
@@ -331,12 +378,12 @@
                             <img width="131" height="58" loading="lazy" src="assets/images/meltemtugay-logo-text.svg" alt="Meltem Tugay logo">
                         </a>
                     </div>
-                    <div class="footer-company-description mt-4">Uzman Klinik Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</div>
+                    <div class="footer-company-description mt-4" data-setting="site-description">Uzman Klinik Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</div>
                     <div class="footer-nav-title mt-4">İletişim</div>
                     <div class="row mb-4 mx-0">
                         <div class="col-12 p-1 col-sm-12 mt-2">
-                            <p><strong>Telefon:</strong> +90 555 123 45 67</p>
-                            <p><strong>E-posta:</strong> info@meltemtugay.com</p>
+                            <p><strong>Telefon:</strong> <a href="tel:905355213458" data-setting="contact-phone">+90 535 521 34 58</a></p>
+                            <p><strong>E-posta:</strong> <a href="mailto:pskmeltemtugay@gmail.com" data-setting="contact-email">pskmeltemtugay@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
@@ -344,73 +391,39 @@
                     <div>
                         <div class="footer-nav-title">Menü</div>
                         <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html#nasil-calisir">Nasıl Çalışır</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html#hakkimda">Hakkımda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html#blog">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html#iletisim">İletişim</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="index.html#nasil-calisir">Nasıl Çalışır</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.html#hakkimda">Hakkımda</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="tel:905355213458">İletişim</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2 mb-4 mb-md-0">
                     <div class="footer-nav-title">Terapi</div>
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/terapi.html">Terapi Nedir?</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/bireysel-gorusme.html">Bireysel Terapi Nedir?</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/terapi.html">Çift Terapisi Nedir?</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/terapi.html">Aile Danışmanlığı</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/terapi.html">Online Terapi</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="pages/terapi.html">Terapi Nedir?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/bireysel-gorusme.html">Bireysel Terapi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/cift-gorusmesi.html">Çift Terapisi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/aile-danismanligi.html">Aile Danışmanlığı</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/terapi-odasi.html">Online Terapi</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-4 mb-md-0">
                     <div class="footer-nav-title">Uzmanlık Alanları</div>
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Anksiyete ve Kaygı</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Depresyon</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">İlişki Sorunları</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Travma ve PTSD</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages/ozguyen-sorunlari.html">Özgüven Sorunları</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="pages/anksiyete-kaygi.html">Anksiyete ve Kaygı</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/depresyon.html">Depresyon</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/iliski-sorunlari.html">İlişki Sorunları</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/travma-ptsd.html">Travma ve PTSD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/ozguyen-sorunlari.html">Özgüven Sorunları</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-4 mb-md-0">
                     <div class="footer-nav-title">Yasal</div>
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a rel="nofollow" class="nav-link" href="#">Gizlilik Politikası</a>
-                        </li>
-                        <li class="nav-item">
-                            <a rel="nofollow" class="nav-link" href="#">Kullanım Sözleşmesi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a rel="nofollow" class="nav-link" href="#">KVKK</a>
-                        </li>
+                        <li class="nav-item"><a rel="nofollow" class="nav-link" href="gizlilik-politikasi.html">Gizlilik Politikası</a></li>
+                        <li class="nav-item"><a rel="nofollow" class="nav-link" href="kullanim-sozlesmesi.html">Kullanım Sözleşmesi</a></li>
+                        <li class="nav-item"><a rel="nofollow" class="nav-link" href="kvkk.html">KVKK</a></li>
                     </ul>
                 </div>
             </div>
@@ -425,11 +438,11 @@
         <div class="container copyright-seciton">
             <div class="row">
                 <div class="col-12 d-flex justify-content-between align-items-center">
-                    <div>© 2024 Psikolog Meltem Tugay</div>
+                    <div>© 2025 Psikolog Meltem Tugay</div>
                     <div>
                         <ul class="nav social-links">
                             <li class="nav-item">
-                                <a class="nav-link" href="#" target="_blank">
+                                <a class="nav-link" href="#" target="_blank" rel="noopener">
                                     <img width="30" height="14" loading="lazy" src="assets/images/social-facebook-dark.svg" alt="facebook icon">
                                 </a>
                             </li>
@@ -439,7 +452,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" target="_blank">
+                                <a class="nav-link" href="https://www.instagram.com/pskmeltemtugay/" target="_blank" rel="noopener">
                                     <img width="30" height="14" loading="lazy" src="assets/images/social-instagram-dark.svg" alt="instagram icon">
                                 </a>
                             </li>
@@ -449,10 +462,11 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/slick.min.js"></script>
+    <script src="./assets/js/settings-sync.js"></script>
 </body>
 </html>
