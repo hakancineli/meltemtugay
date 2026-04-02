@@ -92,7 +92,7 @@
 <a class="navbar-brand" href="./index.html">
 <img alt="Meltem Tugay logo" height="58" src="./assets/images/meltemtugay-logo-text.svg" width="500"/>
 </a>
-<a class="cv-link ms-3" href="./assets/images/meltemcv.jpeg?v=1" target="_blank">
+<a class="cv-link ms-3" href="./assets/images/meltemcv.jpeg?v=1" target="_blank" rel="noopener">
 <span class="cv-text">CV</span>
 </a>
 <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="menu d-lg-none" data-bs-target="#navbarText" data-bs-toggle="collapse" type="button">
@@ -853,12 +853,12 @@ Psikolog <br/>Meltem Tugay ile Tanışın
 <img alt="Meltem Tugay logo" height="58" loading="lazy" src="./assets/images/meltemtugay-logo-text.svg" width="500"/>
 </a>
 </div>
-<div class="footer-company-description mt-4" style="font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: #3268f2; font-weight: 500;">Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</div>
+<div class="footer-company-description mt-4" data-setting="site-description" style="font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: #3268f2; font-weight: 500;">Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!</div>
 <div class="footer-nav-title mt-4">İletişim</div>
 <div class="row mb-4 mx-0">
 <div class="col-12 p-1 col-sm-12 mt-2">
-<p><strong>Telefon:</strong> <a href="tel:905355213458">+90 535 521 34 58</a></p>
-<p><strong>E-posta:</strong> pskmeltemtugay@gmail.com</p>
+<p><strong>Telefon:</strong> <a data-setting="contact-phone" href="tel:905355213458">+90 535 521 34 58</a></p>
+<p><strong>E-posta:</strong> <a data-setting="contact-email" href="mailto:pskmeltemtugay@gmail.com">pskmeltemtugay@gmail.com</a></p>
 </div>
 </div>
 </div>
@@ -1050,5 +1050,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script src="./assets/js/settings-sync.js"></script>
 </body>
 </html>

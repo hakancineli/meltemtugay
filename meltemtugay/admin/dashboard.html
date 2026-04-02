@@ -838,12 +838,13 @@
                 </div>
                 
                 <div class="content-editor">
-                    <label for="secure-environment">Güvenli ve Gizli Ortam:</label>
+                    <label for="secure-environment-text">Güvenli ve Gizli Ortam:</label>
                     <div class="row">
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class="col-12 col-sm-6 mb-3 d-flex align-items-center">
                             <svg class="me-2" fill="none" height="20" viewBox="0 0 12 9" width="20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.19883 3.80117L4.12865 7.73099C4.42105 8.03509 4.91228 8.03509 5.20468 7.73099L11.8012 1.1345C11.9298 1.01754 12 0.853801 12 0.666667C12 0.304093 11.6959 0.11.3333 0C11.1462 0.10.9825 0.0701752 10.8655 0.198831L4.26901 6.79532C4.11696 6.94737 5.21637 6.94737 5.06433 6.79532L1.1345 2.8655C1.01754 2.73684 0.853801 2.66667 0.666667 2.66667C0.304094 2.66667 0 2.97076 0 3.33333C0 3.52047 0.0701754 3.68421 0.19883 3.80117Z" fill="green"></path>
-                            </svg>   Güvenli ve Gizli Ortam
+                            </svg>
+                            <input type="text" id="secure-environment-text" class="form-control" value="Güvenli ve Gizli Ortam">
                         </div>
                         <div class="col-12 col-sm-6 mb-3">
                             <select class="form-control" id="therapy-type">
@@ -853,8 +854,15 @@
                         </div>
                     </div>
                 </div>
-                
-                <button class="btn-primary" id="save-settings">Ayarları Kaydet</button>
+
+                <div class="content-editor">
+                    <label class="d-flex align-items-center gap-2" for="cv-button-visible">
+                        <input type="checkbox" id="cv-button-visible" checked>
+                        CV butonunu göster
+                    </label>
+                </div>
+
+                <button type="button" class="btn-primary" id="save-settings">Ayarları Kaydet</button>
             </div>
         </div>
     </div>
@@ -1656,12 +1664,61 @@
                 }
             });
             
+            async function loadSettings() {
+                try {
+                    const result = await dbService.getSettings();
+
+                    if (!result.success || !result.data) {
+                        console.error('Ayarlar yüklenemedi:', result.error);
+                        return;
+                    }
+
+                    const settings = result.data;
+                    $('#site-title').val(settings.siteTitle || 'Psikolog Meltem Tugay');
+                    $('#site-description').val(settings.siteDescription || 'Psikolog Meltem Tugay ile profesyonel psikolojik destek için güvenli bir adım atın!');
+                    $('#contact-email').val(settings.contactEmail || 'pskmeltemtugay@gmail.com');
+                    $('#contact-phone').val(settings.contactPhone || '+90 535 521 34 58');
+                    $('#secure-environment-text').val(settings.secureEnvironment || 'Güvenli ve Gizli Ortam');
+                    $('#cv-button-visible').prop('checked', settings.cvButtonVisible !== false);
+                    $('.cv-link').toggle(settings.cvButtonVisible !== false);
+                } catch (error) {
+                    console.error('Ayarlar yüklenirken hata oluştu:', error);
+                }
+            }
+
             // Save settings
-            $('#save-settings').on('click', function() {
-                // In a real application, this would save the settings to the backend
-                alert('Ayarlar başarıyla kaydedildi!');
+            $('#save-settings').on('click', async function() {
+                const settingsData = {
+                    siteTitle: $('#site-title').val(),
+                    siteDescription: $('#site-description').val(),
+                    contactEmail: $('#contact-email').val(),
+                    contactPhone: $('#contact-phone').val(),
+                    secureEnvironment: $('#secure-environment-text').val(),
+                    cvButtonVisible: $('#cv-button-visible').is(':checked'),
+                    whatsappPhone: ($('#contact-phone').val() || '').toString().replace(/\D/g, '')
+                };
+
+                try {
+                    const result = await dbService.saveSettings(settingsData);
+
+                    if (result.success) {
+                        const message = result.warning
+                            ? `Ayarlar kaydedildi. ${result.warning}`
+                            : 'Ayarlar başarıyla kaydedildi! Telefon bağlantıları canlı sitede merkezi ayardan beslenecek.';
+                        alert(message);
+                        await loadSettings();
+                    } else {
+                        console.error('Ayarlar kaydedilemedi:', result.error);
+                        alert('Ayarlar kaydedilirken bir hata oluştu: ' + result.error);
+                    }
+                } catch (error) {
+                    console.error('Ayar kaydetme hatası:', error);
+                    alert('Ayarlar kaydedilirken bir hata oluştu.');
+                }
             });
             
+            loadSettings();
+
             // Initialize content management
             $(document).ready(function() {
                 // Auto-load content when content section is activated
