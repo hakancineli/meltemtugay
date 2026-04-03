@@ -273,6 +273,62 @@
     display: none;
 }
 
+.footer-logo-wide {
+    width: 80%;
+}
+
+.navbar-buttons-inline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.hero-btn-wide {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.hero-btn-fit-content {
+    max-width: fit-content;
+}
+
+.top-banner-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100vw;
+    background-color: #d7d4f4;
+    text-align: center;
+}
+
+.quote-icon-floating {
+    margin-top: -50px;
+    position: absolute;
+    margin-left: -50px;
+}
+
+.emergency-close-button {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.emergency-table-full-width {
+    width: 100%;
+}
+
+.emergency-td-cell {
+    padding: 5px;
+}
+
+.footer-company-description-accent {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: #3268f2;
+    font-weight: 500;
+}
+
 .register-progress{
     max-width: 690px;
     margin: 0 auto;
